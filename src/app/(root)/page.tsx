@@ -1,6 +1,6 @@
 import { api } from "@/trpc/server";
 import React from "react";
-
+export const dynamic = "force-dynamic";
 const Page = async () => {
   const posts = await api.post.getAllPosts.query();
   return (
