@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Sulton-s-workspace-4sbl61.ap-southeast-2.xata.sh/db/karcis",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}

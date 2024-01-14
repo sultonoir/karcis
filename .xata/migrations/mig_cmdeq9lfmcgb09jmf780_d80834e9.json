@@ -1,0 +1,16 @@
+{
+  "id": "mig_cmdeq9lfmcgb09jmf780",
+  "parentID": "mig_cmdej1tfmcgb09jmf760",
+  "checksum": "1:d80834e982829bd48171985ac932848884fbed46dcbb045e1087549d71a7d69b",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "hashedPassword",
+          "type": "string"
+        },
+        "table": "nextauth_users"
+      }
+    }
+  ]
+}

@@ -11,7 +11,8 @@ import superjson from "superjson";
 import { ZodError } from "zod";
 
 import { getServerAuthSession } from "@/server/auth";
-
+import { XataClient } from "@/xata";
+const xata = new XataClient();
 /**
  * 1. CONTEXT
  *
@@ -28,6 +29,7 @@ export const createTRPCContext = async (opts: { headers: Headers }) => {
   const session = await getServerAuthSession();
 
   return {
+    xata,
     session,
     ...opts,
   };
