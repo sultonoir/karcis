@@ -1,0 +1,16 @@
+{
+  "id": "mig_cmklggf0551e7ocp21lg",
+  "parentID": "mig_cmklgcn0551e7ocp21kg",
+  "checksum": "1:d59d08bbd582229040302249e0ed7fdb120067992eca8deaee821282db47b755",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "imageUrl",
+          "type": "file"
+        },
+        "table": "Uploads"
+      }
+    }
+  ]
+}

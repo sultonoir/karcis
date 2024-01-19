@@ -1,0 +1,19 @@
+{
+  "id": "mig_cmkmfkf0551e7ocp22u0",
+  "parentID": "mig_cmkmbqn0551e7ocp22t0",
+  "checksum": "1:db23b6ceeb043bf40ee21fdc168941b5fce61b17d0c5dca691d63414750a99e6",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "imageUrl",
+          "type": "file[]",
+          "file[]": {
+            "defaultPublicAccess": true
+          }
+        },
+        "table": "Posts"
+      }
+    }
+  ]
+}

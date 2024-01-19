@@ -78,6 +78,11 @@ const tables = [
       { name: "slug", type: "string" },
       { name: "description", type: "text" },
       { name: "pubDate", type: "datetime" },
+      {
+        name: "imageUrl",
+        type: "file[]",
+        "file[]": { defaultPublicAccess: true },
+      },
     ],
   },
 ] as const;

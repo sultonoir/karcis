@@ -1,0 +1,13 @@
+{
+  "id": "mig_cmklkaf0551e7ocp22lg",
+  "parentID": "mig_cmklggf0551e7ocp21lg",
+  "checksum": "1:5bc550dc91e14e200f788982274c8ab6d1b35242d0bdb7cd4508fa339d67e534",
+  "operations": [
+    {
+      "removeColumn": {
+        "column": "imageUrl",
+        "table": "Posts"
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "id": "mig_cmklfef0551e7ocp213g",
+  "parentID": "mig_cmkl51k5g998hdsqk5og",
+  "checksum": "1:83c5bc0ef9b30248c8a9bf784a2764dd9f3bb2cbc88de12db425ce9a0da6806b",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "postId",
+          "type": "string"
+        },
+        "table": "Uploads"
+      }
+    }
+  ]
+}

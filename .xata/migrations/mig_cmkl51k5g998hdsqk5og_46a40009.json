@@ -1,0 +1,12 @@
+{
+  "id": "mig_cmkl51k5g998hdsqk5og",
+  "parentID": "mig_cmkl4s085pu1tmep7vpg",
+  "checksum": "1:46a40009447a05c35addd2c2cd882acfc7444d7f58ab4911d971cf64f3001b81",
+  "operations": [
+    {
+      "addTable": {
+        "table": "Uploads"
+      }
+    }
+  ]
+}

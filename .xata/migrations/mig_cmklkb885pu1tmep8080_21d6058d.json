@@ -1,0 +1,12 @@
+{
+  "id": "mig_cmklkb885pu1tmep8080",
+  "parentID": "mig_cmklkaf0551e7ocp22lg",
+  "checksum": "1:21d6058dfcba88e41d91e6a818d198cf38cad903046952d9dce23d331d31cce8",
+  "operations": [
+    {
+      "removeTable": {
+        "table": "Uploads"
+      }
+    }
+  ]
+}
