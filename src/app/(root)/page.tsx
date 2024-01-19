@@ -1,12 +1,11 @@
 import React, { Suspense } from "react";
-import { getXataClient } from "@/xata";
 import Upload from "@/components/ui/Upload";
 import Image from "next/image";
 import { XataFile } from "@xata.io/client";
-const xata = getXataClient();
+import { api } from "@/trpc/server";
 export const dynamic = "force-dynamic";
 const Page = async () => {
-  const posts = await xata.db.Posts.sort("pubDate", "desc").getAll();
+  const posts = await api.post.getAllPosts.query();
   return (
     <div className="container mt-16 w-full max-w-5xl">
       <Upload />
@@ -41,6 +40,7 @@ const Page = async () => {
                   placeholder="blur"
                   blurDataURL={XataFile.fromString(item.url ?? "").toBase64()}
                   className="h-[400px] w-[300px] rounded-lg object-cover"
+                  priority
                 />
               </div>
             ))}
