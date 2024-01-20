@@ -38,8 +38,7 @@ const Page = async () => {
                   alt={post.title ?? ""}
                   width={300}
                   height={400}
-                  placeholder="blur"
-                  blurDataURL={item.url}
+                  priority
                   className="h-[400px] w-[300px] rounded-lg object-cover"
                 />
               </div>
