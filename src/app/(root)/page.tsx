@@ -1,13 +1,12 @@
 import React, { Suspense } from "react";
+import { getXataClient } from "@/xata";
 import Upload from "@/components/ui/Upload";
-import { api } from "@/trpc/server";
-import { getPlaiceholder } from "plaiceholder";
 import Image from "next/image";
-import ImageBlur from "@/components/ui/ImageBlur";
+import { XataFile } from "@xata.io/client";
+const xata = getXataClient();
 export const dynamic = "force-dynamic";
-
 const Page = async () => {
-  const posts = await api.post.getAllPosts.query();
+  const posts = await xata.db.Posts.sort("pubDate", "desc").getAll();
   return (
     <div className="container mt-16 w-full max-w-5xl">
       <Upload />
@@ -32,26 +31,19 @@ const Page = async () => {
                 Read more &rarr;
               </a>
             </div>
-            {post.imageUrl?.map(async (item) => {
-              const res = await fetch(item.url ?? "");
-              const buffer = Buffer.from(await res.arrayBuffer());
-              const { base64 } = await getPlaiceholder(buffer);
-
-              return (
-                <div key={item.id} className="flex flex-col gap-2 lg:flex-row">
-                  <Image
-                    src={item.url ?? ""}
-                    alt={post.title ?? ""}
-                    width={300}
-                    height={400}
-                    placeholder="blur"
-                    blurDataURL={base64}
-                    className="h-[400px] w-[300px] rounded-lg object-cover"
-                  />
-                  <ImageBlur image={item.url ?? ""} />
-                </div>
-              );
-            })}
+            {post.imageUrl?.map((item) => (
+              <div key={item.id}>
+                <Image
+                  src={item.url ?? ""}
+                  alt={post.title ?? ""}
+                  width={300}
+                  height={400}
+                  placeholder="blur"
+                  blurDataURL={XataFile.fromString(item.url ?? "").toBase64()}
+                  className="h-[400px] w-[300px] rounded-lg object-cover"
+                />
+              </div>
+            ))}
           </div>
         ))}
       </Suspense>
