@@ -1,9 +1,11 @@
 import React, { Suspense } from "react";
 import Upload from "@/components/ui/Upload";
-import Image from "next/image";
-import { XataFile } from "@xata.io/client";
 import { api } from "@/trpc/server";
+import { getPlaiceholder } from "plaiceholder";
+import Image from "next/image";
+import ImageBlur from "@/components/ui/ImageBlur";
 export const dynamic = "force-dynamic";
+
 const Page = async () => {
   const posts = await api.post.getAllPosts.query();
   return (
@@ -30,20 +32,26 @@ const Page = async () => {
                 Read more &rarr;
               </a>
             </div>
-            {post.imageUrl?.map((item) => (
-              <div key={item.id}>
-                <Image
-                  src={item.url ?? ""}
-                  alt={post.title ?? ""}
-                  width={300}
-                  height={400}
-                  placeholder="blur"
-                  blurDataURL={XataFile.fromString(item.url ?? "").toBase64()}
-                  className="h-[400px] w-[300px] rounded-lg object-cover"
-                  priority
-                />
-              </div>
-            ))}
+            {post.imageUrl?.map(async (item) => {
+              const res = await fetch(item.url ?? "");
+              const buffer = Buffer.from(await res.arrayBuffer());
+              const { base64 } = await getPlaiceholder(buffer);
+
+              return (
+                <div key={item.id} className="flex flex-col gap-2 lg:flex-row">
+                  <Image
+                    src={item.url ?? ""}
+                    alt={post.title ?? ""}
+                    width={300}
+                    height={400}
+                    placeholder="blur"
+                    blurDataURL={base64}
+                    className="h-[400px] w-[300px] rounded-lg object-cover"
+                  />
+                  <ImageBlur image={item.url ?? ""} />
+                </div>
+              );
+            })}
           </div>
         ))}
       </Suspense>

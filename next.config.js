@@ -3,7 +3,7 @@
  * for Docker builds.
  */
 await import("./src/env.js");
-
+import withPlaiceholder from "@plaiceholder/next";
 /** @type {import("next").NextConfig} */
 const config = {
   images: {
@@ -33,4 +33,4 @@ const config = {
   },
 };
 
-export default config;
+export default withPlaiceholder(config);
