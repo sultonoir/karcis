@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { getXataClient } from "@/xata";
 import Upload from "@/components/ui/Upload";
 import Image from "next/image";
-import { XataFile } from "@xata.io/client";
+
 const xata = getXataClient();
 export const dynamic = "force-dynamic";
 const Page = async () => {
@@ -39,7 +39,7 @@ const Page = async () => {
                   width={300}
                   height={400}
                   placeholder="blur"
-                  blurDataURL={XataFile.fromString(item.url ?? "").toBase64()}
+                  blurDataURL={item.url}
                   className="h-[400px] w-[300px] rounded-lg object-cover"
                 />
               </div>
