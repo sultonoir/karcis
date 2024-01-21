@@ -1,51 +1,34 @@
-import React, { Suspense } from "react";
-import { getXataClient } from "@/xata";
-import Upload from "@/components/ui/Upload";
 import Image from "next/image";
+import React from "react";
 
-const xata = getXataClient();
-export const dynamic = "force-dynamic";
-const Page = async () => {
-  const posts = await xata.db.Posts.sort("pubDate", "desc").getAll();
+const Page = () => {
   return (
-    <div className="container mt-16 w-full max-w-5xl">
-      <Upload />
-      {posts.length === 0 && <p>No blog posts found</p>}
-      <Suspense fallback={<p>Loading...</p>}>
-        {posts.map((post) => (
-          <div key={post.id} className="mb-16 flex flex-col gap-2 lg:flex-row">
-            <div className="flex flex-1 flex-col gap-3">
-              <p className="mb-2 text-xs text-purple-950 dark:text-purple-200">
-                {post.pubDate?.toDateString()}
-              </p>
-              <h2 className="mb-2 text-2xl">
-                <a href={`posts/${post.slug}`}>{post.title}</a>
-              </h2>
-              <p className="mb-5 text-purple-950 dark:text-purple-200">
-                {post.description}
-              </p>
-              <a
-                href={`posts/${post.slug}`}
-                className="w-fit rounded-lg bg-purple-700 px-4 py-2 text-sm font-semibold text-white shadow-sm"
-              >
-                Read more &rarr;
-              </a>
-            </div>
-            {post.imageUrl?.map((item) => (
-              <div key={item.id}>
-                <Image
-                  src={item.url ?? ""}
-                  alt={post.title ?? ""}
-                  width={300}
-                  height={400}
-                  priority
-                  className="h-[400px] w-[300px] rounded-lg object-cover"
-                />
-              </div>
-            ))}
-          </div>
-        ))}
-      </Suspense>
+    <div className="bg-primary-50 bg-dotted-pattern bg-contain py-5 dark:bg-black md:py-10">
+      <div className="wrapper grid grid-cols-1 gap-5 md:grid-cols-2 2xl:gap-0">
+        <div className="flex w-full flex-col justify-center gap-8">
+          <h1 className="h1-bold text-wrap">
+            Reserve, Create, Celebrate: Your Event, Your Rules!
+          </h1>
+          <p className="p-regular-20 md:p-regular-24">
+            {`"Unlock the power of seamless reservations and unleash your creativity
+          with us!"`}
+          </p>
+          <a
+            href="/"
+            className="inline-flex h-10 items-center justify-center whitespace-nowrap rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white ring-offset-background transition-colors hover:bg-blue-600/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 md:w-fit"
+          >
+            Explore now
+          </a>
+        </div>
+        <div className="flex w-full justify-center">
+          <Image
+            src="/assets/images/hero.png"
+            alt="hero image"
+            width={400}
+            height={400}
+          />
+        </div>
+      </div>
     </div>
   );
 };

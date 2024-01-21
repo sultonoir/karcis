@@ -7,12 +7,11 @@ import {
   type NextAuthOptions,
 } from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
-
+import GitHubProvider from "next-auth/providers/github";
 import { env } from "@/env";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { XataAdapter } from "@next-auth/xata-adapter";
-import { compare } from "bcrypt-ts";
 import { XataClient } from "@/xata";
 const client = new XataClient();
 
@@ -46,6 +45,9 @@ declare module "next-auth/jwt" {
 
 export const authOptions: NextAuthOptions = {
   adapter: XataAdapter(client),
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
     session: ({ session, token }) => {
       if (token && session.user) {
@@ -78,25 +80,29 @@ export const authOptions: NextAuthOptions = {
   },
   providers: [
     GoogleProvider({
-      clientId: env.GOOGLE_ID,
-      clientSecret: env.GOOGLE_SECRET,
+      clientId: env.GOOGLE_CLIENT_ID,
+      clientSecret: env.GOOGLE_CLIENT_SECRET,
     }),
     DiscordProvider({
       clientId: env.DISCORD_CLIENT_ID,
       clientSecret: env.DISCORD_CLIENT_SECRET,
     }),
+    GitHubProvider({
+      clientId: env.GITHUB_CLIENT_ID,
+      clientSecret: env.GITHUB_CLIENT_SECRET,
+    }),
     CredentialsProvider({
       id: "signin",
+      name: "signin",
       credentials: {
         email: {
           label: "Email",
           type: "email",
           placeholder: "example@example.com",
         },
-        password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        if (!credentials?.email || !credentials.password) {
+        if (!credentials?.email) {
           return null;
         }
         const user = await client.db.nextauth_users
@@ -105,17 +111,8 @@ export const authOptions: NextAuthOptions = {
           })
           .getFirst();
 
-        if (!user?.hashedPassword) {
+        if (!user) {
           throw new Error("User not found");
-        }
-
-        const isCorrectPassword = await compare(
-          credentials.password,
-          user.hashedPassword,
-        );
-
-        if (!isCorrectPassword) {
-          throw new Error("Wrong password");
         }
 
         return user;

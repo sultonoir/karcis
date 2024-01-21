@@ -1,22 +1,30 @@
-"use client";
 import React from "react";
-import { useSession } from "next-auth/react";
 import { Button } from "../ui/button";
 import ThemeToggle from "../ui/ThemeToggle";
-const Navbar = () => {
-  const { data } = useSession();
+import Image from "next/image";
+import { getServerSession } from "next-auth";
+import Profile from "../ui/Profile";
+
+const Navbar = async () => {
+  const data = await getServerSession();
   return (
-    <div className="sticky top-0 border-b bg-background/50 backdrop-blur-sm">
+    <header className="sticky top-0 border-b bg-background/90 backdrop-blur-sm">
       <div className="container flex items-center justify-between gap-2 p-2">
-        <a href="/" className="flex items-center gap-2">
-          <p className="text-lg font-semibold">Sultonoir</p>
+        <a href="/" className="flex items-center gap-2" title="Karcisku">
+          <Image src="/logo.png" alt="logo" width={40} height={40} />
         </a>
         <div className="flex flex-row items-center gap-2">
           <ThemeToggle />
-          {!data ? <Button size="sm">Login</Button> : <Button>Logout</Button>}
+          {!data ? (
+            <Button size="sm" asChild>
+              <a href="/login">Login</a>
+            </Button>
+          ) : (
+            <Profile />
+          )}
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

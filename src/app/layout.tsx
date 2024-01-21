@@ -3,9 +3,11 @@ import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import SessionProvider from "@/components/provider/Provider";
 import { ThemeProvider } from "@/components/provider/ThemeProvider";
-
+import { TRPCReactProvider } from "@/trpc/react";
+import { cookies } from "next/headers";
 export const metadata: Metadata = {
   title: "Rainame",
+  description: "Reserve, Create, Celebrate: Your Event, Your Rules!",
 };
 
 export default function RootLayout({
@@ -18,7 +20,9 @@ export default function RootLayout({
       <body className={GeistSans.className}>
         <SessionProvider>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            {children}
+            <TRPCReactProvider cookies={cookies().toString()}>
+              {children}
+            </TRPCReactProvider>
           </ThemeProvider>
         </SessionProvider>
       </body>
