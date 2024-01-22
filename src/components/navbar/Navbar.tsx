@@ -1,9 +1,9 @@
 import React from "react";
-import { Button } from "../ui/button";
 import ThemeToggle from "../ui/ThemeToggle";
 import Image from "next/image";
 import { getServerSession } from "next-auth";
 import Profile from "../ui/Profile";
+import RippleButton from "../ui/RippleButton";
 
 const Navbar = async () => {
   const data = await getServerSession();
@@ -16,9 +16,9 @@ const Navbar = async () => {
         <div className="flex flex-row items-center gap-2">
           <ThemeToggle />
           {!data ? (
-            <Button size="sm" asChild>
-              <a href="/login">Login</a>
-            </Button>
+            <RippleButton size="sm" href="/login" asChild>
+              Login
+            </RippleButton>
           ) : (
             <Profile />
           )}

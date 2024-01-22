@@ -25,6 +25,7 @@ const Page = () => {
             src="/assets/images/hero.png"
             alt="hero image"
             width={400}
+            className="h-auto"
             height={400}
           />
         </div>

@@ -15,13 +15,6 @@ import { XataAdapter } from "@next-auth/xata-adapter";
 import { XataClient } from "@/xata";
 const client = new XataClient();
 
-interface User {
-  id: string;
-  email: string;
-  name: string | null;
-  picture: string | null;
-}
-
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: {
@@ -58,23 +51,13 @@ export const authOptions: NextAuthOptions = {
       }
       return session;
     },
-    jwt({ token, user, trigger, session }) {
-      const u = user as unknown as User;
-
+    jwt({ token, trigger, session }) {
       if (trigger === "update" && session) {
         // Note, that `session` can be any arbitrary object, remember to validate it!
         token.name = session.name;
         token.picture = session.image;
       }
-      if (user) {
-        return {
-          ...token,
-          id: u.id,
-          email: u.email,
-          name: u.name,
-          picture: u.picture,
-        };
-      }
+
       return token;
     },
   },
