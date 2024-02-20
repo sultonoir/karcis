@@ -1,0 +1,16 @@
+{
+  "id": "mig_cmnc945gbdm3imgeetn0",
+  "parentID": "mig_cmnc9129fetua4pa3vhg",
+  "checksum": "1:715ccaf8ebe8992420a759228c9a70dd5e63d9827d68c8c556caae090d755739",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "price",
+          "type": "float"
+        },
+        "table": "tickets"
+      }
+    }
+  ]
+}

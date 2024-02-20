@@ -1,0 +1,16 @@
+{
+  "id": "mig_cmnc9sdgbdm3imgeetp0",
+  "parentID": "mig_cmnc9qdgbdm3imgeeto0",
+  "checksum": "1:5dc9bd7b079775cf07da79771b1232dc6e18850454f4cfd23590b6ff06115350",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "city",
+          "type": "string"
+        },
+        "table": "events"
+      }
+    }
+  ]
+}

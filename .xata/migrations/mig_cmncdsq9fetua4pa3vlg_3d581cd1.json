@@ -1,0 +1,19 @@
+{
+  "id": "mig_cmncdsq9fetua4pa3vlg",
+  "parentID": "mig_cmncdki9fetua4pa3vkg",
+  "checksum": "1:3d581cd1ffd539abb52c6663df3c1d04f879a133a0f17dc8c6da75dce8172635",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "buyer",
+          "type": "link",
+          "link": {
+            "table": "nextauth_users"
+          }
+        },
+        "table": "tickets"
+      }
+    }
+  ]
+}

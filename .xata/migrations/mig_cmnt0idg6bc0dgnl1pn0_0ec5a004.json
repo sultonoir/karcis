@@ -1,0 +1,16 @@
+{
+  "id": "mig_cmnt0idg6bc0dgnl1pn0",
+  "parentID": "mig_cmnt0gdg6bc0dgnl1pm0",
+  "checksum": "1:0ec5a004a6c426329d07056ca24d34c8484532d6a0f8d8a90c35e11ade609619",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "place",
+          "type": "string"
+        },
+        "table": "location"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "mig_cmnsk25g6bc0dgnl1pa0",
+  "parentID": "mig_cmnsjmlgbdm3imgef1g0",
+  "checksum": "1:49fabba1c95e17116d2ec36ce58134c5a05b23d6c55d28cc95a87efc47b2da96",
+  "operations": [
+    {
+      "removeTable": {
+        "table": "purchase"
+      }
+    }
+  ]
+}

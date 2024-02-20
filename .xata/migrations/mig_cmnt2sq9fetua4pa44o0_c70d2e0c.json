@@ -1,0 +1,16 @@
+{
+  "id": "mig_cmnt2sq9fetua4pa44o0",
+  "parentID": "mig_cmnt2plgbdm3imgef240",
+  "checksum": "1:c70d2e0c0848ef87a5cb62f9102fe57cbd41a6b3c4b4444b41a5328f8b5fc329",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "startDate",
+          "type": "datetime"
+        },
+        "table": "events"
+      }
+    }
+  ]
+}

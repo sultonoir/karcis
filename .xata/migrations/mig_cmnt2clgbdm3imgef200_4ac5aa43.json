@@ -1,0 +1,16 @@
+{
+  "id": "mig_cmnt2clgbdm3imgef200",
+  "parentID": "mig_cmnt2alg6bc0dgnl1pp0",
+  "checksum": "1:4ac5aa4313819067ffab865bfaada68fa0456267dc1197d0fe590eb1e1eccd11",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "price",
+          "type": "string"
+        },
+        "table": "ticket"
+      }
+    }
+  ]
+}

@@ -14,13 +14,13 @@ const tables = [
       { name: "emailVerified", type: "datetime" },
       { name: "name", type: "string" },
       { name: "image", type: "string" },
-      { name: "hashedPassword", type: "string" },
     ],
     revLinks: [
       { column: "user", table: "nextauth_accounts" },
       { column: "user", table: "nextauth_users_accounts" },
       { column: "user", table: "nextauth_users_sessions" },
       { column: "user", table: "nextauth_sessions" },
+      { column: "author", table: "events" },
     ],
   },
   {
@@ -72,17 +72,12 @@ const tables = [
     revLinks: [{ column: "session", table: "nextauth_users_sessions" }],
   },
   {
-    name: "Posts",
+    name: "events",
     columns: [
-      { name: "title", type: "string" },
+      { name: "name", type: "string", unique: true },
       { name: "slug", type: "string" },
-      { name: "description", type: "text" },
-      { name: "pubDate", type: "datetime" },
-      {
-        name: "imageUrl",
-        type: "file[]",
-        "file[]": { defaultPublicAccess: true },
-      },
+      { name: "author", type: "link", link: { table: "nextauth_users" } },
+      { name: "startDate", type: "datetime" },
     ],
   },
 ] as const;
@@ -110,8 +105,8 @@ export type NextauthUsersSessionsRecord = NextauthUsersSessions & XataRecord;
 export type NextauthSessions = InferredTypes["nextauth_sessions"];
 export type NextauthSessionsRecord = NextauthSessions & XataRecord;
 
-export type Posts = InferredTypes["Posts"];
-export type PostsRecord = Posts & XataRecord;
+export type Events = InferredTypes["events"];
+export type EventsRecord = Events & XataRecord;
 
 export type DatabaseSchema = {
   nextauth_users: NextauthUsersRecord;
@@ -120,7 +115,7 @@ export type DatabaseSchema = {
   nextauth_users_accounts: NextauthUsersAccountsRecord;
   nextauth_users_sessions: NextauthUsersSessionsRecord;
   nextauth_sessions: NextauthSessionsRecord;
-  Posts: PostsRecord;
+  events: EventsRecord;
 };
 
 const DatabaseClient = buildClient();

@@ -1,0 +1,16 @@
+{
+  "id": "mig_cmnt1la9fetua4pa44kg",
+  "parentID": "mig_cmnt1clgbdm3imgef1u0",
+  "checksum": "1:1e674960d5d769d213715e5fed5fbb1d2c5a0a0221256a8933599c6e8922c47c",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "partyDate",
+          "type": "datetime"
+        },
+        "table": "location"
+      }
+    }
+  ]
+}

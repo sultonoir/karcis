@@ -1,0 +1,12 @@
+{
+  "id": "mig_cmnc8rtgbdm3imgeetm0",
+  "parentID": "mig_cmnc5ra9fetua4pa3vf0",
+  "checksum": "1:90e2f48ebfb7aa25f3b5f1f2b1e31b9d36184f328ebf46b5fde03cfaed8aaf9a",
+  "operations": [
+    {
+      "addTable": {
+        "table": "tickets"
+      }
+    }
+  ]
+}

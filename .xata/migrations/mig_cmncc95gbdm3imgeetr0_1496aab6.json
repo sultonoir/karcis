@@ -1,0 +1,12 @@
+{
+  "id": "mig_cmncc95gbdm3imgeetr0",
+  "parentID": "mig_cmnc9u5gbdm3imgeetq0",
+  "checksum": "1:1496aab662ab98a3ad734f16cb8c39d5f81383608ca15834e5eab3a1a1cf7b6a",
+  "operations": [
+    {
+      "removeTable": {
+        "table": "tickets"
+      }
+    }
+  ]
+}

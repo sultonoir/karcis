@@ -1,0 +1,14 @@
+{
+  "id": "mig_cmnt1otg6bc0dgnl1po0",
+  "parentID": "mig_cmnt1la9fetua4pa44kg",
+  "checksum": "1:e0459a6e4ecbf1bb3375561bb3d1fc410ddee469109b2d0627eae3772f33811b",
+  "operations": [
+    {
+      "renameColumn": {
+        "newName": "startDate",
+        "oldName": "partyDate",
+        "table": "location"
+      }
+    }
+  ]
+}

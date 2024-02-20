@@ -1,0 +1,16 @@
+{
+  "id": "mig_cmnccva9fetua4pa3vj0",
+  "parentID": "mig_cmncc95gbdm3imgeetr0",
+  "checksum": "1:735ba1ab79a6745482290a69dc75451bca937a0851734abcbf0d46aca3ab5914",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "selling",
+          "type": "int"
+        },
+        "table": "events"
+      }
+    }
+  ]
+}

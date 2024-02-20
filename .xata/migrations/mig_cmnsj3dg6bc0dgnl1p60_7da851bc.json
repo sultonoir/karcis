@@ -1,0 +1,18 @@
+{
+  "id": "mig_cmnsj3dg6bc0dgnl1p60",
+  "parentID": "mig_cmnsiodgbdm3imgef1c0",
+  "checksum": "1:7da851bca67c051538be236a74009f89cf0b259c43f24de91bc8e73f5dd7d186",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "name",
+          "type": "string",
+          "notNull": true,
+          "defaultValue": "festival"
+        },
+        "table": "category"
+      }
+    }
+  ]
+}

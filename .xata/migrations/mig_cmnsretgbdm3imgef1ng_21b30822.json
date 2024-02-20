@@ -1,0 +1,12 @@
+{
+  "id": "mig_cmnsretgbdm3imgef1ng",
+  "parentID": "mig_cmnsrd5gbdm3imgef1mg",
+  "checksum": "1:21b3082260654b3b99a80bb87fc3381c28a5572b3e537685b10014644044700b",
+  "operations": [
+    {
+      "removeTable": {
+        "table": "purcase"
+      }
+    }
+  ]
+}

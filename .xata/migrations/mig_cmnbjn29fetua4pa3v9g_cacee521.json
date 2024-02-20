@@ -1,0 +1,16 @@
+{
+  "id": "mig_cmnbjn29fetua4pa3v9g",
+  "parentID": "mig_cmnbj95gbdm3imgeetfg",
+  "checksum": "1:cacee5216b1576104fdc52c7c2491b8342625df867d35b7a69a68d6625f1f7c9",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "title",
+          "type": "string"
+        },
+        "table": "events"
+      }
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -5,7 +6,7 @@ import { TbLoader3 } from "react-icons/tb";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 active:scale-95",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -46,11 +47,41 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref,
   ) => {
     const Comp = asChild ? Slot : "button";
+    const rippleEffect = (event: React.MouseEvent<HTMLButtonElement>) => {
+      const btn = event.currentTarget;
+
+      const circle = document.createElement("span");
+      const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+      const radius = diameter / 2;
+
+      circle.style.width = circle.style.height = `${diameter}px`;
+      circle.style.left = `${event.clientX - (btn.offsetLeft + radius)}px`;
+      circle.style.top = `${event.clientY - (btn.offsetTop + radius)}px`;
+      circle.classList.add("ripple");
+
+      const ripple = btn.getElementsByClassName("ripple")[0];
+
+      if (ripple) {
+        ripple.remove();
+      }
+
+      btn.appendChild(circle);
+
+      // Periksa apakah props.onClick ada sebelum memanggilnya
+      if (props.onClick) {
+        props.onClick(event);
+      }
+    };
+
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          buttonVariants({ variant, size, className }),
+          "relative overflow-hidden transition-all",
+        )}
         ref={ref}
         {...props}
+        onClick={rippleEffect}
       >
         {isLoading ? (
           <TbLoader3 className="h-4 w-4 animate-spin" />

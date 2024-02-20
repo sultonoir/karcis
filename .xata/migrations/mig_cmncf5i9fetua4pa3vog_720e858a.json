@@ -1,0 +1,13 @@
+{
+  "id": "mig_cmncf5i9fetua4pa3vog",
+  "parentID": "mig_cmncefq9fetua4pa3vng",
+  "checksum": "1:720e858ab967c4695f6d94862188b07faf81343c960fae0ca68e5923926585e3",
+  "operations": [
+    {
+      "renameTable": {
+        "newName": "purchase",
+        "oldName": "tickets"
+      }
+    }
+  ]
+}

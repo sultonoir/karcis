@@ -1,0 +1,13 @@
+{
+  "id": "mig_cmnsj8dgbdm3imgef1f0",
+  "parentID": "mig_cmnsj75gbdm3imgef1e0",
+  "checksum": "1:6d5098017d99876b9411118fd47b8339983ae22ecb2891d517c2eef4dadfafe0",
+  "operations": [
+    {
+      "removeColumn": {
+        "column": "price",
+        "table": "events"
+      }
+    }
+  ]
+}

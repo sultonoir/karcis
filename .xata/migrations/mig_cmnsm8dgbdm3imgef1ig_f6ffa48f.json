@@ -1,0 +1,19 @@
+{
+  "id": "mig_cmnsm8dgbdm3imgef1ig",
+  "parentID": "mig_cmnskj5g6bc0dgnl1pgg",
+  "checksum": "1:f6ffa48f34e6bdaa49d68346305884815c3c1c67c4bb6dea6edf1ecc21091698",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "user",
+          "type": "link",
+          "link": {
+            "table": "nextauth_users"
+          }
+        },
+        "table": "events"
+      }
+    }
+  ]
+}

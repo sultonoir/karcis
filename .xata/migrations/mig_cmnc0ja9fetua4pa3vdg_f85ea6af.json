@@ -1,0 +1,19 @@
+{
+  "id": "mig_cmnc0ja9fetua4pa3vdg",
+  "parentID": "mig_cmnbjn29fetua4pa3v9g",
+  "checksum": "1:f85ea6af3d0b055bb2ed78be43f60314e29e2db4e63ce5de85d909f56de953a3",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "imageUrl",
+          "type": "file",
+          "file": {
+            "defaultPublicAccess": true
+          }
+        },
+        "table": "events"
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "mig_cmne9mdgbdm3imgeeu9g",
+  "parentID": "mig_cmncgdi9fetua4pa3vqg",
+  "checksum": "1:967f506afc68acf127a7efeb893088d8d81c6bae2aba4d0c11e989f52812a7d0",
+  "operations": [
+    {
+      "removeColumn": {
+        "column": "hashedPassword",
+        "table": "nextauth_users"
+      }
+    }
+  ]
+}

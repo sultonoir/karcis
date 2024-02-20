@@ -3,7 +3,8 @@ import ThemeToggle from "../ui/ThemeToggle";
 import Image from "next/image";
 import { getServerSession } from "next-auth";
 import Profile from "../ui/Profile";
-import RippleButton from "../ui/RippleButton";
+import { Button } from "../ui/button";
+import Link from "next/link";
 
 const Navbar = async () => {
   const data = await getServerSession();
@@ -14,11 +15,13 @@ const Navbar = async () => {
           <Image src="/logo.png" alt="logo" width={40} height={40} />
         </a>
         <div className="flex flex-row items-center gap-2">
+          <Link href="/eventserver">Server components</Link>
+          <Link href="/eventclient">Client components</Link>
           <ThemeToggle />
           {!data ? (
-            <RippleButton size="sm" href="/login" asChild>
-              Login
-            </RippleButton>
+            <Button size="sm" asChild>
+              <Link href="/login">Login</Link>
+            </Button>
           ) : (
             <Profile />
           )}

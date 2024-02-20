@@ -1,0 +1,16 @@
+{
+  "id": "mig_cmnt1qtgbdm3imgef1v0",
+  "parentID": "mig_cmnt1otg6bc0dgnl1po0",
+  "checksum": "1:6481b47e209160e31f9d9e1646aa445a9b85e695fcafc284b802e993c62c70ee",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "endDate",
+          "type": "datetime"
+        },
+        "table": "location"
+      }
+    }
+  ]
+}
