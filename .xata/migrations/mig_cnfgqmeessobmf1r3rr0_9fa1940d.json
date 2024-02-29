@@ -1,0 +1,14 @@
+{
+  "id": "mig_cnfgqmeessobmf1r3rr0",
+  "parentID": "mig_cnfgm86essobmf1r3qt0",
+  "checksum": "1:9fa1940dc84dd94ac853ac6d009d67ac59ae9be1b9841baf3ba44751b6cf2e1c",
+  "operations": [
+    {
+      "renameColumn": {
+        "newName": "description",
+        "oldName": "discription",
+        "table": "events"
+      }
+    }
+  ]
+}

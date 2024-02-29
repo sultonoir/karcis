@@ -7,6 +7,7 @@ import { TbLoader3 } from "react-icons/tb";
 
 interface RippleProps extends ButtonProps {
   href?: string;
+  isLoading?: boolean;
 }
 
 const RippleButton: React.FC<RippleProps> = ({
@@ -42,10 +43,11 @@ const RippleButton: React.FC<RippleProps> = ({
   return (
     <button
       id="bt"
+      disabled={isLoading}
       onClick={rippleEffect}
       className={cn(
         buttonVariants({ variant, size, className }),
-        "transi relative overflow-hidden",
+        "relative overflow-hidden transition-all",
       )}
     >
       {isLoading ? (

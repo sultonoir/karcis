@@ -74,10 +74,42 @@ const tables = [
   {
     name: "events",
     columns: [
-      { name: "name", type: "string", unique: true },
+      { name: "title", type: "string", unique: true },
       { name: "slug", type: "string" },
       { name: "author", type: "link", link: { table: "nextauth_users" } },
-      { name: "startDate", type: "datetime" },
+      { name: "term", type: "text", notNull: true, defaultValue: "" },
+      { name: "description", type: "text", notNull: true, defaultValue: "" },
+      { name: "category", type: "string", notNull: true, defaultValue: "" },
+      { name: "location", type: "string", notNull: true, defaultValue: "" },
+      { name: "time", type: "string", notNull: true, defaultValue: "" },
+      { name: "tag", type: "multiple" },
+      { name: "place", type: "string", defaultValue: "" },
+      { name: "image", type: "file", file: { defaultPublicAccess: true } },
+      {
+        name: "startDate",
+        type: "datetime",
+        notNull: true,
+        defaultValue: "now",
+      },
+    ],
+    revLinks: [{ column: "event", table: "tikets" }],
+  },
+  {
+    name: "imageBucket",
+    columns: [
+      { name: "image", type: "file", file: { defaultPublicAccess: true } },
+    ],
+  },
+  {
+    name: "tikets",
+    columns: [
+      { name: "event", type: "link", link: { table: "events" } },
+      { name: "title", type: "string" },
+      { name: "price", type: "float", notNull: true, defaultValue: "0" },
+      { name: "count", type: "int", notNull: true, defaultValue: "0" },
+      { name: "max", type: "int", notNull: true, defaultValue: "5" },
+      { name: "oneBuy", type: "bool", notNull: true, defaultValue: "false" },
+      { name: "description", type: "text" },
     ],
   },
 ] as const;
@@ -108,6 +140,12 @@ export type NextauthSessionsRecord = NextauthSessions & XataRecord;
 export type Events = InferredTypes["events"];
 export type EventsRecord = Events & XataRecord;
 
+export type ImageBucket = InferredTypes["imageBucket"];
+export type ImageBucketRecord = ImageBucket & XataRecord;
+
+export type Tikets = InferredTypes["tikets"];
+export type TiketsRecord = Tikets & XataRecord;
+
 export type DatabaseSchema = {
   nextauth_users: NextauthUsersRecord;
   nextauth_accounts: NextauthAccountsRecord;
@@ -116,6 +154,8 @@ export type DatabaseSchema = {
   nextauth_users_sessions: NextauthUsersSessionsRecord;
   nextauth_sessions: NextauthSessionsRecord;
   events: EventsRecord;
+  imageBucket: ImageBucketRecord;
+  tikets: TiketsRecord;
 };
 
 const DatabaseClient = buildClient();

@@ -1,0 +1,18 @@
+{
+  "id": "mig_cnfglrcsbivp9i20ehv0",
+  "parentID": "mig_cnfglj4sbivp9i20ehu0",
+  "checksum": "1:2726d25fec7f7196240c5ba6e3e05238dc82897f076922e7d58a13b4cde80f26",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "count",
+          "type": "int",
+          "notNull": true,
+          "defaultValue": "0"
+        },
+        "table": "tikets"
+      }
+    }
+  ]
+}

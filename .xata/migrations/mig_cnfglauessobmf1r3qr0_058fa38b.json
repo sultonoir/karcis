@@ -1,0 +1,19 @@
+{
+  "id": "mig_cnfglauessobmf1r3qr0",
+  "parentID": "mig_cnfgl56essobmf1r3qq0",
+  "checksum": "1:058fa38b5a1330bf1f0ffa1d2fac97be0bc88bfd5048dd70ad39b58fb6d57f13",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "event",
+          "type": "link",
+          "link": {
+            "table": "events"
+          }
+        },
+        "table": "tikets"
+      }
+    }
+  ]
+}

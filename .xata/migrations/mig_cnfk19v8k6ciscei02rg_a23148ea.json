@@ -1,0 +1,13 @@
+{
+  "id": "mig_cnfk19v8k6ciscei02rg",
+  "parentID": "mig_cnfjdvv8k6ciscehvubg",
+  "checksum": "1:a23148ea0652d3e30ba7847ea54726a7a4ec619d16f2829aefbf8257911928b9",
+  "operations": [
+    {
+      "removeColumn": {
+        "column": "imageUrl",
+        "table": "imageBucket"
+      }
+    }
+  ]
+}

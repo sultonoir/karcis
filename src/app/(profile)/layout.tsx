@@ -1,4 +1,4 @@
-import Sidebar from "@/components/navbar/Sidebar";
+import Sidebar from "@/components/template/navbar/Sidebar";
 import React from "react";
 
 const layout = ({ children }: { children: React.ReactNode }) => {

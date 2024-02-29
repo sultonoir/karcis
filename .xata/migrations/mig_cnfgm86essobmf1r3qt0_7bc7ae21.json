@@ -1,0 +1,18 @@
+{
+  "id": "mig_cnfgm86essobmf1r3qt0",
+  "parentID": "mig_cnfgm1ksbivp9i20ei10",
+  "checksum": "1:7bc7ae21b8649f87cfdb8e61f5f868477f881bd0274346a0be8a03bec93eaa73",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "oneBuy",
+          "type": "bool",
+          "notNull": true,
+          "defaultValue": "false"
+        },
+        "table": "tikets"
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "mig_cnfj5iqemv57vbui15cg",
+  "parentID": "mig_cnfj5g2emv57vbui15bg",
+  "checksum": "1:40df9c08f289499ffe823ffe5181775050646d882c94ec82765913238a876e9d",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "image",
+          "type": "file",
+          "file": {
+            "defaultPublicAccess": true
+          }
+        },
+        "table": "events"
+      }
+    }
+  ]
+}

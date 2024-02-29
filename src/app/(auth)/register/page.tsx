@@ -1,8 +1,8 @@
+import FormOauthButton from "@/components/form/formauth/FormOauthButton";
+import FormSignup from "@/components/form/formauth/FormSignup";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import FormOauthButton from "@/components/form/FormOauthButton";
-import FormSignup from "@/components/form/FormSignup";
 
 const Page = () => {
   return (

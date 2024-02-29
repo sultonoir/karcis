@@ -26,5 +26,6 @@ export const userRouter = createTRPCRouter({
       await ctx.xata.db.nextauth_users.create({
         email,
       });
+      return email;
     }),
 });

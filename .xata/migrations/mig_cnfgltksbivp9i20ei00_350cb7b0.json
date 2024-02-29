@@ -1,0 +1,16 @@
+{
+  "id": "mig_cnfgltksbivp9i20ei00",
+  "parentID": "mig_cnfglrcsbivp9i20ehv0",
+  "checksum": "1:350cb7b051554a299bd6dbaf765c80684a39d5b18c47e292069152d2d8fa285b",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "description",
+          "type": "string"
+        },
+        "table": "tikets"
+      }
+    }
+  ]
+}

@@ -38,13 +38,16 @@ declare module "next-auth/jwt" {
 
 export const authOptions: NextAuthOptions = {
   adapter: XataAdapter(client),
+  pages: {
+    signIn: "/login",
+  },
   session: {
     strategy: "jwt",
   },
   callbacks: {
     session: ({ session, token }) => {
       if (token && session.user) {
-        session.user.id = token.id;
+        session.user.id = token.sub!;
         session.user.email = token.email;
         session.user.image = token.picture;
         session.user.name = token.name;

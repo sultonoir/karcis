@@ -1,0 +1,13 @@
+{
+  "id": "mig_cnfojopvqrtrmc5968c0",
+  "parentID": "mig_cnfk1n78k6ciscei02sg",
+  "checksum": "1:50bceef5a6bdbc3d27188ab3ed0bf079e04ac75fefa57c07731c041034ca0d29",
+  "operations": [
+    {
+      "removeColumn": {
+        "column": "description",
+        "table": "tikets"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "mig_cnfgl56essobmf1r3qq0",
+  "parentID": "mig_cnfgk0eessobmf1r3qog",
+  "checksum": "1:025a4d63decdfcd5585422ea86550a16ed4a25496eecebdab61d1ec7e26c4eff",
+  "operations": [
+    {
+      "addTable": {
+        "table": "tikets"
+      }
+    }
+  ]
+}

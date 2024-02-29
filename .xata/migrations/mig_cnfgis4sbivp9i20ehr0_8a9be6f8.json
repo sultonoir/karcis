@@ -1,0 +1,19 @@
+{
+  "id": "mig_cnfgis4sbivp9i20ehr0",
+  "parentID": "mig_cnfgijcsbivp9i20ehq0",
+  "checksum": "1:8a9be6f844171770c2120a2c49f4723b889c2ed3cb32ec3b58a5baf3adaecd42",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "image",
+          "type": "file[]",
+          "file[]": {
+            "defaultPublicAccess": true
+          }
+        },
+        "table": "events"
+      }
+    }
+  ]
+}

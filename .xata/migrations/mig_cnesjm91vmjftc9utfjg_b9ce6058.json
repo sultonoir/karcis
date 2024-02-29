@@ -1,0 +1,19 @@
+{
+  "id": "mig_cnesjm91vmjftc9utfjg",
+  "parentID": "mig_cnesjhl2i1lhpt6ig3o0",
+  "checksum": "1:b9ce60583d1b703fe332e9e78e2fee2807c33abc556b4d1ce79485a2460915f6",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "imageUrl",
+          "type": "file[]",
+          "file[]": {
+            "defaultPublicAccess": true
+          }
+        },
+        "table": "imageBucket"
+      }
+    }
+  ]
+}

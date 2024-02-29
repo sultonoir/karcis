@@ -1,0 +1,18 @@
+{
+  "id": "mig_cnfgj3csbivp9i20ehs0",
+  "parentID": "mig_cnfgis4sbivp9i20ehr0",
+  "checksum": "1:86cda7f96e618ace39bb370e634ee930f37fb108069c70152389000396c2a784",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "startDate",
+          "type": "string",
+          "notNull": true,
+          "defaultValue": ""
+        },
+        "table": "events"
+      }
+    }
+  ]
+}

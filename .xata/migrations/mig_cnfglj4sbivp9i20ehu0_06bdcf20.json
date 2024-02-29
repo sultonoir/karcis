@@ -1,0 +1,18 @@
+{
+  "id": "mig_cnfglj4sbivp9i20ehu0",
+  "parentID": "mig_cnfgldmessobmf1r3qs0",
+  "checksum": "1:06bdcf201804f717cdf1794db96084be2327561269d8faa24cae64280cb0e31a",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "price",
+          "type": "float",
+          "notNull": true,
+          "defaultValue": "0"
+        },
+        "table": "tikets"
+      }
+    }
+  ]
+}
