@@ -1,0 +1,18 @@
+{
+  "id": "mig_cng874pvqrtrmc596bvg",
+  "parentID": "mig_cng86o1vqrtrmc596bug",
+  "checksum": "1:0eb778044dfa36f5a5d8ae3972870f05e5b08f7de211130f4a543a99757f072b",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "message",
+          "type": "text",
+          "notNull": true,
+          "defaultValue": ""
+        },
+        "table": "notify"
+      }
+    }
+  ]
+}

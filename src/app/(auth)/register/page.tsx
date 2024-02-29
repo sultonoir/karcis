@@ -42,9 +42,9 @@ const Page = () => {
         <FormSignup />
         <div className="inline-flex gap-2">
           <p>Already have an Account?</p>
-          <a href="/login" className="text-primary">
+          <Link href="/login" className="text-primary">
             Sign In
-          </a>
+          </Link>
         </div>
         <p className="inlin px-8 text-center text-sm text-muted-foreground">
           By clicking continue, you agree to our{" "}

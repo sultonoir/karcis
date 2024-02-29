@@ -1,0 +1,13 @@
+{
+  "id": "mig_cng810hvqrtrmc596big",
+  "parentID": "mig_cnfojtlu75i9ingq4tq0",
+  "checksum": "1:14ba5f176868e8119723fbf1b09c954617ef766bb93099bd94a1cb84499e47b7",
+  "operations": [
+    {
+      "removeColumn": {
+        "column": "time",
+        "table": "events"
+      }
+    }
+  ]
+}

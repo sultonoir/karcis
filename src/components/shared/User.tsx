@@ -25,13 +25,14 @@ const User = ({
   imageWidth,
 }: UserProps) => {
   return (
-    <div className="flex flex-row items-center gap-5">
+    <div className="flex flex-row items-center gap-2">
       <div
         style={{
           height: imageHeight ?? "48px",
           width: imageWidth ?? "48px",
         }}
-        className="relative overflow-hidden rounded-full">
+        className="relative overflow-hidden rounded-full"
+      >
         <Image
           fill
           priority
@@ -46,8 +47,9 @@ const User = ({
         <div
           className={clsx(
             "text-sm text-muted-foreground",
-            classNames?.description
-          )}>
+            classNames?.description,
+          )}
+        >
           {description}
         </div>
       </div>

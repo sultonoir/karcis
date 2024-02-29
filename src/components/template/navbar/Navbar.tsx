@@ -7,6 +7,7 @@ import Navlist from "./Navlist";
 import { LogInIcon } from "lucide-react";
 import ThemeSwitcher from "@/components/ui/ThemeSwither";
 import { getServerAuthSession } from "@/server/auth";
+import Profile from "./Profile";
 
 const Navbar = async () => {
   const user = await getServerAuthSession();
@@ -30,10 +31,10 @@ const Navbar = async () => {
           <Navlist />
         </div>
         {user ? (
-          <Button>Logout</Button>
+          <Profile />
         ) : (
           <Button asChild>
-            <Link href="/" className="px-3">
+            <Link href="/login" className="px-3">
               <LogInIcon className="mr-2" />
               Login
             </Link>

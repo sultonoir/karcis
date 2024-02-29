@@ -21,6 +21,8 @@ const tables = [
       { column: "user", table: "nextauth_users_sessions" },
       { column: "user", table: "nextauth_sessions" },
       { column: "author", table: "events" },
+      { column: "user", table: "purchase" },
+      { column: "user", table: "notify" },
     ],
   },
   {
@@ -81,7 +83,6 @@ const tables = [
       { name: "description", type: "text", notNull: true, defaultValue: "" },
       { name: "category", type: "string", notNull: true, defaultValue: "" },
       { name: "location", type: "string", notNull: true, defaultValue: "" },
-      { name: "time", type: "string", notNull: true, defaultValue: "" },
       { name: "tag", type: "multiple" },
       { name: "place", type: "string", defaultValue: "" },
       { name: "image", type: "file", file: { defaultPublicAccess: true } },
@@ -91,8 +92,15 @@ const tables = [
         notNull: true,
         defaultValue: "now",
       },
+      { name: "time", type: "string", notNull: true, defaultValue: "" },
+      { name: "endDate", type: "datetime", notNull: true, defaultValue: "now" },
+      { name: "oneBuy", type: "bool", notNull: true, defaultValue: "false" },
     ],
-    revLinks: [{ column: "event", table: "tikets" }],
+    revLinks: [
+      { column: "event", table: "tikets" },
+      { column: "events", table: "purchase" },
+      { column: "event", table: "notify" },
+    ],
   },
   {
     name: "imageBucket",
@@ -108,8 +116,24 @@ const tables = [
       { name: "price", type: "float", notNull: true, defaultValue: "0" },
       { name: "count", type: "int", notNull: true, defaultValue: "0" },
       { name: "max", type: "int", notNull: true, defaultValue: "5" },
-      { name: "oneBuy", type: "bool", notNull: true, defaultValue: "false" },
       { name: "description", type: "text" },
+    ],
+  },
+  {
+    name: "purchase",
+    columns: [
+      { name: "totalPrice", type: "float", notNull: true, defaultValue: "0" },
+      { name: "user", type: "link", link: { table: "nextauth_users" } },
+      { name: "amount", type: "int", notNull: true, defaultValue: "0" },
+      { name: "events", type: "link", link: { table: "events" } },
+    ],
+  },
+  {
+    name: "notify",
+    columns: [
+      { name: "user", type: "link", link: { table: "nextauth_users" } },
+      { name: "message", type: "text", notNull: true, defaultValue: "" },
+      { name: "event", type: "link", link: { table: "events" } },
     ],
   },
 ] as const;
@@ -146,6 +170,12 @@ export type ImageBucketRecord = ImageBucket & XataRecord;
 export type Tikets = InferredTypes["tikets"];
 export type TiketsRecord = Tikets & XataRecord;
 
+export type Purchase = InferredTypes["purchase"];
+export type PurchaseRecord = Purchase & XataRecord;
+
+export type Notify = InferredTypes["notify"];
+export type NotifyRecord = Notify & XataRecord;
+
 export type DatabaseSchema = {
   nextauth_users: NextauthUsersRecord;
   nextauth_accounts: NextauthAccountsRecord;
@@ -156,6 +186,8 @@ export type DatabaseSchema = {
   events: EventsRecord;
   imageBucket: ImageBucketRecord;
   tikets: TiketsRecord;
+  purchase: PurchaseRecord;
+  notify: NotifyRecord;
 };
 
 const DatabaseClient = buildClient();

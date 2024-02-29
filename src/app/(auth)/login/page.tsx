@@ -25,7 +25,7 @@ const Page = () => {
       </div>
       <div className="mx-auto flex min-h-[calc(100dvh-80px)] w-full max-w-[350px] flex-col justify-center space-y-6 p-4 sm:w-[350px] lg:p-0">
         <div className="flex flex-col space-y-0 text-center">
-          <h3 className="text-lg font-semibold">Welcome to karcisku</h3>
+          <h3 className="text-2xl font-semibold">Welcome to karcisku</h3>
           <p>Reserve, Create, Celebrate: Your Event, Your Rules!</p>
         </div>
         <FormOauthButton />
@@ -42,9 +42,9 @@ const Page = () => {
         <FormSignin />
         <div className="inline-flex gap-2">
           <p>New to karcisku ?</p>
-          <a href="/register" className="text-primary">
+          <Link href="/register" className="text-primary">
             Create an account
-          </a>
+          </Link>
         </div>
         <p className="inlin px-8 text-center text-sm text-muted-foreground">
           By clicking continue, you agree to our{" "}

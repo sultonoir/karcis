@@ -1,0 +1,19 @@
+{
+  "id": "mig_cng850efq7l8gk8him60",
+  "parentID": "mig_cng8359vqrtrmc596br0",
+  "checksum": "1:52a51a3626d963a9c6710fa6a7dd7b8b6ccd6355f3e9bbb9bac1d8fe0bf022dc",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "events",
+          "type": "link",
+          "link": {
+            "table": "events"
+          }
+        },
+        "table": "purchase"
+      }
+    }
+  ]
+}

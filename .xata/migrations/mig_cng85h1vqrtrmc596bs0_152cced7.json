@@ -1,0 +1,13 @@
+{
+  "id": "mig_cng85h1vqrtrmc596bs0",
+  "parentID": "mig_cng850efq7l8gk8him60",
+  "checksum": "1:152cced7b5d94a271a0e24f3bcb0e82de24e202bf15cec60fa2485606c3487d8",
+  "operations": [
+    {
+      "removeColumn": {
+        "column": "oneBuy",
+        "table": "tikets"
+      }
+    }
+  ]
+}

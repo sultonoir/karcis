@@ -20,7 +20,6 @@ import User from "@/components/shared/User";
 import TimePicker from "@/components/shared/TimePicker";
 import { Building2, MapPinIcon, Trash } from "lucide-react";
 import { useSession } from "next-auth/react";
-import { DatePicker } from "@/components/shared/DatePicker";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FieldTicket from "./FieldTicket";
 import Editor from "@/components/shared/Editor";
@@ -29,6 +28,8 @@ import FieldMax from "./FieldMax";
 import { Switch } from "@/components/ui/switch";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
+import FieldDate from "./FieldDate";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   image: z.string(),
@@ -37,7 +38,10 @@ const formSchema = z.object({
   }),
   category: z.string(),
   tag: z.array(z.string()),
-  startDate: z.date(),
+  date: z.object({
+    start: z.date(),
+    end: z.date(),
+  }),
   time: z.string(),
   place: z.string(),
   location: z.string(),
@@ -56,7 +60,7 @@ const formSchema = z.object({
     }),
   desc: z.string({ required_error: "description not yet filled" }),
   term: z.string({ required_error: "description not yet filled" }),
-  max: z.string(),
+  max: z.string({ required_error: "Max ticket not yet filled" }),
   oneBuy: z.boolean(),
 });
 
@@ -69,7 +73,10 @@ export default function FormCreateEvent() {
       title: "",
       category: "",
       tag: [],
-      startDate: new Date(),
+      date: {
+        start: new Date(),
+        end: new Date(),
+      },
       time: "",
       place: "",
       location: "",
@@ -79,13 +86,15 @@ export default function FormCreateEvent() {
   });
 
   // 2. Define a submit handler.
+  const router = useRouter();
   const create = api.post.postEvent.useMutation({
-    onSuccess: () => {
+    onSuccess: (e) => {
       toast.success("Event created");
       form.reset();
+      router.push(e);
     },
     onError(opts) {
-      console.log(opts);
+      toast.error(opts.message);
     },
   });
   function onSubmit(values: z.infer<typeof formSchema>) {
@@ -162,18 +171,20 @@ export default function FormCreateEvent() {
               </div>
               <div className="flex flex-col gap-2">
                 <h3>Date and time</h3>
-                <FormField
-                  control={form.control}
-                  name="startDate"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <DatePicker handleChange={field.onChange} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <div className="flex flex-col gap-2 lg:flex-row">
+                  <FormField
+                    control={form.control}
+                    name="date"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <FieldDate handleChange={field.onChange} />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
                 <FormField
                   control={form.control}
                   name="time"
@@ -195,7 +206,7 @@ export default function FormCreateEvent() {
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <div className="flex items-center rounded-md border focus-within:border-primary">
+                        <div className="flex items-center rounded-md border focus-within:border-primary/50 focus-within:ring focus-within:ring-primary/30">
                           <span className="pl-2">
                             <Building2 size={16} />
                           </span>
@@ -216,7 +227,7 @@ export default function FormCreateEvent() {
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <div className="flex items-center rounded-md border focus-within:border-primary">
+                        <div className="flex items-center rounded-md border focus-within:border-primary/50 focus-within:ring focus-within:ring-primary/30">
                           <span className="pl-2">
                             <MapPinIcon size={16} />
                           </span>
@@ -259,36 +270,42 @@ export default function FormCreateEvent() {
                   <FormItem>
                     <FormControl>
                       <div className="flex flex-col gap-2">
-                        {field.value.map((item) => (
-                          <TicketCard
-                            key={item.title}
-                            value={item}
-                            actions={
-                              <div className="flex gap-2">
-                                <FieldTicket
-                                  values={field.value}
-                                  mode="edit"
-                                  editValues={item}
-                                  handleChange={field.onChange}
-                                />
-                                <Button
-                                  type="button"
-                                  size="icon"
-                                  variant="ghost"
-                                  onClick={() => {
-                                    const newValues = [...field.value];
-                                    const updateValue = newValues.filter(
-                                      (i) => i.title !== item.title,
-                                    );
-                                    field.onChange(updateValue);
-                                  }}
-                                >
-                                  <Trash />
-                                </Button>
-                              </div>
-                            }
-                          />
-                        ))}
+                        {field.value
+                          .sort((a, b) => {
+                            const itemA = parseInt(a.price);
+                            const itemB = parseInt(b.price);
+                            return itemA - itemB;
+                          })
+                          .map((item) => (
+                            <TicketCard
+                              key={item.title}
+                              value={item}
+                              actions={
+                                <div className="flex gap-2">
+                                  <FieldTicket
+                                    values={field.value}
+                                    mode="edit"
+                                    editValues={item}
+                                    handleChange={field.onChange}
+                                  />
+                                  <Button
+                                    type="button"
+                                    size="icon"
+                                    variant="ghost"
+                                    onClick={() => {
+                                      const newValues = [...field.value];
+                                      const updateValue = newValues.filter(
+                                        (i) => i.title !== item.title,
+                                      );
+                                      field.onChange(updateValue);
+                                    }}
+                                  >
+                                    <Trash />
+                                  </Button>
+                                </div>
+                              }
+                            />
+                          ))}
                         <FieldTicket
                           values={field.value}
                           mode="create"

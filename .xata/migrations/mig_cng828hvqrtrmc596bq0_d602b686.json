@@ -1,0 +1,19 @@
+{
+  "id": "mig_cng828hvqrtrmc596bq0",
+  "parentID": "mig_cng824mfq7l8gk8him50",
+  "checksum": "1:d602b6865387e56f7336d514f354b17a24f64334e033d24896b726dfd1ec7d7c",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "user",
+          "type": "link",
+          "link": {
+            "table": "nextauth_users"
+          }
+        },
+        "table": "purchase"
+      }
+    }
+  ]
+}

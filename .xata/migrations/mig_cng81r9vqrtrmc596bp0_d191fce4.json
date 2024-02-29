@@ -1,0 +1,12 @@
+{
+  "id": "mig_cng81r9vqrtrmc596bp0",
+  "parentID": "mig_cng81h9vqrtrmc596bng",
+  "checksum": "1:d191fce4e1155a3cfe6b3f9e12898f037c9546a86cc39f170a6263d3c9873152",
+  "operations": [
+    {
+      "addTable": {
+        "table": "purchase"
+      }
+    }
+  ]
+}

@@ -68,14 +68,14 @@ const FormOauthButton = () => {
           });
           await signIn("signin", {
             email: "sulton@gmail.com",
-            redirect: false,
+            redirect: true,
+            callbackUrl: "/",
           }).then((callback) => {
             if (callback?.ok) {
               setIsLoading({
                 ...isLoading,
                 demo: false,
               });
-              router.push("/");
             }
             if (callback?.error) {
               toast.error(callback.error);

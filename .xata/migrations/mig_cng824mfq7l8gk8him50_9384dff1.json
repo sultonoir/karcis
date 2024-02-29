@@ -1,0 +1,18 @@
+{
+  "id": "mig_cng824mfq7l8gk8him50",
+  "parentID": "mig_cng81r9vqrtrmc596bp0",
+  "checksum": "1:9384dff13b04b46339e32f17e090e25d5561ac494822de8c1086c3d3c759bc15",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "totalPrice",
+          "type": "float",
+          "notNull": true,
+          "defaultValue": "0"
+        },
+        "table": "purchase"
+      }
+    }
+  ]
+}

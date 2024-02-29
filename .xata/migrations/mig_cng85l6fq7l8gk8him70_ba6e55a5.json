@@ -1,0 +1,18 @@
+{
+  "id": "mig_cng85l6fq7l8gk8him70",
+  "parentID": "mig_cng85h1vqrtrmc596bs0",
+  "checksum": "1:ba6e55a5e30984e644e75e3eabb0eec9c890fac19c5c20dda93eea70f1c6615d",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "oneBuy",
+          "type": "bool",
+          "notNull": true,
+          "defaultValue": "false"
+        },
+        "table": "events"
+      }
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "id": "mig_cng81h9vqrtrmc596bng",
+  "parentID": "mig_cng81b1vqrtrmc596bmg",
+  "checksum": "1:9557ee518c52c8742f694fe7d34600ea1f6016d22ee43856b70a3006597f3a4b",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "endDate",
+          "type": "datetime",
+          "notNull": true,
+          "defaultValue": "now"
+        },
+        "table": "events"
+      }
+    }
+  ]
+}
