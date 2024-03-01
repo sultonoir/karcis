@@ -19,7 +19,6 @@ import FieldTag from "./FieldTag";
 import User from "@/components/shared/User";
 import TimePicker from "@/components/shared/TimePicker";
 import { Building2, MapPinIcon, Trash } from "lucide-react";
-import { useSession } from "next-auth/react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FieldTicket from "./FieldTicket";
 import Editor from "@/components/shared/Editor";
@@ -30,6 +29,7 @@ import { api } from "@/trpc/react";
 import { toast } from "sonner";
 import FieldDate from "./FieldDate";
 import { useRouter } from "next/navigation";
+import { type Session } from "next-auth";
 
 const formSchema = z.object({
   image: z.string(),
@@ -64,8 +64,11 @@ const formSchema = z.object({
   oneBuy: z.boolean(),
 });
 
-export default function FormCreateEvent() {
-  const { data } = useSession();
+interface Props {
+  user: Session | null;
+}
+
+export default function FormCreateEvent({ user }: Props) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -91,7 +94,7 @@ export default function FormCreateEvent() {
     onSuccess: (e) => {
       toast.success("Event created");
       form.reset();
-      router.push(e);
+      router.push(`/event/${e}`);
     },
     onError(opts) {
       toast.error(opts.message);
@@ -164,9 +167,9 @@ export default function FormCreateEvent() {
               <div className="flex flex-col gap-5">
                 <h3>Hosted By</h3>
                 <User
-                  avatar={data?.user?.image ?? "/logo.png"}
-                  name={data?.user?.name ?? "user"}
-                  description={data?.user.email}
+                  avatar={user?.user?.image ?? "/logo.png"}
+                  name={user?.user?.name ?? "user"}
+                  description={user?.user?.email}
                 />
               </div>
               <div className="flex flex-col gap-2">

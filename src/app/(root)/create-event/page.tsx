@@ -1,10 +1,18 @@
 import FormCreateEvent from "@/components/form/formevent/FormCreateEvent";
+import { getServerAuthSession } from "@/server/auth";
+import { redirect } from "next/navigation";
 import React from "react";
 
-const page = () => {
+const page = async () => {
+  const data = await getServerAuthSession();
+
+  if (!data) {
+    redirect("/login");
+  }
+
   return (
     <div className="container mt-5 max-w-screen-lg">
-      <FormCreateEvent />
+      <FormCreateEvent user={data} />
     </div>
   );
 };

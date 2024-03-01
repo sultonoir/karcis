@@ -1,8 +1,8 @@
 import Event from "@/components/template/event/Event";
 import { api } from "@/trpc/server";
 import { type Events } from "@/xata";
-
 import React from "react";
+export const dynamic = "force-dynamic";
 
 const page = async () => {
   const events = await api.post.getAllEvents.query();

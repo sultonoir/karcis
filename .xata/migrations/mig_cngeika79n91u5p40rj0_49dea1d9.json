@@ -1,0 +1,12 @@
+{
+  "id": "mig_cngeika79n91u5p40rj0",
+  "parentID": "mig_cngeiii79n91u5p40ri0",
+  "checksum": "1:49dea1d9a2a055758f2cf671a0466a04dd0be904a373eda30d284597412e243d",
+  "operations": [
+    {
+      "removeTable": {
+        "table": "tiketandevent"
+      }
+    }
+  ]
+}

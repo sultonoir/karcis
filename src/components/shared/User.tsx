@@ -1,4 +1,4 @@
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import React from "react";
 
@@ -9,10 +9,10 @@ interface UserProps {
   imageHeight?: string;
   imageWidth?: string;
   classNames?: {
-    wraper: string;
-    avatar: string;
-    name: string;
-    description: string;
+    wraper?: string;
+    avatar?: string;
+    name?: string;
+    description?: string;
   };
 }
 
@@ -42,10 +42,10 @@ const User = ({
           src={avatar}
         />
       </div>
-      <div className={clsx("flex flex-col", classNames?.wraper)}>
-        <div className={clsx("font-medium", classNames?.name)}>{name}</div>
+      <div className={cn("flex flex-col", classNames?.wraper)}>
+        <div className={cn("font-medium", classNames?.name)}>{name}</div>
         <div
-          className={clsx(
+          className={cn(
             "text-sm text-muted-foreground",
             classNames?.description,
           )}

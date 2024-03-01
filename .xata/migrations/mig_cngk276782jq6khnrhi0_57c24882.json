@@ -1,0 +1,18 @@
+{
+  "id": "mig_cngk276782jq6khnrhi0",
+  "parentID": "mig_cngk1rq79n91u5p40t1g",
+  "checksum": "1:57c24882c16b06420046311be8a824780590fa7474149f3c568a817ab669f7e8",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "isFree",
+          "type": "bool",
+          "notNull": true,
+          "defaultValue": "false"
+        },
+        "table": "tikets"
+      }
+    }
+  ]
+}

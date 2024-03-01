@@ -1,0 +1,19 @@
+{
+  "id": "mig_cngeha47jofosrd2ch9g",
+  "parentID": "mig_cng8ci6fq7l8gk8himb0",
+  "checksum": "1:e3b073683dfe28a49956c4d78b3752490d6afbb9217526ba6c90b1677a28dfdc",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "tickets",
+          "type": "link",
+          "link": {
+            "table": "tikets"
+          }
+        },
+        "table": "events"
+      }
+    }
+  ]
+}

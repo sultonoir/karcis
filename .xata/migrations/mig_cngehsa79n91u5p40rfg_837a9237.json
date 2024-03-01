@@ -1,0 +1,13 @@
+{
+  "id": "mig_cngehsa79n91u5p40rfg",
+  "parentID": "mig_cngeha47jofosrd2ch9g",
+  "checksum": "1:837a92377a4ba6f7b87198a2bf8aecce8dd0c114d91db638fb34d88075702801",
+  "operations": [
+    {
+      "removeColumn": {
+        "column": "tickets",
+        "table": "events"
+      }
+    }
+  ]
+}

@@ -13,9 +13,10 @@ const SearchButton = () => {
       />
       <Button
         size="icon"
+        aria-label="search"
         className="absolute right-1 top-1/2 -translate-y-1/2 rounded-sm"
       >
-        <SearchIcon />
+        <SearchIcon aria-label="search" />
       </Button>
     </div>
   );

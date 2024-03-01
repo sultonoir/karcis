@@ -1,0 +1,12 @@
+{
+  "id": "mig_cngeiii79n91u5p40ri0",
+  "parentID": "mig_cngeiga79n91u5p40rh0",
+  "checksum": "1:54488bed66eeb7c018539e383e039558cd4dc5f6d2de7775ab116bbac1fb5fcf",
+  "operations": [
+    {
+      "removeTable": {
+        "table": "imageBucket"
+      }
+    }
+  ]
+}

@@ -6,6 +6,8 @@ import {
 import { z } from "zod";
 import slugify from "slugify";
 import { TRPCError } from "@trpc/server";
+import { createBlurHash } from "@/lib/blur";
+import { transformImage } from "@xata.io/client";
 
 export const postRouter = createTRPCRouter({
   getAllEvents: publicProcedure.query(async ({ ctx }) => {
@@ -85,11 +87,22 @@ export const postRouter = createTRPCRouter({
         price: parseFloat(item.price),
         count: parseFloat(item.count),
         max: parseInt(input.max),
+        isFree: item.isFree,
         description: item.description,
       }));
 
       await ctx.xata.db.tikets.createOrReplace(tickets);
+      const image = event.image?.url;
+      const photoBlurURL = transformImage(image, {
+        blur: 75,
+        width: 100,
+        height: 100,
+      });
 
+      const photoBlurHash = await createBlurHash(photoBlurURL ?? "");
+      await ctx.xata.db.events.update(event.id, {
+        blur: photoBlurHash,
+      });
       return event.id;
     }),
   getPrice: publicProcedure
@@ -107,5 +120,25 @@ export const postRouter = createTRPCRouter({
         .sort("price", "asc")
         .getFirst();
       return price;
+    }),
+  getEvent: publicProcedure
+    .input(
+      z.object({
+        eventId: z.string(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      const event = await ctx.xata.db.events
+        .filter("id", input.eventId)
+        .select(["*", "author.*"])
+        .getFirst();
+      const ticket = await ctx.xata.db.tikets
+        .filter({ "event.id": input.eventId })
+        .sort("price", "asc")
+        .getMany();
+      return {
+        event,
+        ticket,
+      };
     }),
 });

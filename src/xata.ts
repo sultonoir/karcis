@@ -95,17 +95,12 @@ const tables = [
       { name: "time", type: "string", notNull: true, defaultValue: "" },
       { name: "endDate", type: "datetime", notNull: true, defaultValue: "now" },
       { name: "oneBuy", type: "bool", notNull: true, defaultValue: "false" },
+      { name: "blur", type: "text", notNull: true, defaultValue: "" },
     ],
     revLinks: [
       { column: "event", table: "tikets" },
       { column: "events", table: "purchase" },
       { column: "event", table: "notify" },
-    ],
-  },
-  {
-    name: "imageBucket",
-    columns: [
-      { name: "image", type: "file", file: { defaultPublicAccess: true } },
     ],
   },
   {
@@ -117,6 +112,7 @@ const tables = [
       { name: "count", type: "int", notNull: true, defaultValue: "0" },
       { name: "max", type: "int", notNull: true, defaultValue: "5" },
       { name: "description", type: "text" },
+      { name: "isFree", type: "bool", notNull: true, defaultValue: "false" },
     ],
   },
   {
@@ -164,9 +160,6 @@ export type NextauthSessionsRecord = NextauthSessions & XataRecord;
 export type Events = InferredTypes["events"];
 export type EventsRecord = Events & XataRecord;
 
-export type ImageBucket = InferredTypes["imageBucket"];
-export type ImageBucketRecord = ImageBucket & XataRecord;
-
 export type Tikets = InferredTypes["tikets"];
 export type TiketsRecord = Tikets & XataRecord;
 
@@ -184,7 +177,6 @@ export type DatabaseSchema = {
   nextauth_users_sessions: NextauthUsersSessionsRecord;
   nextauth_sessions: NextauthSessionsRecord;
   events: EventsRecord;
-  imageBucket: ImageBucketRecord;
   tikets: TiketsRecord;
   purchase: PurchaseRecord;
   notify: NotifyRecord;
