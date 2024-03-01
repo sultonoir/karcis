@@ -6,7 +6,7 @@ interface TabsState {
 }
 
 const useTabs = create<TabsState>((set) => ({
-  value: "",
+  value: "description",
   onChange: (value) => set({ value }),
 }));
 

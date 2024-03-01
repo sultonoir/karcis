@@ -1,17 +1,12 @@
 import React from "react";
-import Preview from "@/components/shared/Preview";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { api } from "@/trpc/server";
-import { ChevronRight } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import TicketCard from "@/components/shared/TicketCard";
 import { type Events, getXataClient, type Tikets } from "@/xata";
-import TicketQuantity from "@/components/template/event/TicketQuantity";
 import { type Metadata } from "next";
 import EventPayment from "@/components/template/event/EventPayment";
 import EventDetails from "@/components/template/event/EventDetails";
+import EventTab from "@/components/template/event/EventTab";
+import EventBreadcrumb from "@/components/template/event/EventBreadcrumb";
+import EventHero from "@/components/template/event/EventHero";
 
 export async function generateMetadata({
   params,
@@ -91,103 +86,15 @@ const Page = async ({ params }: { params: { id: string } }) => {
   const minPrice = data.ticket[0]?.price;
   const event: Events = JSON.parse(JSON.stringify(data.event));
   return (
-    <main className="container my-5">
-      <div className="flex flex-wrap gap-2">
-        <Link href="/" className="text-primary">
-          Home
-        </Link>
-        <ChevronRight />
-        <Link
-          href={`/discover?category=${data.event?.category}`}
-          className="text-primary"
-        >
-          {data.event?.category}
-        </Link>
-        <ChevronRight />
-        <p className="text-muted-foreground">{data.event?.title}</p>
-      </div>
+    <main className="container relative my-5">
+      <EventBreadcrumb event={event} />
       <div className="mt-5 flex flex-col gap-2 lg:flex-row lg:gap-5">
         <div className="flex flex-1 flex-col gap-2">
-          <AspectRatio
-            ratio={16 / 9}
-            className="relative mb-2 overflow-hidden rounded-md bg-muted"
-          >
-            <Image
-              src={data.event?.image?.url ?? ""}
-              alt="Photo by Drew Beamer"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
-              fill
-              placeholder="blur"
-              blurDataURL={data.event?.blur}
-              className="rounded-md object-cover"
-            />
-          </AspectRatio>
+          <EventHero image={event.image?.url ?? ""} blur={event.blur} />
+          <EventTab ticket={ticket} event={event} />
           <div className="block lg:hidden">
-            <EventDetails event={event} />
+            <EventDetails event={event} />E
           </div>
-          <Tabs defaultValue="description">
-            <TabsList className="w-full justify-between lg:h-16">
-              <TabsTrigger
-                className="flex w-full justify-center lg:h-14"
-                value="description"
-              >
-                Description
-              </TabsTrigger>
-              <TabsTrigger
-                className="flex w-full justify-center lg:h-14"
-                value="ticket"
-              >
-                Ticket
-              </TabsTrigger>
-            </TabsList>
-            <TabsContent
-              value="description"
-              className="flex flex-col gap-2 lg:gap-10"
-            >
-              <Preview values={data.event?.description} />
-              <h3 className="relative">
-                <span
-                  aria-label="Terms & Conditions"
-                  aria-hidden
-                  className="absolute bottom-0 top-0 w-1 bg-primary"
-                />
-                <span className="pl-2 text-2xl">Terms & Conditions</span>
-              </h3>
-              <Preview values={data.event?.term} />
-              <h3 className="relative">
-                <span
-                  aria-label="Terms & Conditions"
-                  aria-hidden
-                  className="absolute bottom-0 top-0 w-1 bg-primary"
-                />
-                <span className="pl-2 text-2xl">Tag</span>
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {data.event?.tag?.map((item, index) => (
-                  <div key={index} className="rounded-full bg-accent px-3 py-1">
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </TabsContent>
-            <TabsContent value="ticket">
-              <div className="grid gap-2">
-                {ticket.map((item) => (
-                  <TicketCard
-                    key={item.id}
-                    value={item}
-                    actions={
-                      <TicketQuantity
-                        eventId={data.event?.id ?? ""}
-                        ticket={item}
-                        max={item.max}
-                      />
-                    }
-                  />
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
         </div>
         <div className="relative hidden gap-10 lg:flex lg:w-[350px] lg:flex-col">
           <EventDetails event={event} />
