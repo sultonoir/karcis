@@ -91,10 +91,10 @@ const Page = async ({ params }: { params: { id: string } }) => {
       <div className="mt-5 flex flex-col gap-2 lg:flex-row lg:gap-5">
         <div className="flex flex-1 flex-col gap-2">
           <EventHero image={event.image?.url ?? ""} blur={event.blur} />
-          <EventTab ticket={ticket} event={event} />
           <div className="block lg:hidden">
-            <EventDetails event={event} />E
+            <EventDetails event={event} />
           </div>
+          <EventTab ticket={ticket} event={event} />
         </div>
         <div className="relative hidden gap-10 lg:flex lg:w-[350px] lg:flex-col">
           <EventDetails event={event} />
