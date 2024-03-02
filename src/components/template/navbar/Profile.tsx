@@ -89,7 +89,7 @@ const Profile = () => {
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
           <Button
-            className="w-full cursor-pointer gap-2 border border-primary bg-transparent text-foreground hover:bg-primary focus:bg-primary focus:text-white"
+            className="w-full cursor-pointer gap-2 border border-primary bg-primary text-white hover:bg-primary focus:bg-primary focus:text-white focus:hover:opacity-80"
             onClick={() => signOut()}
           >
             <BiLogOut size={22} />
