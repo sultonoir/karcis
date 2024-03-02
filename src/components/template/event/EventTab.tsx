@@ -19,6 +19,7 @@ interface Props {
   event: Events;
   ticket: Data[];
 }
+
 const EventTab = ({ event, ticket }: Props) => {
   const { value, onChange } = useTabs();
   return (
@@ -29,14 +30,14 @@ const EventTab = ({ event, ticket }: Props) => {
     >
       <TabsList className="w-full justify-between lg:h-16">
         <TabsTrigger
-          className="flex w-full justify-center lg:h-14"
+          className="flex w-full justify-center lg:h-14 lg:text-lg"
           value="description"
           onClick={() => onChange("description")}
         >
           Description
         </TabsTrigger>
         <TabsTrigger
-          className="flex w-full justify-center lg:h-14"
+          className="flex w-full justify-center lg:h-14 lg:text-lg"
           value="ticket"
           onClick={() => onChange("ticket")}
         >
@@ -73,22 +74,23 @@ const EventTab = ({ event, ticket }: Props) => {
           ))}
         </div>
       </TabsContent>
-      <TabsContent value="ticket">
-        <div className="grid gap-2">
-          {ticket.map((item) => (
-            <TicketCard
-              key={item.id}
-              value={item}
-              actions={
-                <TicketQuantity
-                  eventId={event?.id ?? ""}
-                  ticket={item}
-                  max={item.max}
-                />
-              }
-            />
-          ))}
-        </div>
+      <TabsContent
+        value="ticket"
+        className="flex flex-col justify-start gap-2 lg:gap-10"
+      >
+        {ticket.map((item) => (
+          <TicketCard
+            key={item.id}
+            value={item}
+            actions={
+              <TicketQuantity
+                eventId={event?.id ?? ""}
+                ticket={item}
+                max={item.max}
+              />
+            }
+          />
+        ))}
       </TabsContent>
     </Tabs>
   );

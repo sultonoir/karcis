@@ -73,6 +73,7 @@
     "sharp": "^0.33.2",
     "slugify": "^1.6.6",
     "sonner": "^1.4.2",
+    "stripe": "^14.19.0",
     "superjson": "^2.2.1",
     "tailwind-merge": "^2.2.0",
     "tailwindcss-animate": "^1.0.7",

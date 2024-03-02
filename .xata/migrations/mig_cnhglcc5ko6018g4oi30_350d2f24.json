@@ -1,0 +1,12 @@
+{
+  "id": "mig_cnhglcc5ko6018g4oi30",
+  "parentID": "mig_cnh0h5rfqmjcsbc0k9dg",
+  "checksum": "1:350d2f245350dd7b9d132512e18c2577dafe5d5c4e789601bf0e8bd2ee7718b0",
+  "operations": [
+    {
+      "addTable": {
+        "table": "tiketdetail"
+      }
+    }
+  ]
+}

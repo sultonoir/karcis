@@ -7,7 +7,9 @@ import EventDetails from "@/components/template/event/EventDetails";
 import EventTab from "@/components/template/event/EventTab";
 import EventBreadcrumb from "@/components/template/event/EventBreadcrumb";
 import EventHero from "@/components/template/event/EventHero";
+import EventMobilePayment from "@/components/template/event/EventMobilePayment";
 
+export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
 }: {
@@ -101,6 +103,7 @@ const Page = async ({ params }: { params: { id: string } }) => {
           <EventPayment minPrice={minPrice} eventId={event.id} />
         </div>
       </div>
+      <EventMobilePayment minPrice={minPrice} eventId={event.id} />
     </main>
   );
 };

@@ -5,6 +5,7 @@ import SessionProvider from "@/components/provider/Provider";
 import { ThemeProvider } from "@/components/provider/ThemeProvider";
 import { TRPCReactProvider } from "@/trpc/react";
 import { cookies } from "next/headers";
+
 export const metadata: Metadata = {
   title: "Karcisku",
   description: "Reserve, Create, Celebrate: Your Event, Your Rules!",

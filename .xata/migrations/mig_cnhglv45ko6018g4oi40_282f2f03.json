@@ -1,0 +1,13 @@
+{
+  "id": "mig_cnhglv45ko6018g4oi40",
+  "parentID": "mig_cnhglcc5ko6018g4oi30",
+  "checksum": "1:282f2f032a09ae292e6dd998b31d70c2fb93668cc3112b82688ba30bf113567e",
+  "operations": [
+    {
+      "renameTable": {
+        "newName": "ticketdetail",
+        "oldName": "tiketdetail"
+      }
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "id": "mig_cnhgpi3fqmjcsbc0kcjg",
+  "parentID": "mig_cnhgpa45ko6018g4oic0",
+  "checksum": "1:f88149f7455967becbe9b80be141ae18a4672e78f9375989f252d322e880f2a0",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "ticketdetail",
+          "type": "link",
+          "link": {
+            "table": "ticketdetail"
+          }
+        },
+        "table": "purchase"
+      }
+    }
+  ]
+}

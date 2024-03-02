@@ -122,6 +122,7 @@ const tables = [
       { name: "user", type: "link", link: { table: "nextauth_users" } },
       { name: "amount", type: "int", notNull: true, defaultValue: "0" },
       { name: "events", type: "link", link: { table: "events" } },
+      { name: "ticketdetail", type: "link", link: { table: "ticketdetail" } },
     ],
   },
   {
@@ -131,6 +132,14 @@ const tables = [
       { name: "message", type: "text", notNull: true, defaultValue: "" },
       { name: "event", type: "link", link: { table: "events" } },
     ],
+  },
+  {
+    name: "ticketdetail",
+    columns: [
+      { name: "ticketId", type: "string", notNull: true, defaultValue: "" },
+      { name: "totalticket", type: "int", notNull: true, defaultValue: "0" },
+    ],
+    revLinks: [{ column: "ticketdetail", table: "purchase" }],
   },
 ] as const;
 
@@ -169,6 +178,9 @@ export type PurchaseRecord = Purchase & XataRecord;
 export type Notify = InferredTypes["notify"];
 export type NotifyRecord = Notify & XataRecord;
 
+export type Ticketdetail = InferredTypes["ticketdetail"];
+export type TicketdetailRecord = Ticketdetail & XataRecord;
+
 export type DatabaseSchema = {
   nextauth_users: NextauthUsersRecord;
   nextauth_accounts: NextauthAccountsRecord;
@@ -180,6 +192,7 @@ export type DatabaseSchema = {
   tikets: TiketsRecord;
   purchase: PurchaseRecord;
   notify: NotifyRecord;
+  ticketdetail: TicketdetailRecord;
 };
 
 const DatabaseClient = buildClient();

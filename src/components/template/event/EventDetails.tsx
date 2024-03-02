@@ -23,8 +23,10 @@ const EventDetails = ({ event }: Props) => {
         <Clock className="text-muted-foreground" />
         <span>{event.time}</span>
       </div>
-      <div className="mt-3 flex items-center gap-2">
-        <MapPin size={25} className="text-muted-foreground" />
+      <div className="mt-2 flex items-center gap-2">
+        <span className="h-[24px] w-[24px]">
+          <MapPin className="text-muted-foreground" />
+        </span>
         <span>
           {event.place}, {event.location}
         </span>

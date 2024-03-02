@@ -1,0 +1,16 @@
+{
+  "id": "mig_cnh0h5rfqmjcsbc0k9dg",
+  "parentID": "mig_cngk276782jq6khnrhi0",
+  "checksum": "1:fc8ab5e8e19d06c9657f24bae554cc33baf1d8a23a348f242b37a3adec1c19d2",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "titcketdetail",
+          "type": "multiple"
+        },
+        "table": "purchase"
+      }
+    }
+  ]
+}

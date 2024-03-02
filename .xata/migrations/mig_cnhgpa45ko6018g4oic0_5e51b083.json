@@ -1,0 +1,13 @@
+{
+  "id": "mig_cnhgpa45ko6018g4oic0",
+  "parentID": "mig_cnhgmh45ko6018g4oi80",
+  "checksum": "1:5e51b083d029f06c901d9c6b205dd9a202fabb3cf218ac6dfa5cc10b812193ce",
+  "operations": [
+    {
+      "removeColumn": {
+        "column": "titcketdetail",
+        "table": "purchase"
+      }
+    }
+  ]
+}

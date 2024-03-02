@@ -50,7 +50,7 @@ const Event = async ({ events }: Props) => {
       </CardContent>
       <CardFooter className="border-t p-2">
         <User
-          avatar={"/logo.png"}
+          avatar={events.author?.image ?? "/logo.png"}
           imageWidth="30px"
           imageHeight="30px"
           name={events.author?.name}
