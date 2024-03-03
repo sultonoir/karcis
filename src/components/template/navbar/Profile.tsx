@@ -15,6 +15,9 @@ import { TbTicket } from "react-icons/tb";
 import { MdDashboard, MdOutlineEventNote } from "react-icons/md";
 import { BiLogOut } from "react-icons/bi";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "next-themes";
+import Lamp from "@/components/ui/Lamp";
+import { Switch } from "@/components/ui/switch";
 const Profile = () => {
   const { data } = useSession();
   const lists = [
@@ -39,6 +42,8 @@ const Profile = () => {
       path: `/profile/ticket`,
     },
   ];
+
+  const { theme, setTheme } = useTheme();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild className="cursor-pointer">
@@ -79,12 +84,29 @@ const Profile = () => {
                 className="flex h-full w-full items-center gap-2"
               >
                 <span className="inline-flex size-10 items-center justify-center rounded-md bg-primary/20 p-1">
-                  <item.icons size={22} className="text-primary" />
+                  <item.icons size={24} className="text-primary" />
                 </span>
                 {item.title}
               </a>
             </DropdownMenuItem>
           ))}
+          <div className="relative flex cursor-default select-none items-center justify-between rounded-sm px-2 py-1.5 lg:hidden">
+            <div className="flex size-10 items-center justify-center rounded-md bg-primary/20 p-1">
+              <Lamp width={24} hanging={24} className="size-6 text-primary" />
+            </div>
+            <p>Dark mode</p>
+            <Switch
+              className="z-30"
+              checked={theme === "dark"}
+              onCheckedChange={() => {
+                if (theme === "dark") {
+                  setTheme("light");
+                } else {
+                  setTheme("dark");
+                }
+              }}
+            />
+          </div>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>

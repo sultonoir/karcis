@@ -22,7 +22,7 @@ const Footer = () => {
     },
   ];
   return (
-    <footer className="relative border-t border-neutral-200 py-20 dark:border-neutral-700 lg:pb-24 lg:pt-28">
+    <footer className="border-t border-neutral-200 py-20 dark:border-neutral-700 lg:pb-24 lg:pt-28">
       <div className="container grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-10 ">
         <div className="col-span-2 grid grid-cols-4 gap-5 md:col-span-4 lg:md:col-span-1 lg:flex lg:flex-col">
           <div className="col-span-2 space-y-5 md:col-span-1">

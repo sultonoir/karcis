@@ -1,14 +1,20 @@
+import Footer from "@/components/template/navbar/Footer";
 import Header from "@/components/template/navbar/Header";
+import MobileNavbar from "@/components/template/navbar/MobileNavbar";
 import { Toaster } from "@/components/ui/sonner";
 import React from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
-      <Header />
-      {children}
+    <React.Fragment>
+      <div className="mb-8 lg:mb-0">
+        <Header />
+        {children}
+        <Footer />
+        <MobileNavbar />
+      </div>
       <Toaster richColors closeButton position="top-right" />
-    </div>
+    </React.Fragment>
   );
 };
 

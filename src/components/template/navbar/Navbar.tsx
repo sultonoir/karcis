@@ -26,9 +26,12 @@ const Navbar = async () => {
         </Link>
         <SearchButton />
       </div>
-      <div className="flex w-full items-center justify-end gap-5">
+      <div className="flex w-full items-center justify-end gap-2">
         <div className="hidden sm:flex">
           <Navlist />
+        </div>
+        <div className="hidden lg:block">
+          <ThemeSwitcher />
         </div>
         {user ? (
           <Profile />
@@ -40,7 +43,6 @@ const Navbar = async () => {
             </Link>
           </Button>
         )}
-        <ThemeSwitcher />
       </div>
     </nav>
   );
