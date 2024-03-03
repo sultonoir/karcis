@@ -10,13 +10,13 @@ interface Props {
 const EventBreadcrumb = ({ event }: Props) => {
   return (
     <div className="flex flex-wrap gap-2">
-      <Link href="/" className="text-primary">
+      <Link href="/" className="text-primary hover:opacity-80">
         Home
       </Link>
       <ChevronRight />
       <Link
         href={`/discover?category=${event?.category}`}
-        className="text-primary"
+        className="text-primary hover:opacity-80"
       >
         {event.category}
       </Link>

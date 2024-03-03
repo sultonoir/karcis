@@ -5,7 +5,6 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
 import { useSession } from "next-auth/react";
-import { api } from "@/trpc/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import useTabs from "@/hooks/useTabs";
@@ -29,14 +28,6 @@ const EventPayment = ({ minPrice, eventId }: Props) => {
 
   const exists = selected.some((item) => item.eventId === eventId);
 
-  const payment = api.payment.createPayment.useMutation({
-    onSuccess: () => {
-      toast.success("Payment created");
-    },
-    onError: (e) => {
-      toast.error(e.message);
-    },
-  });
   const router = useRouter();
   const { onChange } = useTabs();
   const handlePayment = () => {
@@ -49,13 +40,7 @@ const EventPayment = ({ minPrice, eventId }: Props) => {
       toast.error("buy at least 1 ticket");
       return;
     }
-    payment.mutate({
-      event: eventId,
-      user: data?.user.id ?? "",
-      totalPrice,
-      amount: totalTiket,
-      tiket: selected,
-    });
+    router.push("/payment");
   };
 
   return (
@@ -102,7 +87,7 @@ const EventPayment = ({ minPrice, eventId }: Props) => {
         <div className="flex items-center justify-between">
           {selected.length && exists ? (
             <>
-              <p className="text-muted-foreground">{totalTiket} Ticket</p>
+              <p className="text-muted-foreground">Total {totalTiket} Ticket</p>
               <p className="text-lg font-bold">${totalPrice}</p>
             </>
           ) : (
@@ -112,9 +97,7 @@ const EventPayment = ({ minPrice, eventId }: Props) => {
             </>
           )}
         </div>
-        <Button disabled={payment.isLoading} onClick={handlePayment}>
-          Buy ticket
-        </Button>
+        <Button onClick={handlePayment}>Buy ticket</Button>
       </div>
     </div>
   );
