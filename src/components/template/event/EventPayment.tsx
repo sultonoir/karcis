@@ -8,12 +8,13 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import useTabs from "@/hooks/useTabs";
+import { type Events } from "@/xata";
 interface Props {
   minPrice?: number | undefined;
-  eventId: string;
+  event: Events;
 }
 
-const EventPayment = ({ minPrice, eventId }: Props) => {
+const EventPayment = ({ minPrice, event }: Props) => {
   const { data } = useSession();
   const { selected } = usePayment();
   const totalTiket = selected.reduce(
@@ -26,7 +27,7 @@ const EventPayment = ({ minPrice, eventId }: Props) => {
     0,
   );
 
-  const exists = selected.some((item) => item.eventId === eventId);
+  const exists = selected.some((item) => item.eventId === event.id);
 
   const router = useRouter();
   const { onChange } = useTabs();

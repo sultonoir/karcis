@@ -41,7 +41,7 @@ const FieldTag = ({ handleChange, value }: Props) => {
 
   return (
     <div className="my-2 flex flex-col gap-2">
-      <div className="flex flex-wrap gap-2">
+      <div className="flex w-full flex-wrap gap-2">
         <AnimatePresence>
           {tag.map((item, index) => (
             <motion.button

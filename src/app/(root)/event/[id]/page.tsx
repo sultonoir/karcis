@@ -100,10 +100,10 @@ const Page = async ({ params }: { params: { id: string } }) => {
         </div>
         <div className="relative hidden gap-10 lg:flex lg:w-[350px] lg:flex-col">
           <EventDetails event={event} />
-          <EventPayment minPrice={minPrice} eventId={event.id} />
+          <EventPayment minPrice={minPrice} event={event} />
         </div>
       </div>
-      <EventMobilePayment minPrice={minPrice} eventId={event.id} />
+      <EventMobilePayment minPrice={minPrice} event={event} />
     </main>
   );
 };

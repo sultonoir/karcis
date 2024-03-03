@@ -18,6 +18,7 @@ const EventHero = ({ image, blur }: Props) => {
         alt="Photo by Drew Beamer"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw"
         fill
+        priority
         placeholder="blur"
         blurDataURL={blur}
         className="rounded-md object-cover"

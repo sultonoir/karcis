@@ -66,7 +66,7 @@ const EventTab = ({ event, ticket }: Props) => {
           />
           <span className="pl-2 text-2xl">Tag</span>
         </h3>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex w-full flex-wrap gap-2">
           {event?.tag?.map((item, index) => (
             <div key={index} className="rounded-full bg-accent px-3 py-1">
               {item}

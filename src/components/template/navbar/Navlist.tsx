@@ -11,7 +11,7 @@ const Navlist = () => {
     useSelectSection();
   return (
     <ul
-      className="flex w-[22rem] flex-wrap items-center justify-center gap-y-1 text-[0.9rem] font-medium sm:w-[initial] sm:flex-nowrap sm:gap-2"
+      className="hidden w-[22rem] flex-wrap items-center justify-center gap-y-1 text-[0.9rem] font-medium sm:w-[initial] sm:flex-nowrap sm:gap-2 lg:flex"
       onMouseLeave={() => {
         setActiveSection("");
         setTimeOfLastClick(Date.now());

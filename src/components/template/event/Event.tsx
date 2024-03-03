@@ -6,14 +6,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import User from "@/components/shared/User";
-import { api } from "@/trpc/react";
+import { api } from "@/trpc/server";
 
 interface Props {
   events: Events;
 }
 
-const Event = ({ events }: Props) => {
-  const { data } = api.post.getPrice.useQuery({
+const Event = async ({ events }: Props) => {
+  const data = await api.post.getPrice.query({
     eventId: events.id,
   });
 

@@ -2,14 +2,15 @@
 import { Button } from "@/components/ui/button";
 import usePayment from "@/hooks/usePayment";
 import useTabs from "@/hooks/useTabs";
+import { type Events } from "@/xata";
 import React from "react";
 
 interface Props {
-  eventId: string;
+  event: Events;
   minPrice?: number | undefined;
 }
 
-const EventMobilePayment = ({ eventId, minPrice }: Props) => {
+const EventMobilePayment = ({ event, minPrice }: Props) => {
   const { onChange } = useTabs();
   const { selected } = usePayment();
   const totalTiket = selected.reduce(
@@ -21,7 +22,7 @@ const EventMobilePayment = ({ eventId, minPrice }: Props) => {
     0,
   );
 
-  const exists = selected.some((item) => item.eventId === eventId);
+  const exists = selected.some((item) => item.eventId === event.id);
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 block bg-background backdrop-blur-sm lg:hidden">

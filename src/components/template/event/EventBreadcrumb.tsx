@@ -9,7 +9,7 @@ interface Props {
 
 const EventBreadcrumb = ({ event }: Props) => {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex w-full flex-wrap gap-2">
       <Link href="/" className="text-primary hover:opacity-80">
         Home
       </Link>

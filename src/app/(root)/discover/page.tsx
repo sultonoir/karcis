@@ -9,7 +9,7 @@ const page = async () => {
   const parse: Events[] = JSON.parse(JSON.stringify(events));
   return (
     <div className="container mt-5">
-      <div className="grid grid-cols-1 gap-2 md:grid-cols-3 lg:grid-cols-5">
+      <div className="grid grid-cols-1 gap-5 md:grid-cols-3 lg:grid-cols-5">
         {parse.map((item) => {
           return <Event events={item} key={item.id} />;
         })}
