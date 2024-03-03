@@ -20,7 +20,7 @@ interface Props {
   eventId: string;
 }
 
-const TicketQuantity = ({ max, ticket, eventId }: Props) => {
+const EventQuantity = ({ max, ticket, eventId }: Props) => {
   const { increment, decrement, selected } = usePayment();
   const [totalTiket] = selected.filter((item) => item.ticketId === ticket.id);
   const MaxTotal = selected.reduce(
@@ -73,4 +73,4 @@ const TicketQuantity = ({ max, ticket, eventId }: Props) => {
   );
 };
 
-export default TicketQuantity;
+export default EventQuantity;

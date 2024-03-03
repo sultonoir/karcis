@@ -29,6 +29,7 @@ const Event = async ({ events }: Props) => {
             alt="Photo by Drew Beamer"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             fill
+            priority
             placeholder="blur"
             blurDataURL={events.blur}
             className="object-cover"

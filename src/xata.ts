@@ -122,8 +122,8 @@ const tables = [
       { name: "user", type: "link", link: { table: "nextauth_users" } },
       { name: "amount", type: "int", notNull: true, defaultValue: "0" },
       { name: "events", type: "link", link: { table: "events" } },
-      { name: "ticketdetail", type: "link", link: { table: "ticketdetail" } },
     ],
+    revLinks: [{ column: "purchase", table: "ticketdetail" }],
   },
   {
     name: "notify",
@@ -138,8 +138,9 @@ const tables = [
     columns: [
       { name: "ticketId", type: "string", notNull: true, defaultValue: "" },
       { name: "totalticket", type: "int", notNull: true, defaultValue: "0" },
+      { name: "purchase", type: "link", link: { table: "purchase" } },
+      { name: "ticketName", type: "string", notNull: true, defaultValue: "" },
     ],
-    revLinks: [{ column: "ticketdetail", table: "purchase" }],
   },
 ] as const;
 

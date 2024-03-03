@@ -16,21 +16,28 @@ interface Props {
 
 const EventPayment = ({ minPrice, event }: Props) => {
   const { data } = useSession();
-  const { selected } = usePayment();
+  const { selected, addPayment } = usePayment();
+  const { onChange } = useTabs();
+
+  //get total ticket
   const totalTiket = selected.reduce(
     (total, current) => total + current.totalProduct,
     0,
   );
 
+  //get total price
   const totalPrice = selected.reduce(
     (total, current) => total + current.totalPrice,
     0,
   );
 
+  //check value exixts
   const exists = selected.some((item) => item.eventId === event.id);
 
+  //hook router
   const router = useRouter();
-  const { onChange } = useTabs();
+
+  //handle click payment
   const handlePayment = () => {
     if (!data) {
       router.push("/login");
@@ -41,6 +48,13 @@ const EventPayment = ({ minPrice, event }: Props) => {
       toast.error("buy at least 1 ticket");
       return;
     }
+    addPayment({
+      eventId: event.id,
+      eventImage: event.image?.url ?? "/logo.png",
+      eventName: event.title ?? "event title",
+      amount: totalTiket,
+      price: totalPrice,
+    });
     router.push("/payment");
   };
 

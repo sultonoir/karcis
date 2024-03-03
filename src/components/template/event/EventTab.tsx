@@ -3,9 +3,9 @@ import React from "react";
 import type { Events } from "@/xata";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TicketCard from "@/components/shared/TicketCard";
-import TicketQuantity from "@/components/template/event/TicketQuantity";
 import Preview from "@/components/shared/Preview";
 import useTabs from "@/hooks/useTabs";
+import EventQuantity from "./EventQuantity";
 interface Data {
   id: string;
   title: string;
@@ -83,7 +83,7 @@ const EventTab = ({ event, ticket }: Props) => {
             key={item.id}
             value={item}
             actions={
-              <TicketQuantity
+              <EventQuantity
                 eventId={event?.id ?? ""}
                 ticket={item}
                 max={item.max}

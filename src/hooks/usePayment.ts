@@ -8,16 +8,40 @@ export type Cart = {
   eventId: string;
 };
 
+interface Event {
+  eventId: string;
+  eventImage: string;
+  eventName: string;
+  amount: number;
+  price: number;
+}
 interface CartState {
   selected: Cart[];
   eventId: string;
+  eventImage: string;
+  eventName: string;
+  amount: number;
+  price: number;
   increment: (value: Cart) => void;
   decrement: (value: Cart) => void;
+  addPayment: (value: Event) => void;
 }
 
 const usePayment = create<CartState>((set) => ({
   selected: [],
   eventId: "",
+  eventImage: "",
+  eventName: "",
+  amount: 0,
+  price: 0,
+  addPayment: (values) =>
+    set({
+      eventId: values.eventId,
+      eventImage: values.eventImage,
+      eventName: values.eventName,
+      amount: values.amount,
+      price: values.price,
+    }),
   increment: (value) => {
     set((state) => {
       if (state.eventId === value.eventId) {

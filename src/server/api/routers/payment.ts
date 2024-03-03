@@ -1,11 +1,11 @@
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
+import { TRPCError } from "@trpc/server";
 export const paymentRouter = createTRPCRouter({
   createPayment: protectedProcedure
     .input(
       z.object({
         event: z.string(),
-        user: z.string(),
         amount: z.number(),
         totalPrice: z.number(),
         tiket: z.array(
@@ -20,17 +20,51 @@ export const paymentRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
+      const user = ctx.session.user.id;
+      if (!user) {
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: "You must be logged in to purchase tickets",
+        });
+      }
+
+      const event = await ctx.xata.db.events
+        .filter("id", input.event)
+        .getFirst();
+
+      if (event?.author?.id === user) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: "You cant buy this item",
+        });
+      }
+      const purchase = await ctx.xata.db.purchase.create({
+        events: input.event,
+        totalPrice: input.totalPrice,
+        amount: input.amount,
+        user,
+      });
+
       const ticketMap = input.tiket.map((item) => ({
         ticketId: item.ticketId,
         totalticket: item.totalProduct,
+        purchase: purchase.id,
+        ticketName: item.name,
+      }));
+      const updateTicket = input.tiket.map((item) => ({
+        ticketId: item.ticketId,
+        count: item.totalProduct,
       }));
 
-      const ticketDetail = await ctx.xata.db.ticketdetail.create(ticketMap);
+      await ctx.xata.db.ticketdetail.create(ticketMap);
 
-      const ticketId = ticketDetail.map((item) => item.id);
-      await ctx.xata.db.purchase.create({
-        events: input.event,
-        totalPrice: input.totalPrice,
-      });
+      await Promise.all(
+        updateTicket.map((item) =>
+          ctx.xata.db.tikets.update({
+            id: item.ticketId,
+            count: { $decrement: item.count },
+          }),
+        ),
+      );
     }),
 });

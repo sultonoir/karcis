@@ -1,0 +1,16 @@
+{
+  "id": "mig_cnicr3c5ko6018g4oobg",
+  "parentID": "mig_cnhjr9jfqmjcsbc0kdh0",
+  "checksum": "1:cb17bb24ac5bab98ebc440fc686f4a1550cbc9db3befaf057b5195d5bf339972",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "ticketname",
+          "type": "string"
+        },
+        "table": "ticketdetail"
+      }
+    }
+  ]
+}
