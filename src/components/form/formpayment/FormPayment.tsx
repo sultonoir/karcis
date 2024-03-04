@@ -23,13 +23,13 @@ import { toast } from "sonner";
 import usePayment from "@/hooks/usePayment";
 
 const formSchema = z.object({
-  cardNumber: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
+  cardNumber: z.string(),
   name: z.string(),
   email: z.string(),
   CardName: z.string(),
-  date: z.string(),
+  date: z.string().min(2, {
+    message: "must be at least 4 characters.",
+  }),
   cvc: z.string(),
 });
 
@@ -85,7 +85,7 @@ const FormPayment = () => {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form className="space-y-8">
+          <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
             <div className="flex w-full flex-col gap-2 lg:flex-row">
               <FormField
                 control={form.control}
@@ -106,10 +106,10 @@ const FormPayment = () => {
               />
               <FormField
                 control={form.control}
-                name="email"
+                name="name"
                 render={({ field }) => (
                   <FormItem className="w-full">
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>Name</FormLabel>
                     <FormControl>
                       <Input
                         value={field.value}
@@ -129,7 +129,7 @@ const FormPayment = () => {
                 <FormItem>
                   <FormLabel>Card number</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input type="number" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -169,7 +169,19 @@ const FormPayment = () => {
                   <FormItem>
                     <FormLabel>CVC</FormLabel>
                     <FormControl>
-                      <Input {...field} />
+                      <Input
+                        type="number"
+                        value={field.value}
+                        maxLength={4}
+                        onChange={(e) => {
+                          const value = e.target.value;
+                          if (value.length > 4) {
+                            field.onChange(value.slice(0, 4));
+                          } else {
+                            field.onChange(value);
+                          }
+                        }}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -178,10 +190,9 @@ const FormPayment = () => {
             </div>
             <div className="flex gap-2">
               <Button
-                type="button"
+                type="submit"
                 disabled={payment.isLoading}
                 className="w-full"
-                onClick={onSubmit}
               >
                 Submit
               </Button>

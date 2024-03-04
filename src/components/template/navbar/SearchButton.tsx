@@ -1,15 +1,18 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 import { SearchIcon } from "lucide-react";
 import React from "react";
 
 const SearchButton = () => {
+  const [open, setOpen] = React.useState(false);
   return (
-    <div className="relative hidden w-full max-w-[300px] md:flex">
+    <div className="relative flex w-full max-w-md">
       <Input
         placeholder="Find exciting events here"
         className="h-11 w-full px-4 py-3"
+        onClick={() => setOpen(!open)}
       />
       <Button
         size="icon"
@@ -18,6 +21,13 @@ const SearchButton = () => {
       >
         <SearchIcon aria-label="search" />
       </Button>
+      <div
+        className={cn(
+          "absolute -bottom-8 right-0 block w-full rounded-lg border bg-popover shadow-md",
+        )}
+      >
+        hallo
+      </div>
     </div>
   );
 };
