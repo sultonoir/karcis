@@ -141,4 +141,22 @@ export const postRouter = createTRPCRouter({
         ticket,
       };
     }),
+  getSearch: publicProcedure
+    .input(
+      z.object({
+        title: z.string(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const search = await ctx.xata.search.all(input.title, {
+        tables: [
+          {
+            table: "events",
+            target: ["title"],
+          },
+        ],
+      });
+
+      return search;
+    }),
 });

@@ -1,16 +1,18 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
+import { useLockBody } from "@/hooks/useLockBody";
+import useOpen from "@/hooks/useOpen";
 import { api } from "@/trpc/react";
-import { Loader2, SearchIcon } from "lucide-react";
+import { ArrowLeft, Loader2, SearchIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useDebouncedCallback } from "use-debounce";
 
-const SearchButton = () => {
-  const [open, setOpen] = React.useState(false);
+const SearchDialog = () => {
+  const { onClose, isOpen } = useOpen();
+  useLockBody();
   const { data, mutate, isLoading } = api.post.getSearch.useMutation();
   const handleSearch = useDebouncedCallback((term: string) => {
     if (term !== "") {
@@ -21,43 +23,43 @@ const SearchButton = () => {
   }, 300);
 
   return (
-    <div className="relative hidden w-[140px] basis-2/3 sm:w-full lg:flex lg:max-w-md">
-      <Input
-        placeholder="Search.."
-        className="h-11 w-full px-4 py-3"
-        onChange={(e) => handleSearch(e.target.value)}
-        onClick={() => {
-          setOpen(!open);
-        }}
-      />
-      <Button
-        size="icon"
-        aria-label="pencarian"
-        className="absolute right-1 top-1/2 -translate-y-1/2 rounded-sm"
-      >
-        {isLoading ? (
-          <Loader2 className="animate-spin" aria-label="pencarian" />
-        ) : (
-          <SearchIcon aria-label="pencarian" />
-        )}
-      </Button>
-      {open && (
-        <>
+    <>
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-[60] block bg-background"
+          onClick={onClose}
+        >
           <div
-            className="fixed left-0 right-0 top-0 z-10 block h-screen bg-transparent"
-            onClick={() => setOpen(!open)}
-          />
-          <div
-            className={cn("absolute -bottom-12 right-0 z-20 block size-full")}
+            className="mt-10 flex items-center gap-2"
+            onClick={(e) => e.stopPropagation()}
           >
+            <Button size="icon" variant="ghost">
+              <ArrowLeft />
+            </Button>
+            <div className="relative mr-2 flex w-full">
+              <Input
+                placeholder="Search.."
+                className="h-11 w-full px-4 py-3"
+                onChange={(e) => handleSearch(e.target.value)}
+              />
+              <Button
+                size="icon"
+                aria-label="pencarian"
+                className="absolute right-1 top-1/2 -translate-y-1/2 rounded-sm"
+              >
+                {isLoading ? (
+                  <Loader2 className="animate-spin" aria-label="pencarian" />
+                ) : (
+                  <SearchIcon aria-label="pencarian" />
+                )}
+              </Button>
+            </div>
+          </div>
+          <div className="p-2">
             {data?.records.length ? (
-              <ul className="overflow-hidden rounded-lg border bg-popover p-2 shadow-md">
+              <ul className="overflow-hidden rounded-lg border bg-popover p-2">
                 {data.records.map((item) => (
-                  <li
-                    className="block w-full"
-                    key={item.record.id}
-                    onClick={() => setOpen(!open)}
-                  >
+                  <li className="block w-full" key={item.record.id}>
                     <Link
                       href={`/event/${item.record.id}`}
                       className="flex gap-2 rounded-sm hover:bg-accent"
@@ -78,7 +80,7 @@ const SearchButton = () => {
                 ))}
               </ul>
             ) : (
-              <div className="flex items-center justify-center rounded-lg bg-popover p-2 shadow-md">
+              <div className="flex items-center justify-center rounded-lg bg-popover p-2">
                 {isLoading ? (
                   <Loader2 className="animate-spin" aria-label="pencarian" />
                 ) : (
@@ -87,10 +89,10 @@ const SearchButton = () => {
               </div>
             )}
           </div>
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
-export default SearchButton;
+export default SearchDialog;

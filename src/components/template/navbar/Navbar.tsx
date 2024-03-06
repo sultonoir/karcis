@@ -8,11 +8,12 @@ import { LogInIcon } from "lucide-react";
 import ThemeSwitcher from "@/components/ui/ThemeSwither";
 import { getServerAuthSession } from "@/server/auth";
 import Profile from "./Profile";
+import SearchMobile from "./search/SearchMobile";
 
 const Navbar = async () => {
   const user = await getServerAuthSession();
   return (
-    <nav className="container flex items-center justify-between py-3">
+    <nav className="container flex items-center justify-between gap-2 py-3">
       <div className="flex w-full items-center gap-5">
         <Link href="/">
           <Image
@@ -26,7 +27,7 @@ const Navbar = async () => {
         </Link>
         <SearchButton />
       </div>
-      <div className="flex w-full items-center justify-end gap-2">
+      <div className="flex w-fit items-center justify-end gap-2 lg:w-full">
         <div className="hidden sm:flex">
           <Navlist />
         </div>
@@ -34,7 +35,10 @@ const Navbar = async () => {
           <ThemeSwitcher />
         </div>
         {user ? (
-          <Profile />
+          <>
+            <SearchMobile />
+            <Profile />
+          </>
         ) : (
           <Button asChild>
             <Link href="/login" className="px-3">
