@@ -1,7 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { useLockBody } from "@/hooks/useLockBody";
 import useOpen from "@/hooks/useOpen";
 import { api } from "@/trpc/react";
 import { ArrowLeft, Loader2, SearchIcon } from "lucide-react";
@@ -12,7 +11,6 @@ import { useDebouncedCallback } from "use-debounce";
 
 const SearchDialog = () => {
   const { onClose, isOpen } = useOpen();
-  useLockBody();
   const { data, mutate, isLoading } = api.post.getSearch.useMutation();
   const handleSearch = useDebouncedCallback((term: string) => {
     if (term !== "") {
@@ -21,6 +19,17 @@ const SearchDialog = () => {
       });
     }
   }, 300);
+  React.useLayoutEffect(() => {
+    if (isOpen) {
+      const originalStyle: string = window.getComputedStyle(
+        document.body,
+      ).overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalStyle;
+      };
+    }
+  }, [isOpen]);
 
   return (
     <>
@@ -33,7 +42,7 @@ const SearchDialog = () => {
             className="mt-10 flex items-center gap-2"
             onClick={(e) => e.stopPropagation()}
           >
-            <Button size="icon" variant="ghost">
+            <Button size="icon" variant="ghost" onClick={onClose}>
               <ArrowLeft />
             </Button>
             <div className="relative mr-2 flex w-full">
@@ -83,9 +92,7 @@ const SearchDialog = () => {
               <div className="flex items-center justify-center rounded-lg bg-popover p-2">
                 {isLoading ? (
                   <Loader2 className="animate-spin" aria-label="pencarian" />
-                ) : (
-                  "No events found"
-                )}
+                ) : null}
               </div>
             )}
           </div>

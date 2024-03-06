@@ -78,12 +78,17 @@ const SearchButton = () => {
                 ))}
               </ul>
             ) : (
-              <div className="flex items-center justify-center rounded-lg bg-popover p-2 shadow-md">
+              <div
+                className={cn(
+                  "flex items-center justify-center rounded-lg bg-popover p-2 shadow-md",
+                  {
+                    hidden: data?.records.length === 0,
+                  },
+                )}
+              >
                 {isLoading ? (
                   <Loader2 className="animate-spin" aria-label="pencarian" />
-                ) : (
-                  "No events found"
-                )}
+                ) : null}
               </div>
             )}
           </div>

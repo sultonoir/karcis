@@ -8,11 +8,9 @@ const SearchMobile = () => {
   const { onOpen, isOpen } = useOpen();
   console.log(isOpen);
   return (
-    <section className="relative">
-      <Button size="icon" onClick={onOpen}>
-        <SearchIcon />
-      </Button>
-    </section>
+    <Button size="icon" onClick={onOpen} className="rounded-full lg:hidden">
+      <SearchIcon />
+    </Button>
   );
 };
 
