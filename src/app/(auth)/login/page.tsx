@@ -1,5 +1,5 @@
-import FormOauthButton from "@/components/form/formauth/FormOauthButton";
-import FormSignin from "@/components/form/formauth/FormSignin";
+import FormOauthButton from "@/components/template/form/formauth/FormOauthButton";
+import FormSignin from "@/components/template/form/formauth/FormSignin";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";

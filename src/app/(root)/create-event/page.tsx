@@ -1,4 +1,4 @@
-import FormCreateEvent from "@/components/form/formevent/FormCreateEvent";
+import FormCreateEvent from "@/components/template/form/formevent/FormCreateEvent";
 import { getServerAuthSession } from "@/server/auth";
 import { redirect } from "next/navigation";
 import React from "react";

@@ -1,4 +1,4 @@
-import FormPayment from "@/components/form/formpayment/FormPayment";
+import FormPayment from "@/components/template/form/formpayment/FormPayment";
 import PaymentCancle from "@/components/template/payment/PaymentCancle";
 import PaymentItem from "@/components/template/payment/PaymentItem";
 import { type Metadata } from "next";
