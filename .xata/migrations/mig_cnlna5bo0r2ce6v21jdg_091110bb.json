@@ -1,0 +1,18 @@
+{
+  "id": "mig_cnlna5bo0r2ce6v21jdg",
+  "parentID": "mig_cnlna12g8nk3r147mahg",
+  "checksum": "1:091110bbb6395013c1e77561c67912fca975a5543acab88a0309ca7e6e997fd7",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "isRead",
+          "type": "bool",
+          "notNull": true,
+          "defaultValue": "false"
+        },
+        "table": "notify"
+      }
+    }
+  ]
+}

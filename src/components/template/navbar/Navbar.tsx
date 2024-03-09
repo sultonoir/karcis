@@ -2,13 +2,14 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import SearchButton from "./SearchButton";
+import SearchButton from "./search/SearchButton";
 import Navlist from "./Navlist";
-import { LogInIcon } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import ThemeSwitcher from "@/components/ui/ThemeSwither";
 import { getServerAuthSession } from "@/server/auth";
 import Profile from "./Profile";
 import SearchMobile from "./search/SearchMobile";
+import Notify from "./notify/Notify";
 
 const Navbar = async () => {
   const user = await getServerAuthSession();
@@ -31,21 +32,22 @@ const Navbar = async () => {
         <div className="hidden sm:flex">
           <Navlist />
         </div>
-        <div className="hidden lg:block">
-          <ThemeSwitcher />
-        </div>
         {user ? (
           <>
             <SearchMobile />
-            <Profile />
+            <Notify />
+            <Profile data={user} />
           </>
         ) : (
-          <Button asChild>
-            <Link href="/login" className="px-3">
-              <LogInIcon className="mr-2" />
-              Login
-            </Link>
-          </Button>
+          <>
+            <ThemeSwitcher />
+            <Button asChild>
+              <Link href="/login" className="gap-2">
+                Login
+                <ArrowRight />
+              </Link>
+            </Button>
+          </>
         )}
       </div>
     </nav>

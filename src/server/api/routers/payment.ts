@@ -58,6 +58,22 @@ export const paymentRouter = createTRPCRouter({
 
       await ctx.xata.db.ticketdetail.create(ticketMap);
 
+      await ctx.xata.db.notify.create({
+        user: user,
+        message: "Payment success",
+        event: event?.id ?? "",
+        isRead: false,
+        purchase: purchase.id,
+      });
+
+      await ctx.xata.db.notify.create({
+        user: event?.author?.id ?? "",
+        message: `${ctx.session.user.name} has purchased ${purchase.amount} tickets`,
+        event: event?.id,
+        isRead: false,
+        purchase: purchase.id,
+      });
+
       await Promise.all(
         updateTicket.map((item) =>
           ctx.xata.db.tikets.update({

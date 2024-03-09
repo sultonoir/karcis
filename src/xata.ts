@@ -123,7 +123,10 @@ const tables = [
       { name: "amount", type: "int", notNull: true, defaultValue: "0" },
       { name: "events", type: "link", link: { table: "events" } },
     ],
-    revLinks: [{ column: "purchase", table: "ticketdetail" }],
+    revLinks: [
+      { column: "purchase", table: "ticketdetail" },
+      { column: "purchase", table: "notify" },
+    ],
   },
   {
     name: "notify",
@@ -131,6 +134,8 @@ const tables = [
       { name: "user", type: "link", link: { table: "nextauth_users" } },
       { name: "message", type: "text", notNull: true, defaultValue: "" },
       { name: "event", type: "link", link: { table: "events" } },
+      { name: "purchase", type: "link", link: { table: "purchase" } },
+      { name: "isRead", type: "bool", notNull: true, defaultValue: "false" },
     ],
   },
   {

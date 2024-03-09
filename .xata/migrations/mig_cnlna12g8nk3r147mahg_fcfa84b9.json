@@ -1,0 +1,13 @@
+{
+  "id": "mig_cnlna12g8nk3r147mahg",
+  "parentID": "mig_cnl9778tk3m245msecvg",
+  "checksum": "1:fcfa84b98cd15c05b7e1285d4f98128b0018107094b50cc6161ba531d1b715e9",
+  "operations": [
+    {
+      "removeColumn": {
+        "column": "read",
+        "table": "notify"
+      }
+    }
+  ]
+}

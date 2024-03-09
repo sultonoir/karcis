@@ -1,0 +1,19 @@
+{
+  "id": "mig_cnl9778tk3m245msecvg",
+  "parentID": "mig_cnl93vgjvo2t6m19q7lg",
+  "checksum": "1:e46ef8b9c2271763f2735935411943d31b9d171531a021f8c6baa01084e8c62a",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "purchase",
+          "type": "link",
+          "link": {
+            "table": "purchase"
+          }
+        },
+        "table": "notify"
+      }
+    }
+  ]
+}

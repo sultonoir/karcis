@@ -9,7 +9,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { FiUser } from "react-icons/fi";
 import { TbTicket } from "react-icons/tb";
 import { MdDashboard, MdOutlineEventNote } from "react-icons/md";
@@ -18,8 +18,13 @@ import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import Lamp from "@/components/ui/Lamp";
 import { Switch } from "@/components/ui/switch";
-const Profile = () => {
-  const { data } = useSession();
+import { type Session } from "next-auth";
+
+interface Props {
+  data: Session | null;
+}
+
+const Profile = ({ data }: Props) => {
   const lists = [
     {
       title: "Dashborad",
@@ -90,7 +95,7 @@ const Profile = () => {
               </a>
             </DropdownMenuItem>
           ))}
-          <div className="relative flex cursor-default select-none items-center justify-between rounded-sm px-2 py-1.5 lg:hidden">
+          <div className="relative flex cursor-default select-none items-center justify-between rounded-sm px-2 py-1.5">
             <div className="flex size-10 items-center justify-center rounded-md bg-primary/20 p-1">
               <Lamp width={24} hanging={24} className="size-6 text-primary" />
             </div>
