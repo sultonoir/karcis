@@ -35,7 +35,7 @@ const Notify = async () => {
         <h2 className="mb-4 font-medium leading-none">Notifications</h2>
         <div className="scrollbar-hide flex h-fit max-h-[300px] flex-col gap-1 divide-y overflow-y-auto">
           {data.map((item) => (
-            <div key={item.id} className={cn("flex gap-2")}>
+            <div key={item.id} className={cn("flex gap-2 p-2")}>
               <div className="relative size-14">
                 <Image
                   alt={item.event?.title ?? "image"}

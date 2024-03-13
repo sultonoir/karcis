@@ -5,6 +5,7 @@ export const notifyRoute = createTRPCRouter({
     const notify = await ctx.xata.db.notify
       .select(["*", "event.*", "event.author.*"])
       .filter({ "user.id": ctx.session.user.id })
+      .sort("xata.createdAt", "desc")
       .getMany();
     return notify;
   }),

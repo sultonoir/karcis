@@ -4,7 +4,6 @@ import { format } from "date-fns";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 import User from "@/components/shared/User";
 import { api } from "@/trpc/server";
 
@@ -19,7 +18,7 @@ const Event = async ({ events }: Props) => {
 
   return (
     <Card className="overflow-hidden">
-      <AspectRatio ratio={16 / 9} className="relative mb-2 bg-muted">
+      <div className="aspect-video overflow-hidden">
         <Link
           href={`/event/${events.id}`}
           className="relative flex h-full w-full"
@@ -27,7 +26,7 @@ const Event = async ({ events }: Props) => {
           <Image
             src={events.image?.url ?? ""}
             alt="Photo by Drew Beamer"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            sizes="(min-width: 1480px) 500px, (min-width: 1040px) 17.14vw, (min-width: 780px) calc(33.33vw - 37px), calc(100vw - 66px)"
             fill
             priority
             placeholder="blur"
@@ -35,7 +34,7 @@ const Event = async ({ events }: Props) => {
             className="object-cover"
           />
         </Link>
-      </AspectRatio>
+      </div>
       <CardContent className="flex flex-col gap-2 px-2">
         <Link
           href={`/event/${events.id}`}

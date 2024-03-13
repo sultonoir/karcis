@@ -1,8 +1,14 @@
 import Event from "@/components/template/event/Event";
 import { api } from "@/trpc/server";
 import { type Events } from "@/xata";
+import { type Metadata } from "next";
 import React from "react";
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  title: "Expolore your favorite event",
+  description: "Reserve, Create, Celebrate: Your Event, Your Rules!",
+};
 
 const page = async () => {
   const events = await api.post.getAllEvents.query();
