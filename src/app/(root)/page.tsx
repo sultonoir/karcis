@@ -3,7 +3,7 @@ import React from "react";
 
 const Page = () => {
   return (
-    <main>
+    <main className="py-10">
       <Hero />
     </main>
   );

@@ -10,13 +10,35 @@ import { createBlurHash } from "@/lib/blur";
 import { transformImage } from "@xata.io/client";
 
 export const postRouter = createTRPCRouter({
-  getAllEvents: publicProcedure.query(async ({ ctx }) => {
-    const events = await ctx.xata.db.events
-      .select(["*", "author.*", "author.image"])
-      .sort("xata.createdAt", "desc")
-      .getMany();
-    return events;
-  }),
+  getAllEvents: publicProcedure
+    .input(
+      z.object({
+        category: z.string().optional(),
+        startDate: z.string().optional(),
+        endDate: z.string().optional(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      const startDate = input.startDate
+        ? new Date(input.startDate ?? "")
+        : undefined;
+      const endDate = input.endDate ? new Date(input.endDate ?? "") : undefined;
+      const events = await ctx.xata.db.events
+        .select(["*", "author.*", "author.image"])
+        .filter({
+          $all: [
+            { startDate: { $ge: startDate ?? new Date() } },
+            { category: input.category },
+            { endDate: { $le: endDate } },
+          ],
+        })
+        .sort("startDate", "asc")
+        .getPaginated({
+          pagination: { size: 20, offset: 0 },
+        });
+
+      return events;
+    }),
   postEvent: protectedProcedure
     .input(
       z.object({

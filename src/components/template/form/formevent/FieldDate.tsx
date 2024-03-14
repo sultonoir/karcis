@@ -26,8 +26,8 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 
 const FieldDate = ({ handleChange, ...props }: Props) => {
   const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(),
-    to: addDays(new Date(), 2),
+    from: addDays(new Date(), 2),
+    to: addDays(new Date(), 5),
   });
 
   React.useEffect(() => {

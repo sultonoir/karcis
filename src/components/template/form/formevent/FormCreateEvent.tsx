@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import FieldImage from "./FieldImage";
-import { Category } from "@/components/shared/Category";
 import FieldTag from "./FieldTag";
 import User from "@/components/shared/User";
 import TimePicker from "@/components/shared/TimePicker";
@@ -30,6 +29,7 @@ import { toast } from "sonner";
 import FieldDate from "./FieldDate";
 import { useRouter } from "next/navigation";
 import { type Session } from "next-auth";
+import FieldCategory from "./FieldCategory";
 
 const formSchema = z.object({
   image: z.string(),
@@ -142,7 +142,7 @@ export default function FormCreateEvent({ user }: Props) {
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Category handleChange={field.onChange} />
+                    <FieldCategory handleChange={field.onChange} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
