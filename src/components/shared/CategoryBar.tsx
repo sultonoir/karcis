@@ -9,10 +9,14 @@ const CategoryBar = () => {
   const params = useSearchParams();
   const category = params.get("category");
   return (
-    <ul className="flex items-center justify-between py-2">
-      <li className="container flex flex-1 flex-row gap-3 overflow-x-visible">
+    <ul className="flex items-center justify-between overflow-x-auto">
+      <li className="flex flex-1 flex-row gap-3 py-2">
         {data.category.map((item) => (
-          <Button key={item.label} variant="outline" asChild>
+          <Button
+            key={item.label}
+            variant={item.value === category ? "secondary" : "outline"}
+            asChild
+          >
             <Link
               href={
                 item.value === category
