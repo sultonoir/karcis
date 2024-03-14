@@ -72,7 +72,7 @@ const DiscoverSelect = () => {
 
   return (
     <Select defaultValue={select} onValueChange={setSelect}>
-      <SelectTrigger className="w-[150px]">
+      <SelectTrigger className="w-[150px]" aria-label="select-options-date">
         <SelectValue placeholder="Nearby time" />
       </SelectTrigger>
       <SelectContent>

@@ -45,7 +45,7 @@ const Footer = () => {
                   key={item.name}
                   href={item.path}
                   color="foreground"
-                  aria-hidden={true}
+                  aria-hidden="true"
                   title={item.name}
                 >
                   <item.icon size={30} />

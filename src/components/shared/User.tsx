@@ -36,7 +36,7 @@ const User = ({
         <Image
           fill
           priority
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="(min-width: 1480px) 300px, (min-width: 1040px) 17.14vw, (min-width: 780px) calc(33.33vw - 37px), calc(100vw - 66px)"
           alt="user"
           className="object-cover"
           src={avatar}

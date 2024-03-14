@@ -25,7 +25,7 @@ const DiscoverPage = ({ searchParams }: Props) => {
   return (
     <React.Fragment>
       <Header className="top-[69px] border-none">
-        <div className="container flex items-center gap-3 py-2">
+        <div className="container flex items-center justify-between py-2">
           <CategoryBar />
           <DiscoverSelect />
         </div>
