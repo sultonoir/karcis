@@ -64,7 +64,7 @@ const SearchButton = () => {
                       >
                         <Link
                           href={`/event/${item.record.id}`}
-                          className="flex gap-2 rounded-sm hover:bg-accent"
+                          className="flex gap-2 rounded-sm p-2 hover:bg-accent"
                         >
                           <div className="relative h-[50px] w-[100px]">
                             <Image

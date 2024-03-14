@@ -66,14 +66,14 @@ const SearchDialog = () => {
           </div>
           <div className="p-2">
             {data?.records.length ? (
-              <ul className="overflow-hidden rounded-lg border bg-popover p-2">
+              <ul className="flex flex-col divide-y overflow-hidden rounded-lg border bg-popover p-2">
                 {data.records.map((item) => (
                   <li className="block w-full" key={item.record.id}>
                     <Link
                       href={`/event/${item.record.id}`}
-                      className="flex gap-2 rounded-sm hover:bg-accent"
+                      className="flex gap-2 rounded-sm p-2 hover:bg-accent"
                     >
-                      <div className="relative h-[50px] w-[100px]">
+                      <div className="relative aspect-video h-[50px] w-[100px]">
                         <Image
                           alt="content"
                           src={item.record.image?.url ?? "/logo.png"}
@@ -88,13 +88,7 @@ const SearchDialog = () => {
                   </li>
                 ))}
               </ul>
-            ) : (
-              <div className="flex items-center justify-center rounded-lg bg-popover p-2">
-                {isLoading ? (
-                  <Loader2 className="animate-spin" aria-label="pencarian" />
-                ) : null}
-              </div>
-            )}
+            ) : null}
           </div>
         </div>
       )}
