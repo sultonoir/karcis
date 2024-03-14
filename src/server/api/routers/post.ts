@@ -175,6 +175,9 @@ export const postRouter = createTRPCRouter({
           {
             table: "events",
             target: ["title"],
+            filter: {
+              startDate: { $ge: new Date() },
+            },
           },
         ],
       });
