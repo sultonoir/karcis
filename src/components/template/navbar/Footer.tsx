@@ -21,6 +21,94 @@ const Footer = () => {
       path: "mailto:sultonnoir@gmail.com",
     },
   ];
+
+  const footers = [
+    {
+      title: "About Karcisku",
+      des: [
+        {
+          path: "/pricing",
+          name: "Pricing",
+        },
+        {
+          path: "/discover",
+          name: "Event",
+        },
+        {
+          path: "/faq",
+          name: "FAQ",
+        },
+        {
+          path: "/term",
+          name: "Term",
+        },
+      ],
+    },
+    {
+      title: "Resources",
+      des: [
+        {
+          path: "#",
+          name: "Best practices",
+        },
+        {
+          path: "#",
+          name: "Support",
+        },
+        {
+          path: "#",
+          name: "Developers",
+        },
+        {
+          path: "#",
+          name: "Learn design",
+        },
+      ],
+    },
+    {
+      title: "Explore event",
+      des: [
+        {
+          path: "/discover?category=festival",
+          name: "Festival",
+        },
+        {
+          path: "/discover?category=stand-up",
+          name: "Stand-up",
+        },
+        {
+          path: "/discover?category=conference",
+          name: "Conference",
+        },
+        {
+          path: "/discover?category=tournaments",
+          name: "Tournaments",
+        },
+      ],
+    },
+    {
+      title: "Community",
+      des: [
+        {
+          path: "#",
+          name: "Discussion Forums",
+        },
+        {
+          path: "#",
+          name: "Code of Conduct",
+        },
+        {
+          path: "#",
+          name: "Contributing",
+        },
+        {
+          path: "#",
+          name: "API Reference",
+        },
+      ],
+    },
+  ];
+
   return (
     <footer className="border-t border-neutral-200 py-20 dark:border-neutral-700 lg:pb-24 lg:pt-28">
       <div className="container grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-8 md:grid-cols-4 lg:grid-cols-5 lg:gap-x-10 ">
@@ -37,7 +125,7 @@ const Footer = () => {
                 width={40}
                 height={40}
               />
-              Rainame
+              Karcisku
             </Link>
             <div className="ml-2 flex justify-start gap-2">
               {sosial.map((item) => (
@@ -45,7 +133,7 @@ const Footer = () => {
                   key={item.name}
                   href={item.path}
                   color="foreground"
-                  aria-hidden="true"
+                  aria-label={item.name}
                   title={item.name}
                 >
                   <item.icon size={30} />
@@ -54,194 +142,26 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="text-sm">
-          <h2 className="font-semibold text-neutral-700 dark:text-neutral-200">
-            Getting started
-          </h2>
-          <ul className="mt-5 space-y-4">
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Release Notes
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Upgrade Guide
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Browser Support
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Dark Mode
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="text-sm">
-          <h2 className="font-semibold text-neutral-700 dark:text-neutral-200">
-            Explore
-          </h2>
-          <ul className="mt-5 space-y-4">
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Prototyping
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Design systems
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Pricing
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Security
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="text-sm">
-          <h2 className="font-semibold text-neutral-700 dark:text-neutral-200">
-            Resources
-          </h2>
-          <ul className="mt-5 space-y-4">
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Best practices
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Support
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Developers
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Learn design
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div className="text-sm">
-          <h2 className="font-semibold text-neutral-700 dark:text-neutral-200">
-            Community
-          </h2>
-          <ul className="mt-5 space-y-4">
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Discussion Forums
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Code of Conduct
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Contributing
-              </a>
-            </li>
-            <li>
-              <a
-                className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
-                href="/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                API Reference
-              </a>
-            </li>
-          </ul>
-        </div>
+        {footers.map((item) => (
+          <div className="text-sm" key={item.title}>
+            <h2 className="font-semibold text-neutral-700 dark:text-neutral-200">
+              {item.title}
+            </h2>
+            <ul className="mt-5 space-y-4">
+              {item.des.map((des) => (
+                <li key={des.name}>
+                  <a
+                    className="text-neutral-6000 hover:text-black dark:text-neutral-300 dark:hover:text-white"
+                    href={des.path}
+                    rel="noopener noreferrer"
+                  >
+                    {des.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </footer>
   );

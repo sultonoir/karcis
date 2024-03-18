@@ -27,9 +27,9 @@ interface Props {
 const Profile = ({ data }: Props) => {
   const lists = [
     {
-      title: "Client",
+      title: "Dashboard",
       icons: MdDashboard,
-      path: `/client`,
+      path: `/dashboard`,
     },
     {
       title: "Profile",

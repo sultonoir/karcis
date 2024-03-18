@@ -25,7 +25,7 @@ const Notify = async () => {
           className="relative size-11 rounded-full"
           size="icon"
         >
-          <span className="absolute right-[1px] top-[1px] flex size-5 items-center justify-center rounded-full bg-primary p-1">
+          <span className="absolute right-[1px] top-[1px] flex size-5 items-center justify-center rounded-full bg-primary p-1 text-white">
             {data.length}
           </span>
           <Bell />
@@ -36,7 +36,7 @@ const Notify = async () => {
         <div className="scrollbar-hide flex h-fit max-h-[300px] flex-col gap-1 divide-y overflow-y-auto">
           {data.map((item) => (
             <div key={item.id} className={cn("flex gap-2 p-2")}>
-              <div className="relative size-14">
+              <div className="relative size-14 flex-shrink-0">
                 <Image
                   alt={item.event?.title ?? "image"}
                   src={item.event?.image?.url ?? ""}

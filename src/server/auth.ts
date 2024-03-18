@@ -44,6 +44,10 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
+  jwt: {
+    maxAge: 7 * 24 * 60 * 60,
+    secret: env.NEXTAUTH_SECRET,
+  },
   callbacks: {
     session: ({ session, token }) => {
       if (token && session.user) {
