@@ -1,0 +1,16 @@
+{
+  "id": "mig_cns3ai3hp80np6u2ac50",
+  "parentID": "mig_cns3ab4ladid5ccjr3cg",
+  "checksum": "1:58733e0feaea5797d35dac6ea3e8308047c8d8a052f25e849d3dc91714ec1e35",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "instagram",
+          "type": "string"
+        },
+        "table": "nextauth_users"
+      }
+    }
+  ]
+}

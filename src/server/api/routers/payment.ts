@@ -71,6 +71,7 @@ export const paymentRouter = createTRPCRouter({
         message: `${ctx.session.user.name} has purchased ${purchase.amount} tickets`,
         event: event?.id,
         isRead: false,
+        type: "host",
         purchase: purchase.id,
       });
 

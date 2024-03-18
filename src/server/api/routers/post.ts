@@ -113,7 +113,7 @@ export const postRouter = createTRPCRouter({
         description: item.description,
       }));
 
-      await ctx.xata.db.tikets.createOrReplace(tickets);
+      await ctx.xata.db.tikets.create(tickets);
       const image = event.image?.url;
       const photoBlurURL = transformImage(image, {
         blur: 75,

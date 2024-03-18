@@ -14,6 +14,11 @@ const tables = [
       { name: "emailVerified", type: "datetime" },
       { name: "name", type: "string" },
       { name: "image", type: "string" },
+      { name: "banner", type: "file", file: { defaultPublicAccess: true } },
+      { name: "about", type: "text" },
+      { name: "facebook", type: "string" },
+      { name: "instagram", type: "string" },
+      { name: "twitter", type: "string" },
     ],
     revLinks: [
       { column: "user", table: "nextauth_accounts" },
@@ -136,6 +141,8 @@ const tables = [
       { name: "event", type: "link", link: { table: "events" } },
       { name: "purchase", type: "link", link: { table: "purchase" } },
       { name: "isRead", type: "bool", notNull: true, defaultValue: "false" },
+      { name: "isOpen", type: "bool", notNull: true, defaultValue: "false" },
+      { name: "type", type: "string", notNull: true, defaultValue: "payment" },
     ],
   },
   {

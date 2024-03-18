@@ -1,0 +1,16 @@
+{
+  "id": "mig_cns3ak3hp80np6u2ac60",
+  "parentID": "mig_cns3ai3hp80np6u2ac50",
+  "checksum": "1:0e6feaf5fccacdc50242f0c08d7a3840dd817ce8b5ec31aa86e2f3e820e4723f",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "twitter",
+          "type": "string"
+        },
+        "table": "nextauth_users"
+      }
+    }
+  ]
+}

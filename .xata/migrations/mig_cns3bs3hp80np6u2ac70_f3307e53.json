@@ -1,0 +1,18 @@
+{
+  "id": "mig_cns3bs3hp80np6u2ac70",
+  "parentID": "mig_cns3ak3hp80np6u2ac60",
+  "checksum": "1:f3307e53c98e3ea2bf433f535114f5c8a24f70de8782be5cbb98301f7a6e35a7",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "type",
+          "type": "string",
+          "notNull": true,
+          "defaultValue": "payment"
+        },
+        "table": "notify"
+      }
+    }
+  ]
+}

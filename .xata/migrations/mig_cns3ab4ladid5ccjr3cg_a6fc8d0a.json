@@ -1,0 +1,16 @@
+{
+  "id": "mig_cns3ab4ladid5ccjr3cg",
+  "parentID": "mig_cns3a5rhp80np6u2ac40",
+  "checksum": "1:a6fc8d0a91f9ca7ced132504095b1cca59544413d26f6f3adcc1300214ef9c85",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "facebook",
+          "type": "string"
+        },
+        "table": "nextauth_users"
+      }
+    }
+  ]
+}

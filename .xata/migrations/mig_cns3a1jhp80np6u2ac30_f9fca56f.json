@@ -1,0 +1,19 @@
+{
+  "id": "mig_cns3a1jhp80np6u2ac30",
+  "parentID": "mig_cnlunpqg8nk3r147mbu0",
+  "checksum": "1:f9fca56fd552805d0fda6a50d5000cde1cdee30ff66f6f762211c7e8ef54d560",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "banner",
+          "type": "file",
+          "file": {
+            "defaultPublicAccess": true
+          }
+        },
+        "table": "nextauth_users"
+      }
+    }
+  ]
+}

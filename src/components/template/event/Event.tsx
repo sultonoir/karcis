@@ -52,12 +52,14 @@ const Event = ({ events }: Props) => {
         </div>
       </CardContent>
       <CardFooter className="border-t p-2">
-        <User
-          avatar={events.author?.image ?? "/logo.png"}
-          imageWidth="30px"
-          imageHeight="30px"
-          name={events.author?.name}
-        />
+        <Link href={`/user/${events.author?.id}`}>
+          <User
+            avatar={events.author?.image ?? "/logo.png"}
+            imageWidth="30px"
+            imageHeight="30px"
+            name={events.author?.name}
+          />
+        </Link>
       </CardFooter>
     </Card>
   );

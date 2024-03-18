@@ -29,7 +29,7 @@ const Profile = ({ data }: Props) => {
     {
       title: "Dashboard",
       icons: MdDashboard,
-      path: `/dashboard`,
+      path: `/member`,
     },
     {
       title: "Profile",
@@ -95,11 +95,11 @@ const Profile = ({ data }: Props) => {
               </a>
             </DropdownMenuItem>
           ))}
-          <div className="relative flex cursor-default select-none items-center justify-between rounded-sm px-2 py-1.5">
+          <div className="relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5">
             <div className="flex size-10 items-center justify-center rounded-md bg-primary/20 p-1">
               <Lamp width={24} hanging={24} className="size-6 text-primary" />
             </div>
-            <p>Dark mode</p>
+            <p className="flex-1 text-sm">Dark mode</p>
             <Switch
               className="z-30"
               checked={theme === "dark"}

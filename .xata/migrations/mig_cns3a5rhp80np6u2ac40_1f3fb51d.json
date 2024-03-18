@@ -1,0 +1,16 @@
+{
+  "id": "mig_cns3a5rhp80np6u2ac40",
+  "parentID": "mig_cns3a1jhp80np6u2ac30",
+  "checksum": "1:1f3fb51d50d4a025fd6f70fabaa7c9aebb4f3e26d3ffa6a3f1ab2233c1deb925",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "about",
+          "type": "text"
+        },
+        "table": "nextauth_users"
+      }
+    }
+  ]
+}

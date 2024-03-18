@@ -1,0 +1,18 @@
+{
+  "id": "mig_cnlunpqg8nk3r147mbu0",
+  "parentID": "mig_cnlna5bo0r2ce6v21jdg",
+  "checksum": "1:042a90793d3767f5f878b7d14fc1449ad328047db1defc2ce12383f6392ce78f",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "isOpen",
+          "type": "bool",
+          "notNull": true,
+          "defaultValue": "false"
+        },
+        "table": "notify"
+      }
+    }
+  ]
+}
