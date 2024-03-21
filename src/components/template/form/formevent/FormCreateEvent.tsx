@@ -16,7 +16,6 @@ import { Input } from "@/components/ui/input";
 import FieldImage from "./FieldImage";
 import FieldTag from "./FieldTag";
 import User from "@/components/shared/User";
-import TimePicker from "@/components/shared/TimePicker";
 import { Building2, MapPinIcon, Trash } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FieldTicket from "./FieldTicket";
@@ -30,6 +29,7 @@ import FieldDate from "./FieldDate";
 import { useRouter } from "next/navigation";
 import { type Session } from "next-auth";
 import FieldCategory from "./FieldCategory";
+import FieldTime from "./FieldTime";
 
 const formSchema = z.object({
   image: z.string(),
@@ -194,7 +194,7 @@ export default function FormCreateEvent({ user }: Props) {
                   render={({ field }) => (
                     <FormItem>
                       <FormControl>
-                        <TimePicker handleTimeChange={field.onChange} />
+                        <FieldTime handleTimeChange={field.onChange} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

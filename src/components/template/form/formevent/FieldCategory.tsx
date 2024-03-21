@@ -17,7 +17,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { data } from "@/lib/data";
+import { dummy } from "@/lib/data";
 
 interface CategoryProps {
   handleChange: (values: string) => void;
@@ -37,7 +37,7 @@ const FieldCategory = ({ handleChange }: CategoryProps) => {
           className="w-full justify-between bg-transparent"
         >
           {value
-            ? data.category.find((framework) => framework.value === value)
+            ? dummy.category.find((framework) => framework.value === value)
                 ?.label
             : "Select category..."}
           <ChevronsUpDown className="ml-2 size-4 shrink-0 opacity-50" />
@@ -48,7 +48,7 @@ const FieldCategory = ({ handleChange }: CategoryProps) => {
           <CommandInput placeholder="Search category..." />
           <CommandEmpty>No framework found.</CommandEmpty>
           <CommandGroup>
-            {data.category.map((framework) => (
+            {dummy.category.map((framework) => (
               <CommandItem
                 key={framework.value}
                 value={framework.value}

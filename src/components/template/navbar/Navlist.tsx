@@ -1,5 +1,5 @@
 "use client";
-import { data } from "@/lib/data";
+import { dummy } from "@/lib/data";
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -17,7 +17,7 @@ const Navlist = () => {
         setTimeOfLastClick(Date.now());
       }}
     >
-      {data.navbar.map((link) => (
+      {dummy.navbar.map((link) => (
         <motion.li
           className="relative flex items-center justify-center"
           key={link.path}

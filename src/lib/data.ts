@@ -1,6 +1,9 @@
 import { CalendarPlus, CompassIcon } from "lucide-react";
+import { FiUser } from "react-icons/fi";
+import { MdDashboard, MdOutlineEventNote } from "react-icons/md";
+import { TbTicket } from "react-icons/tb";
 
-export const data = {
+export const dummy = {
   navbar: [
     {
       title: "Create event",
@@ -163,6 +166,40 @@ export const data = {
     {
       value: "pm",
       label: "PM",
+    },
+  ],
+  profile: [
+    {
+      title: "Dashboard",
+      icons: MdDashboard,
+      path: `/member`,
+    },
+    {
+      title: "Profile",
+      icons: FiUser,
+      path: `/member/profile`,
+    },
+    {
+      title: "My event",
+      icons: MdOutlineEventNote,
+      path: `/member/my-event`,
+    },
+    {
+      title: "My ticket",
+      icons: TbTicket,
+      path: `/member/my-ticket`,
+    },
+  ],
+  sidebar: [
+    {
+      title: "Dashboard",
+      icons: MdDashboard,
+      path: `/member`,
+    },
+    {
+      title: "My event",
+      icons: MdOutlineEventNote,
+      path: `/member/my-event`,
     },
   ],
 };

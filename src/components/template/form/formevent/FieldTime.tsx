@@ -6,13 +6,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { data } from "@/lib/data";
+import { dummy } from "@/lib/data";
 
 interface Props {
   handleTimeChange: (value: string) => void;
 }
 
-const TimePicker = ({ handleTimeChange }: Props) => {
+const FieldTime = ({ handleTimeChange }: Props) => {
   const [hour, setHour] = useState("00");
   const [minut, setMinut] = useState("00");
   const [diference, setDiference] = useState("am");
@@ -29,7 +29,7 @@ const TimePicker = ({ handleTimeChange }: Props) => {
           <SelectValue placeholder="00" />
         </SelectTrigger>
         <SelectContent>
-          {data.hour.map((item) => (
+          {dummy.hour.map((item) => (
             <SelectItem value={item.value} key={item.label}>
               {item.label}
             </SelectItem>
@@ -41,7 +41,7 @@ const TimePicker = ({ handleTimeChange }: Props) => {
           <SelectValue placeholder="00" />
         </SelectTrigger>
         <SelectContent>
-          {data.minut.map((item) => (
+          {dummy.minut.map((item) => (
             <SelectItem value={item.value} key={item.label}>
               {item.label}
             </SelectItem>
@@ -53,7 +53,7 @@ const TimePicker = ({ handleTimeChange }: Props) => {
           <SelectValue placeholder="AM" />
         </SelectTrigger>
         <SelectContent>
-          {data.ampm.map((item) => (
+          {dummy.ampm.map((item) => (
             <SelectItem value={item.value} key={item.label}>
               {item.label}
             </SelectItem>
@@ -64,4 +64,4 @@ const TimePicker = ({ handleTimeChange }: Props) => {
   );
 };
 
-export default TimePicker;
+export default FieldTime;

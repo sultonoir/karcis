@@ -1,5 +1,5 @@
 "use client";
-import { data } from "@/lib/data";
+import { dummy } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { HomeIcon } from "lucide-react";
 import Link from "next/link";
@@ -24,7 +24,7 @@ const MobileNavbar = () => {
             Home
           </Link>
         </li>
-        {data.navbar.map((item) => (
+        {dummy.navbar.map((item) => (
           <li key={item.title}>
             <Link href={item.path} className="flex flex-col items-center">
               <item.icon />

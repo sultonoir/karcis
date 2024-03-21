@@ -37,7 +37,7 @@ const FieldTicket = ({ values, handleChange, mode, editValues }: Props) => {
   const [data, setData] = useState<Data>({
     title: "",
     price: "0",
-    count: "",
+    count: "1",
     isFree: false,
     description: "",
   });
@@ -92,7 +92,7 @@ const FieldTicket = ({ values, handleChange, mode, editValues }: Props) => {
     setData({
       title: "",
       price: "0",
-      count: "",
+      count: "1",
       isFree: false,
       description: "",
     });
@@ -100,16 +100,11 @@ const FieldTicket = ({ values, handleChange, mode, editValues }: Props) => {
   };
 
   return (
-    <Dialog
-      open={open}
-      onOpenChange={() => setOpen((prev) => !prev)}>
+    <Dialog open={open} onOpenChange={() => setOpen((prev) => !prev)}>
       <DialogTrigger asChild>
         <div className="group cursor-pointer">
           {mode === "edit" ? (
-            <Button
-              type="button"
-              size="icon"
-              variant="ghost">
+            <Button type="button" size="icon" variant="ghost">
               <Edit />
             </Button>
           ) : (
@@ -138,9 +133,7 @@ const FieldTicket = ({ values, handleChange, mode, editValues }: Props) => {
                   </div>
                 </div>
               </div>
-              <Button
-                type="button"
-                className="w-full gap-2 lg:hidden">
+              <Button type="button" className="w-full gap-2 lg:hidden">
                 <PlusIcon />
                 Create ticket
               </Button>
@@ -191,8 +184,8 @@ const FieldTicket = ({ values, handleChange, mode, editValues }: Props) => {
               {parseInt(data.count) > 1000
                 ? "1000"
                 : data.count === ""
-                ? "0"
-                : data.count}
+                  ? "0"
+                  : data.count}
             </span>
             <span>/</span>
             <span>1000</span>
@@ -208,7 +201,8 @@ const FieldTicket = ({ values, handleChange, mode, editValues }: Props) => {
                 duration: 0.5, // mengatur durasi transisi
                 ease: "easeInOut", // menetapkan jenis transisi
               }}
-              className={cn({ invisible: data.isFree })}>
+              className={cn({ invisible: data.isFree })}
+            >
               Ticket price <span className="text-primary">*</span>
             </motion.div>
             <Switch
@@ -231,7 +225,8 @@ const FieldTicket = ({ values, handleChange, mode, editValues }: Props) => {
                   duration: 0.5, // mengatur durasi transisi
                   ease: "easeInOut", // menetapkan jenis transisi
                 }}
-                className="relative">
+                className="relative"
+              >
                 <span className="absolute top-[4px]">$</span>
                 <Input
                   type="number"
@@ -266,9 +261,7 @@ const FieldTicket = ({ values, handleChange, mode, editValues }: Props) => {
           />
         </div>
         <DialogFooter>
-          <Button
-            onClick={handleClick}
-            className="w-full">
+          <Button onClick={handleClick} className="w-full">
             {mode === "edit" ? "Update" : "Save"}
           </Button>
         </DialogFooter>

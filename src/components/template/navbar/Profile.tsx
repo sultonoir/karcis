@@ -10,44 +10,19 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { signOut } from "next-auth/react";
-import { FiUser } from "react-icons/fi";
-import { TbTicket } from "react-icons/tb";
-import { MdDashboard, MdOutlineEventNote } from "react-icons/md";
 import { BiLogOut } from "react-icons/bi";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "next-themes";
 import Lamp from "@/components/ui/Lamp";
 import { Switch } from "@/components/ui/switch";
 import { type Session } from "next-auth";
+import { dummy } from "@/lib/data";
 
 interface Props {
   data: Session | null;
 }
 
 const Profile = ({ data }: Props) => {
-  const lists = [
-    {
-      title: "Dashboard",
-      icons: MdDashboard,
-      path: `/member`,
-    },
-    {
-      title: "Profile",
-      icons: FiUser,
-      path: `/profile`,
-    },
-    {
-      title: "My event",
-      icons: MdOutlineEventNote,
-      path: `/profile/event`,
-    },
-    {
-      title: "My ticket",
-      icons: TbTicket,
-      path: `/profile/ticket`,
-    },
-  ];
-
   const { theme, setTheme } = useTheme();
   return (
     <DropdownMenu>
@@ -78,7 +53,7 @@ const Profile = ({ data }: Props) => {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          {lists.map((item) => (
+          {dummy.profile.map((item) => (
             <DropdownMenuItem
               key={item.title}
               title={item.title}
