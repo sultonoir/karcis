@@ -55,8 +55,11 @@ const FormPayment = () => {
     redirect("/discover");
   }
 
+  const ctx = api.useUtils();
   const payment = api.payment.createPayment.useMutation({
-    onSuccess: () => {
+    onSuccess: async () => {
+      await ctx.notify.getAllNotify.invalidate();
+      await ctx.notify.getNotifyLength.invalidate();
       toast.success("payment created");
       router.replace("/");
       form.reset();

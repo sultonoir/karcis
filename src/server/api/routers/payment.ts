@@ -38,6 +38,21 @@ export const paymentRouter = createTRPCRouter({
           message: "You cant buy this item",
         });
       }
+
+      const exist = await ctx.xata.db.purchase
+        .filter({
+          $all: [{ events: { $is: event?.id } }, { user: { $is: user } }],
+        })
+        .getMany();
+
+      if (event?.oneBuy && exist.length > 1) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message:
+            "event tickets can only be purchased once for each transaction",
+        });
+      }
+
       const purchase = await ctx.xata.db.purchase.create({
         events: input.event,
         totalPrice: input.totalPrice,
