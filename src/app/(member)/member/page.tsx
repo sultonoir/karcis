@@ -1,6 +1,15 @@
-import EventDashboard from "@/components/template/event/EventDashboard";
-import { Separator } from "@/components/ui/separator";
+import { Overview } from "@/components/shared/Overview";
+import RecentPurchased from "@/components/shared/RecentPurchased";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { api } from "@/trpc/server";
+import { DollarSignIcon, TicketIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -9,39 +18,58 @@ const page = async () => {
   return (
     <div className="container">
       <div className="grid h-fit w-full grid-cols-1 gap-4 lg:grid-cols-3">
-        <div className="flex flex-col rounded-md border p-4">
-          <div className="flex items-center justify-between pb-2">
-            <p className="text-lg font-medium leading-none">Event active</p>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Event active</CardTitle>
             <Link href="/member/my-event">Details</Link>
-          </div>
-          <Separator />
-          <div className="pt-2 text-2xl font-semibold">
-            {data.totalEvent} Events
-          </div>
-        </div>
-        <div className="flex flex-col rounded-md border p-4">
-          <div className="flex items-center justify-between pb-3">
-            <p className="text-lg font-medium leading-none">
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{data.totalEvent}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+            <DollarSignIcon size={18} />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">${data.totalPrice}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">
               Total tickets sold
-            </p>
-          </div>
-          <Separator />
-          <div className="pt-2 text-2xl font-semibold">
-            {data.totalTicket} Ticket
-          </div>
-        </div>
-        <div className="flex flex-col rounded-md border p-4">
-          <div className="flex items-center justify-between pb-3">
-            <p className="text-lg font-medium leading-none">Total revenue</p>
-          </div>
-          <Separator />
-          <div className="pt-2 text-2xl font-semibold">${data.totalPrice}</div>
-        </div>
+            </CardTitle>
+            <TicketIcon size={18} />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{data.totalTicket}</div>
+          </CardContent>
+        </Card>
       </div>
-      <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
-        {data.events.map((item) => (
-          <EventDashboard event={item} key={item.id} />
-        ))}
+      <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-7">
+        <Card className="col-span-4">
+          <CardHeader>
+            <CardTitle>Overview of tickets sold</CardTitle>
+          </CardHeader>
+          <CardContent className="pl-2">
+            <Overview cart={data.cart} />
+          </CardContent>
+        </Card>
+        <Card className="col-span-3">
+          <CardHeader>
+            <CardTitle>Recent Sales</CardTitle>
+            <CardDescription>You made 265 sales this month.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-8">
+              {data.recent.map((item) => (
+                <RecentPurchased recent={item} key={item.id} />
+              ))}
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );

@@ -25,11 +25,6 @@ const DiscoverSelect = () => {
       0,
     );
 
-    const awalBulanDepan = new Date(
-      sekarang.getFullYear(),
-      sekarang.getMonth() + 1,
-      1,
-    );
     const akhirBulanDepan = new Date(
       sekarang.getFullYear(),
       sekarang.getMonth() + 2,
@@ -39,14 +34,14 @@ const DiscoverSelect = () => {
     return [
       {
         label: "This month",
-        value: akhirBulanIni.toISOString(),
+
         startDate: awalMingguIni.toISOString(),
         endDate: akhirBulanIni.toISOString(),
       },
       {
         label: "Next month",
-        value: akhirBulanDepan.toISOString(),
-        startDate: awalBulanDepan.toISOString(),
+
+        startDate: sekarang.toISOString(),
         endDate: akhirBulanDepan.toISOString(),
       },
     ];
@@ -58,11 +53,11 @@ const DiscoverSelect = () => {
 
   useEffect(() => {
     const params = new URLSearchParams(searchParams);
-    const selectedEvent = filterEvents.find((event) => event.value === select);
+    const selectedEvent = filterEvents.find((event) => event.label === select);
 
     if (selectedEvent) {
       params.set("startDate", selectedEvent.startDate);
-      params.set("endDate", selectedEvent.value);
+      params.set("endDate", selectedEvent.endDate);
     } else {
       params.delete("startDate");
       params.delete("endDate");
@@ -78,7 +73,7 @@ const DiscoverSelect = () => {
       <SelectContent>
         <SelectItem value="light">Nearby time</SelectItem>
         {filterEvents.map((item) => (
-          <SelectItem key={item.label} value={item.value}>
+          <SelectItem key={item.label} value={item.label}>
             {item.label}
           </SelectItem>
         ))}

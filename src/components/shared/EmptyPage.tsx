@@ -6,7 +6,7 @@ interface Props {
 }
 
 const EmptyPage = ({
-  descriptions = "We can&apos;t find the event with these search keywords, please pay attention to the spelling or search again.",
+  descriptions = "We can't find the event with these search keywords, please pay attention to the spelling or search again.",
 }: Props) => {
   return (
     <div className="flex flex-col items-center justify-center gap-3">

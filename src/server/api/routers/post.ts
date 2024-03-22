@@ -211,4 +211,38 @@ export const postRouter = createTRPCRouter({
         return active;
       }
     }),
+  getDetailMyevent: protectedProcedure
+    .input(
+      z.object({
+        eventId: z.string(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      const event = await ctx.xata.db.events
+        .select(["*", "author.*"])
+        .filter({ id: input.eventId })
+        .getFirst();
+
+      const purchase = await ctx.xata.db.purchase
+        .select(["*"])
+        .filter({
+          $all: [{ "events.id": input.eventId }],
+        })
+        .getMany();
+      const tickets = await ctx.xata.db.tikets
+        .filter("event.id", input.eventId)
+        .getMany();
+
+      const totalTicket = tickets.reduce((acc, cur) => acc + cur.count, 0);
+      const totalPrice = purchase.reduce((acc, cur) => acc + cur.totalPrice, 0);
+
+      const ticketPurchase = purchase.reduce((acc, cur) => acc + cur.amount, 0);
+
+      return {
+        event,
+        totalTicket,
+        totalPrice,
+        ticketPurchase,
+      };
+    }),
 });
