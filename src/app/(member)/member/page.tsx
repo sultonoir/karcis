@@ -48,8 +48,8 @@ const page = async () => {
           </CardContent>
         </Card>
       </div>
-      <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
+      <div className="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-7">
+        <Card className="lg:col-span-4">
           <CardHeader>
             <CardTitle>Overview of tickets sold</CardTitle>
           </CardHeader>
@@ -57,7 +57,7 @@ const page = async () => {
             <Overview cart={data.cart} />
           </CardContent>
         </Card>
-        <Card className="col-span-3">
+        <Card className="lg:col-span-3">
           <CardHeader>
             <CardTitle>Recent Sales</CardTitle>
             <CardDescription>You made 265 sales this month.</CardDescription>

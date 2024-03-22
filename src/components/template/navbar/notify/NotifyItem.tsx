@@ -45,7 +45,7 @@ const NotifyItem = () => {
               <p className="pt-3 text-center">Notifications empty</p>
             </React.Fragment>
           ) : (
-            <ScrollArea className="h-72">
+            <>
               {data?.length === 0 ? (
                 <React.Fragment>
                   <Image
@@ -60,52 +60,54 @@ const NotifyItem = () => {
                   <p className="pt-3 text-center">Notifications empty</p>
                 </React.Fragment>
               ) : (
-                <div className="pr-4">
-                  {data?.map((item) => (
-                    <React.Fragment key={item.id}>
-                      <Link
-                        href={
-                          item.type === "payment"
-                            ? "/member/my-ticket"
-                            : "/member/my-event"
-                        }
-                        onClick={() =>
-                          mutate({
-                            id: item.id,
-                          })
-                        }
-                        className={cn(
-                          "my-1 flex gap-2 rounded-sm p-2 hover:bg-accent",
-                        )}
-                      >
-                        <div className="relative size-14 flex-shrink-0">
-                          <Image
-                            alt={item.event?.title ?? "image"}
-                            src={item.event?.image?.url ?? ""}
-                            fill
-                            placeholder="blur"
-                            blurDataURL={item.event?.blur}
-                            className="rounded-full object-cover"
-                          />
-                        </div>
-                        <div className="flex flex-1 flex-col">
-                          <h3 className="leading-tight">{item.message}</h3>
-                          <p className="text-sm text-muted-foreground">
-                            {`${dayjs(item.xata.createdAt).fromNow()}`}
-                          </p>
-                        </div>
-                        {!item.isRead && (
-                          <div className="flex-shrink-0">
-                            <DotIcon className="text-primary" />
+                <ScrollArea className="h-72">
+                  <div className="pr-4">
+                    {data?.map((item) => (
+                      <React.Fragment key={item.id}>
+                        <Link
+                          href={
+                            item.type === "payment"
+                              ? "/member/my-ticket"
+                              : "/member/my-event"
+                          }
+                          onClick={() =>
+                            mutate({
+                              id: item.id,
+                            })
+                          }
+                          className={cn(
+                            "my-1 flex gap-2 rounded-sm p-2 hover:bg-accent",
+                          )}
+                        >
+                          <div className="relative size-14 flex-shrink-0">
+                            <Image
+                              alt={item.event?.title ?? "image"}
+                              src={item.event?.image?.url ?? ""}
+                              fill
+                              placeholder="blur"
+                              blurDataURL={item.event?.blur}
+                              className="rounded-full object-cover"
+                            />
                           </div>
-                        )}
-                      </Link>
-                      <Separator />
-                    </React.Fragment>
-                  ))}
-                </div>
+                          <div className="flex flex-1 flex-col">
+                            <h3 className="leading-tight">{item.message}</h3>
+                            <p className="text-sm text-muted-foreground">
+                              {`${dayjs(item.xata.createdAt).fromNow()}`}
+                            </p>
+                          </div>
+                          {!item.isRead && (
+                            <div className="flex-shrink-0">
+                              <DotIcon className="text-primary" />
+                            </div>
+                          )}
+                        </Link>
+                        <Separator />
+                      </React.Fragment>
+                    ))}
+                  </div>
+                </ScrollArea>
               )}
-            </ScrollArea>
+            </>
           )}
         </>
       )}

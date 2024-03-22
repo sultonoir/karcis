@@ -1,7 +1,13 @@
-import EventDashboard from "@/components/template/event/EventDashboard";
-import { Separator } from "@/components/ui/separator";
 import { api } from "@/trpc/server";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import React from "react";
+import { DollarSignIcon, TicketIcon } from "lucide-react";
 
 interface Props {
   params: { id: string };
@@ -13,30 +19,27 @@ const page = async ({ params }: Props) => {
   });
   return (
     <div className="container">
-      <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-        {data.event && <EventDashboard event={data.event} />}
-        <div className="grid h-fit w-full grid-cols-1 gap-4">
-          <div className="flex flex-col rounded-md border p-4">
-            <div className="flex items-center justify-between pb-3">
-              <p className="text-lg font-medium leading-none">
-                Total tickets sold
-              </p>
-            </div>
-            <Separator />
-            <div className="pt-2 text-2xl font-semibold">
-              {data.ticketPurchase} Ticket
-            </div>
-          </div>
-          <div className="flex flex-col rounded-md border p-4">
-            <div className="flex items-center justify-between pb-3">
-              <p className="text-lg font-medium leading-none">Total revenue</p>
-            </div>
-            <Separator />
-            <div className="pt-2 text-2xl font-semibold">
-              ${data.totalPrice}
-            </div>
-          </div>
-        </div>
+      <div className="grid h-fit w-full grid-cols-1 gap-4 lg:grid-cols-2">
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
+            <DollarSignIcon size={18} />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">${data.totalPrice}</div>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium">
+              Total tickets sold
+            </CardTitle>
+            <TicketIcon size={18} />
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold">{data.ticketPurchase}</div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
