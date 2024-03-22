@@ -2,10 +2,16 @@ import Header from "@/components/template/navbar/Header";
 import Profile from "@/components/template/navbar/Profile";
 import Sidebar from "@/components/template/navbar/Sidebar";
 import { Calendar } from "lucide-react";
+import { type Metadata } from "next";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Dashboard - Karcisku",
+  description: "Reserve, Create, Celebrate: Your Event, Your Rules!",
+};
 
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await getServerSession();

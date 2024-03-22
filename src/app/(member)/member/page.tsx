@@ -1,14 +1,8 @@
 import EventDashboard from "@/components/template/event/EventDashboard";
 import { Separator } from "@/components/ui/separator";
 import { api } from "@/trpc/server";
-import { type Metadata } from "next";
 import Link from "next/link";
 import React from "react";
-
-export const metadata: Metadata = {
-  title: "Dashboard - Karcisku",
-  description: "Reserve, Create, Celebrate: Your Event, Your Rules!",
-};
 
 const page = async () => {
   const data = await api.revenue.getRevenue.query();
@@ -44,7 +38,7 @@ const page = async () => {
           <div className="pt-2 text-2xl font-semibold">${data.totalPrice}</div>
         </div>
       </div>
-      <div className="mt-10 grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-5">
         {data.events.map((item) => (
           <EventDashboard event={item} key={item.id} />
         ))}

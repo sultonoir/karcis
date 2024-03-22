@@ -10,17 +10,17 @@ interface Props {
 const EventDashboard = ({ event }: Props) => {
   return (
     <Link
-      href={`/my-event/${event.id}`}
+      href={`/member/my-event/${event.id}`}
       className="group relative flex w-full flex-col gap-2 overflow-hidden rounded-lg border shadow-sm"
     >
-      <div className="absolute inset-0 z-50 bg-background/20 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+      <div className="absolute inset-0 z-50 bg-background/50 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
         <div className="flex size-full items-center justify-center">
           <p className="flex w-fit rounded-md bg-primary px-4 py-2 text-white">
             Details
           </p>
         </div>
       </div>
-      <div className="relative flex h-[150px] w-full flex-col items-center justify-center overflow-hidden border-b lg:h-[420px]">
+      <div className="relative aspect-video overflow-hidden">
         <Image
           src={event.image?.url ?? "/logo.png"}
           fill
@@ -29,7 +29,7 @@ const EventDashboard = ({ event }: Props) => {
           className="aspect-video object-cover"
         />
       </div>
-      <div className="flex flex-col justify-between gap-2 p-4 md:flex-row lg:items-center">
+      <div className="flex flex-col justify-between gap-2 p-4">
         <div className="flex flex-col">
           <p>Category</p>
           <p className="text-sm text-muted-foreground">{event.category}</p>

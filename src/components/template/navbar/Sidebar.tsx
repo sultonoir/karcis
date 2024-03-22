@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { useParams, usePathname } from "next/navigation";
 import React from "react";
 import Link from "next/link";
 import { dummy } from "@/lib/data";
@@ -10,9 +10,12 @@ import { Switch } from "@/components/ui/switch";
 import { useTheme } from "next-themes";
 import { Separator } from "@/components/ui/separator";
 import { Ticket, User2Icon } from "lucide-react";
+
+import EventDetailsButton from "./EventDetailsButton";
 const Sidebar = () => {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
+  const params = useParams<{ id: string }>();
 
   return (
     <aside className="flex h-full flex-col overflow-y-auto border-r bg-background shadow-sm">
@@ -47,6 +50,7 @@ const Sidebar = () => {
           </Link>
         ))}
         <Separator />
+        {params.id && <EventDetailsButton />}
         <p className="pt-2 font-medium text-muted-foreground">Profile</p>
         <Link
           href="/member/profile"

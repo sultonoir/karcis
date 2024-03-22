@@ -184,4 +184,31 @@ export const postRouter = createTRPCRouter({
 
       return search;
     }),
+  getMyEvent: protectedProcedure
+    .input(
+      z.object({
+        active: z.boolean(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      if (input.active) {
+        const active = await ctx.xata.db.events
+          .select(["*", "author.*"])
+          .filter({
+            "author.id": ctx.session.user.id,
+            startDate: { $ge: new Date() },
+          })
+          .getMany();
+        return active;
+      } else {
+        const active = await ctx.xata.db.events
+          .select(["*", "author.*"])
+          .filter({
+            "author.id": ctx.session.user.id,
+            startDate: { $le: new Date() },
+          })
+          .getMany();
+        return active;
+      }
+    }),
 });
