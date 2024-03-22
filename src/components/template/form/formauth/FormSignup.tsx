@@ -15,7 +15,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
-import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 const formSchema = z.object({
   email: z.string().email(),
@@ -30,15 +29,14 @@ const FormSignup = () => {
   });
 
   // mutate create user
-  const router = useRouter();
   const createUser = api.user.createUser.useMutation({
     onSuccess: async (e) => {
       await signIn("signin", {
         email: e,
-        redirect: false,
+        redirect: true,
+        callbackUrl: "/",
       }).then((callback) => {
         if (callback?.ok) {
-          router.push("/");
           toast.success("Account created");
           form.reset();
         }
