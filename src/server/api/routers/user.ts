@@ -23,8 +23,18 @@ export const userRouter = createTRPCRouter({
         });
       }
 
+      function emailToString(email: string): string {
+        // Pisahkan alamat email menggunakan '@' sebagai pemisah
+        const potongan = email.split("@");
+
+        // Ambil nama depan (bagian pertama setelah pemisah '@')
+        const namaDepan = potongan[0];
+
+        return namaDepan!;
+      }
       await ctx.xata.db.nextauth_users.create({
         email,
+        name: emailToString(input.email),
       });
       return email;
     }),
