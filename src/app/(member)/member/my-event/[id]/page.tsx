@@ -1,25 +1,21 @@
 import { api } from "@/trpc/server";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import React from "react";
 import { DollarSignIcon, TicketIcon } from "lucide-react";
+import { DataTable } from "@/components/template/order/DataTable";
+import { columns } from "@/components/template/order/Columns";
 
 interface Props {
   params: { id: string };
 }
 
 const page = async ({ params }: Props) => {
-  const data = await api.post.getDetailMyevent.query({
-    eventId: params.id,
+  const data = await api.revenue.getOrder.query({
+    id: params.id,
   });
   return (
     <div className="container">
-      <div className="grid h-fit w-full grid-cols-1 gap-4 lg:grid-cols-2">
+      <div className="mb-10 grid h-fit w-full grid-cols-1 gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">Total Revenue</CardTitle>
@@ -41,6 +37,7 @@ const page = async ({ params }: Props) => {
           </CardContent>
         </Card>
       </div>
+      <DataTable columns={columns} data={data.result} />
     </div>
   );
 };

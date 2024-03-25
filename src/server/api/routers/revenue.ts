@@ -1,13 +1,28 @@
+import { z } from "zod";
 import { createTRPCRouter, protectedProcedure } from "../trpc";
 
 export const revenueRouter = createTRPCRouter({
   getRevenue: protectedProcedure.query(async ({ ctx }) => {
+    const sekarang = new Date();
+    const awalMingguIni = new Date(
+      sekarang.getFullYear(),
+      sekarang.getMonth(),
+      sekarang.getDate() - sekarang.getDay(),
+    );
+
+    const akhirMingguIni = new Date(
+      sekarang.getFullYear(),
+      sekarang.getMonth(),
+      sekarang.getDate() - sekarang.getDay() + 7,
+    );
     const purchase = await ctx.xata.db.purchase
       .select(["*", "user.*", "events.*"])
       .filter({
         $all: [
           { "events.author.id": ctx.session.user.id },
           { "events.startDate": { $ge: new Date() } },
+          { "xata.createdAt": { $ge: awalMingguIni } },
+          { "xata.createdAt": { $le: akhirMingguIni } },
         ],
       })
       .sort("xata.createdAt", "desc")
@@ -51,14 +66,16 @@ export const revenueRouter = createTRPCRouter({
       }
     });
 
-    const recent = purchase.map((item) => ({
-      id: item.id,
-      eventTitle: item.events?.title,
-      userName: item.user?.name,
-      userImage: item.user?.image,
-      ticketTotal: item.amount,
-      createdAt: item.xata.createdAt,
-    }));
+    const recent = purchase
+      .map((item) => ({
+        id: item.id,
+        eventTitle: item.events?.title,
+        userName: item.user?.name,
+        userImage: item.user?.image,
+        ticketTotal: item.amount,
+        createdAt: item.xata.createdAt,
+      }))
+      .slice(0, 5);
     return {
       totalPrice,
       totalTicket,
@@ -67,4 +84,37 @@ export const revenueRouter = createTRPCRouter({
       cart,
     };
   }),
+  getOrder: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      const purchase = await ctx.xata.db.purchase
+        .select(["*", "user.*", "events.*"])
+        .filter({
+          $all: [{ "events.id": input.id }],
+        })
+        .sort("xata.createdAt", "desc")
+        .getMany();
+
+      const totalPrice = purchase.reduce((acc, cur) => acc + cur.totalPrice, 0);
+
+      const ticketPurchase = purchase.reduce((acc, cur) => acc + cur.amount, 0);
+      const result = purchase.map((item) => ({
+        id: item.id,
+        userName: item.user?.name,
+        eventName: item.events?.title,
+        email: item.user?.email,
+        ticket: item.amount,
+        amount: item.totalPrice,
+      }));
+
+      return {
+        result,
+        totalPrice,
+        ticketPurchase,
+      };
+    }),
 });

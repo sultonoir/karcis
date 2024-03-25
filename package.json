@@ -41,6 +41,7 @@
     "@radix-ui/react-tooltip": "^1.0.7",
     "@t3-oss/env-nextjs": "^0.7.1",
     "@tanstack/react-query": "^4.36.1",
+    "@tanstack/react-table": "^8.15.0",
     "@tiptap/pm": "^2.2.4",
     "@tiptap/react": "^2.2.4",
     "@tiptap/starter-kit": "^2.2.4",

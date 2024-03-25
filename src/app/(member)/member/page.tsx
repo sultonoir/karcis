@@ -59,8 +59,8 @@ const page = async () => {
         </Card>
         <Card className="lg:col-span-3">
           <CardHeader>
-            <CardTitle>Recent Sales</CardTitle>
-            <CardDescription>You made 265 sales this month.</CardDescription>
+            <CardTitle>Recent transactions</CardTitle>
+            <CardDescription>This week</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-8">
