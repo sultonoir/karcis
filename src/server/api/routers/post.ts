@@ -180,6 +180,7 @@ export const postRouter = createTRPCRouter({
             },
           },
         ],
+        fuzziness: 2,
       });
 
       return search;

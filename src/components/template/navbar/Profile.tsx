@@ -17,6 +17,7 @@ import Lamp from "@/components/ui/Lamp";
 import { Switch } from "@/components/ui/switch";
 import { type Session } from "next-auth";
 import { dummy } from "@/lib/data";
+import Link from "next/link";
 
 interface Props {
   data: Session | null;
@@ -59,7 +60,7 @@ const Profile = ({ data }: Props) => {
               title={item.title}
               className="relative h-fit cursor-pointer"
             >
-              <a
+              <Link
                 href={item.path}
                 className="flex h-full w-full items-center gap-2"
               >
@@ -67,7 +68,7 @@ const Profile = ({ data }: Props) => {
                   <item.icons size={24} className="text-primary" />
                 </span>
                 {item.title}
-              </a>
+              </Link>
             </DropdownMenuItem>
           ))}
           <div className="relative flex cursor-default select-none items-center gap-2 rounded-sm px-2 py-1.5">
