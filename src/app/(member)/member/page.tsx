@@ -13,6 +13,7 @@ import { DollarSignIcon, TicketIcon } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
+export const dynamic = "force-dynamic";
 const page = async () => {
   const data = await api.revenue.getRevenue.query();
   return (

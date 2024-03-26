@@ -8,7 +8,7 @@ import { columns } from "@/components/template/order/Columns";
 interface Props {
   params: { id: string };
 }
-
+export const dynamic = "force-dynamic";
 const page = async ({ params }: Props) => {
   const data = await api.revenue.getOrder.query({
     id: params.id,

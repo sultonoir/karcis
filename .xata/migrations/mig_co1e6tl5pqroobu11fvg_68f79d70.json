@@ -1,0 +1,16 @@
+{
+  "id": "mig_co1e6tl5pqroobu11fvg",
+  "parentID": "mig_cns3bs3hp80np6u2ac70",
+  "checksum": "1:68f79d7057f9cc8ca91c36dfa6ef09a4437629abb23b6be5eaf7549dd147dec6",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "tiktok",
+          "type": "string"
+        },
+        "table": "nextauth_users"
+      }
+    }
+  ]
+}

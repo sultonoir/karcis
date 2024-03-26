@@ -19,6 +19,7 @@ const tables = [
       { name: "facebook", type: "string" },
       { name: "instagram", type: "string" },
       { name: "twitter", type: "string" },
+      { name: "tiktok", type: "string" },
     ],
     revLinks: [
       { column: "user", table: "nextauth_accounts" },

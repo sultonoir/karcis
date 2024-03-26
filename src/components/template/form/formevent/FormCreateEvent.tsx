@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { z } from "zod";
+import { type z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -30,47 +30,15 @@ import { useRouter } from "next/navigation";
 import { type Session } from "next-auth";
 import FieldCategory from "./FieldCategory";
 import FieldTime from "./FieldTime";
-
-const formSchema = z.object({
-  image: z.string(),
-  title: z.string().min(2, {
-    message: "Title must be at least 2 characters.",
-  }),
-  category: z.string(),
-  tag: z.array(z.string()),
-  date: z.object({
-    start: z.date(),
-    end: z.date(),
-  }),
-  time: z.string(),
-  place: z.string(),
-  location: z.string(),
-  ticket: z
-    .array(
-      z.object({
-        title: z.string(),
-        price: z.string(),
-        count: z.string(),
-        description: z.string().optional(),
-        isFree: z.boolean(),
-      }),
-    )
-    .min(1, {
-      message: "min have 1 ticket",
-    }),
-  desc: z.string({ required_error: "description not yet filled" }),
-  term: z.string({ required_error: "description not yet filled" }),
-  max: z.string({ required_error: "Max ticket not yet filled" }),
-  oneBuy: z.boolean(),
-});
+import { eventSchema } from "@/types";
 
 interface Props {
   user: Session | null;
 }
 
 export default function FormCreateEvent({ user }: Props) {
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof eventSchema>>({
+    resolver: zodResolver(eventSchema),
     defaultValues: {
       image: "",
       title: "",
@@ -100,7 +68,7 @@ export default function FormCreateEvent({ user }: Props) {
       toast.error(opts.message);
     },
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  function onSubmit(values: z.infer<typeof eventSchema>) {
     create.mutate(values);
   }
   return (
