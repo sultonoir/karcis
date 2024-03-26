@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { profileSchema } from "@/types";
+import FieldImageProfile from "./FieldImageProfile";
 
 type ProfileSchema = z.infer<typeof profileSchema>;
 
@@ -23,6 +24,7 @@ const FormProfile = () => {
     defaultValues: {
       email: "",
       banner: "",
+      image: null,
     },
   });
 
@@ -35,6 +37,22 @@ const FormProfile = () => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <FormField
+          control={form.control}
+          name="image"
+          render={({ field }) => (
+            <FormItem className="flex flex-col gap-2">
+              <FormLabel>Profile picture</FormLabel>
+              <FormControl>
+                <FieldImageProfile
+                  value={field.value}
+                  onValueChange={field.onChange}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
         <FormField
           control={form.control}
           name="email"

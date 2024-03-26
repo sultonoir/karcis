@@ -3,7 +3,7 @@ import { z } from "zod";
 export const profileSchema = z.object({
   email: z.string(),
   name: z.string().nullable(),
-  image: z.string(),
+  image: z.string().nullable(),
   banner: z.string(),
   about: z.string(),
   facebook: z.string().nullable(),
