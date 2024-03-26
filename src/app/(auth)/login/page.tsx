@@ -1,8 +1,14 @@
 import FormOauthButton from "@/components/template/form/formauth/FormOauthButton";
 import FormSignin from "@/components/template/form/formauth/FormSignin";
+import { type Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Login to Karcisku",
+  description: "Reserve, Create, Celebrate: Your Event, Your Rules!",
+};
 
 const Page = () => {
   return (
@@ -10,7 +16,13 @@ const Page = () => {
       <div className="w-full dark:bg-accent lg:max-w-[66.666667%] lg:basis-2/3 lg:bg-slate-50">
         <div className="p-4">
           <Link href="/" className="inline-flex w-fit">
-            <Image src="/logo.png" alt="logo" width={40} height={40} />
+            <Image
+              src="/logo.png"
+              alt="logo"
+              width={40}
+              height={40}
+              className="rounded-lg"
+            />
           </Link>
         </div>
         <div className="hidden h-[calc(100dvh-80px)] items-center justify-center lg:flex">

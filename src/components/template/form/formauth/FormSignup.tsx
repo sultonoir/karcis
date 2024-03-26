@@ -35,14 +35,6 @@ const FormSignup = () => {
         email: e,
         redirect: true,
         callbackUrl: "/",
-      }).then((callback) => {
-        if (callback?.ok) {
-          toast.success("Account created");
-          form.reset();
-        }
-        if (callback?.error) {
-          toast.error(callback.error);
-        }
       });
     },
     onError: (e) => {

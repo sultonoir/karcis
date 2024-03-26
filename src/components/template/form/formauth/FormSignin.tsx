@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 const formSchema = z.object({
   email: z.string().email(),
@@ -28,14 +27,17 @@ const FormSignin = () => {
     },
   });
 
-  const router = useRouter();
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    await signIn("signin", {
-      email: values.email,
-      redirect: false,
-    }).then((callback) => {
+    await signIn(
+      "signin",
+      {
+        email: values.email,
+        redirect: false,
+      },
+      "/login",
+    ).then((callback) => {
       if (callback?.ok) {
-        router.push("/");
+        window.location.href = "/";
       }
       if (callback?.error) {
         toast.error(callback.error);
