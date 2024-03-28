@@ -1,0 +1,12 @@
+{
+  "id": "mig_co23o376tqu04qq2es7g",
+  "parentID": "mig_co1e6tl5pqroobu11fvg",
+  "checksum": "1:08c889982db2ec3a48169079567148058ca9f6ba2dbd3040bcb3fce28e059f42",
+  "operations": [
+    {
+      "addTable": {
+        "table": "imageBucket"
+      }
+    }
+  ]
+}

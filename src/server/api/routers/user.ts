@@ -1,4 +1,9 @@
-import { createTRPCRouter, publicProcedure } from "@/server/api/trpc";
+import {
+  createTRPCRouter,
+  protectedProcedure,
+  publicProcedure,
+} from "@/server/api/trpc";
+import { type NextauthUsers } from "@/xata";
 import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 
@@ -38,4 +43,82 @@ export const userRouter = createTRPCRouter({
       });
       return email;
     }),
+  getUser: protectedProcedure.query(async ({ ctx }) => {
+    const user = await ctx.xata.db.nextauth_users.read(ctx.session.user.id);
+    const record: NextauthUsers = JSON.parse(JSON.stringify(user));
+    return record;
+  }),
+  updateUser: protectedProcedure
+    .input(
+      z.object({
+        email: z.string(),
+        name: z.string(),
+        about: z.string(),
+        facebook: z.string().optional(),
+        instagram: z.string().optional(),
+        twitter: z.string().optional(),
+        tiktok: z.string().optional(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const id = ctx.session.user.id;
+      await ctx.xata.db.nextauth_users.update(id, input);
+      return input.name;
+    }),
+  updateImage: protectedProcedure
+    .input(
+      z.object({
+        name: z.string().optional(),
+        mediaType: z.string().optional(),
+        base64Content: z.string().optional(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const id = ctx.session.user.id;
+      const record = await ctx.xata.db.imageBucket.create({
+        img: input,
+      });
+      await ctx.xata.db.nextauth_users.update(id, {
+        image: record.img?.url,
+        imageId: record.id,
+      });
+      return record.img?.url;
+    }),
+  removeImage: protectedProcedure.mutation(async ({ ctx }) => {
+    const id = ctx.session.user.id;
+    const user = await ctx.xata.db.nextauth_users.read(id);
+    if (user?.imageId) {
+      await ctx.xata.db.imageBucket.delete(user.imageId);
+
+      await ctx.xata.db.nextauth_users.update(id, {
+        image: null,
+        imageId: null,
+      });
+    } else {
+      await ctx.xata.db.nextauth_users.update(id, {
+        image: null,
+        imageId: null,
+      });
+    }
+  }),
+  updateBanner: protectedProcedure
+    .input(
+      z.object({
+        name: z.string().optional(),
+        mediaType: z.string().optional(),
+        base64Content: z.string().optional(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      const id = ctx.session.user.id;
+      await ctx.xata.db.nextauth_users.update(id, {
+        banner: input,
+      });
+    }),
+  removeBanner: protectedProcedure.mutation(async ({ ctx }) => {
+    const id = ctx.session.user.id;
+    await ctx.xata.db.nextauth_users.update(id, {
+      banner: null,
+    });
+  }),
 });

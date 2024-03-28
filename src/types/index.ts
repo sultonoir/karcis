@@ -2,14 +2,12 @@ import { z } from "zod";
 
 export const profileSchema = z.object({
   email: z.string(),
-  name: z.string().nullable(),
-  image: z.string().nullable(),
-  banner: z.string(),
+  name: z.string(),
   about: z.string(),
-  facebook: z.string().nullable(),
-  instagtam: z.string().nullable(),
-  twitter: z.string().nullable(),
-  tiktok: z.string().nullable(),
+  facebook: z.string().optional(),
+  instagram: z.string().optional(),
+  twitter: z.string().optional(),
+  tiktok: z.string().optional(),
 });
 
 export const eventSchema = z.object({

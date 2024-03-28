@@ -1,6 +1,7 @@
 import Header from "@/components/template/navbar/Header";
 import Profile from "@/components/template/navbar/Profile";
 import Sidebar from "@/components/template/navbar/Sidebar";
+import { Toaster } from "@/components/ui/sonner";
 import { Calendar } from "lucide-react";
 import { type Metadata } from "next";
 import { getServerSession } from "next-auth";
@@ -38,6 +39,7 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
         </Header>
         <div className="py-10">{children}</div>
       </main>
+      <Toaster richColors closeButton position="bottom-left" />
     </div>
   );
 };

@@ -20,6 +20,7 @@ const tables = [
       { name: "instagram", type: "string" },
       { name: "twitter", type: "string" },
       { name: "tiktok", type: "string" },
+      { name: "imageId", type: "string" },
     ],
     revLinks: [
       { column: "user", table: "nextauth_accounts" },
@@ -155,6 +156,12 @@ const tables = [
       { name: "ticketName", type: "string", notNull: true, defaultValue: "" },
     ],
   },
+  {
+    name: "imageBucket",
+    columns: [
+      { name: "img", type: "file", file: { defaultPublicAccess: true } },
+    ],
+  },
 ] as const;
 
 export type SchemaTables = typeof tables;
@@ -195,6 +202,9 @@ export type NotifyRecord = Notify & XataRecord;
 export type Ticketdetail = InferredTypes["ticketdetail"];
 export type TicketdetailRecord = Ticketdetail & XataRecord;
 
+export type ImageBucket = InferredTypes["imageBucket"];
+export type ImageBucketRecord = ImageBucket & XataRecord;
+
 export type DatabaseSchema = {
   nextauth_users: NextauthUsersRecord;
   nextauth_accounts: NextauthAccountsRecord;
@@ -207,6 +217,7 @@ export type DatabaseSchema = {
   purchase: PurchaseRecord;
   notify: NotifyRecord;
   ticketdetail: TicketdetailRecord;
+  imageBucket: ImageBucketRecord;
 };
 
 const DatabaseClient = buildClient();

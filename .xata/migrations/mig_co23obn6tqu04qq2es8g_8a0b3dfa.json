@@ -1,0 +1,19 @@
+{
+  "id": "mig_co23obn6tqu04qq2es8g",
+  "parentID": "mig_co23o376tqu04qq2es7g",
+  "checksum": "1:8a0b3dfa31ae1cdd51c16f3090b24e312df3fa010a937011c9101eb3dfeb7e0a",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "img",
+          "type": "file",
+          "file": {
+            "defaultPublicAccess": true
+          }
+        },
+        "table": "imageBucket"
+      }
+    }
+  ]
+}

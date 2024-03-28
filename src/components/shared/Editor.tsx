@@ -37,7 +37,8 @@ const Editor = ({ values, onChange }: Props) => {
     ],
     editorProps: {
       attributes: {
-        class: "min-h-[250px] border border-border p-1 rounded-sm",
+        class:
+          "min-h-[250px] border border-border px-5 py-2 rounded-sm focus:border-primary/50 focus:outline-none focus:ring focus:ring-primary/30",
       },
     },
     content: values,
