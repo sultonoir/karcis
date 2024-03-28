@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/dialog";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
 
 interface Props {
   banner: string | undefined;
@@ -64,10 +65,6 @@ const FieldBanner = ({ banner }: Props) => {
     [],
   );
 
-  const handleDelete = () => {
-    setImage("");
-  };
-
   //hande close
   const handleClose = () => {
     setImage("");
@@ -110,6 +107,17 @@ const FieldBanner = ({ banner }: Props) => {
     }
   };
 
+  //handle submit
+  const removeBanner = api.user.removeBanner.useMutation({
+    onSuccess: async () => {
+      await ctx.user.getUser.invalidate();
+      toast.success("Banner deleted");
+    },
+    onError: () => {
+      toast.error("Error remove banner");
+    },
+  });
+
   return (
     <div className="relative my-5">
       <p>Banner profile</p>
@@ -125,10 +133,12 @@ const FieldBanner = ({ banner }: Props) => {
         <Button
           type="button"
           size="icon"
-          onClick={handleDelete}
-          className="z-10 bg-destructive hover:bg-destructive/80"
+          onClick={() => removeBanner.mutate()}
+          disabled={removeBanner.isLoading}
+          isLoading={removeBanner.isLoading}
+          variant="secondary"
         >
-          <Trash2 />
+          <Trash2 className={cn({ hidden: removeBanner.isLoading })} />
         </Button>
       </div>
       {banner ? (

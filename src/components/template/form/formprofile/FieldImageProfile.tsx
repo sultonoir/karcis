@@ -204,7 +204,7 @@ const FieldImageProfile = () => {
             <Button
               type="button"
               disabled={isLoading}
-              className="flex-1"
+              className="flex-1 bg-green-600 hover:bg-green-600/80"
               onClick={handleClick}
             >
               Save changes

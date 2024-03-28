@@ -15,13 +15,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { profileSchema } from "@/types";
 import { type NextauthUsers } from "@/xata";
-import Editor from "@/components/shared/Editor";
 import { api } from "@/trpc/react";
 import { toast } from "sonner";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Loader2Icon } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
 
 type ProfileSchema = z.infer<typeof profileSchema>;
 
@@ -102,7 +102,7 @@ const FormProfile = ({ user }: Props) => {
             <FormItem>
               <FormLabel>Bio</FormLabel>
               <FormControl>
-                <Editor values={field.value} onChange={field.onChange} />
+                <Textarea {...field} className="min-h-[200px]" />
               </FormControl>
               <FormMessage />
             </FormItem>

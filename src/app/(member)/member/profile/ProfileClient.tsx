@@ -25,7 +25,7 @@ const ProfileClient = () => {
       <div className="flex items-center justify-between pb-3">
         <h3 className="text-2xl font-medium">Public profile</h3>
         <Link
-          href="/"
+          href={`/user/${data.id}`}
           className="rounded-sm bg-accent px-3 py-1 text-center text-sm"
         >
           Go to your personal profile
