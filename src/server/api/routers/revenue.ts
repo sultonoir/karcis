@@ -102,6 +102,10 @@ export const revenueRouter = createTRPCRouter({
       const totalPrice = purchase.reduce((acc, cur) => acc + cur.totalPrice, 0);
 
       const ticketPurchase = purchase.reduce((acc, cur) => acc + cur.amount, 0);
+
+      const status = purchase.filter((item) => item.status === "done");
+      const totalStatus = status.length;
+
       const result = purchase.map((item) => ({
         id: item.id,
         userName: item.user?.name,
@@ -109,12 +113,48 @@ export const revenueRouter = createTRPCRouter({
         email: item.user?.email,
         ticket: item.amount,
         amount: item.totalPrice,
+        status: item.status,
       }));
 
       return {
         result,
         totalPrice,
         ticketPurchase,
+        totalStatus,
       };
+    }),
+  setDone: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      }),
+    )
+    .mutation(async ({ ctx, input }) => {
+      await ctx.xata.db.purchase.update(input.id, {
+        status: "done",
+      });
+    }),
+  setDoneAll: protectedProcedure
+    .input(
+      z.array(
+        z.object({
+          id: z.string(),
+          userName: z.string().optional(),
+          eventName: z.string().optional(),
+          email: z.string().optional(),
+          ticket: z.number().optional(),
+          amount: z.number().optional(),
+          status: z.string().optional(),
+        }),
+      ),
+    )
+    .mutation(async ({ ctx, input }) => {
+      await Promise.all(
+        input.map((item) =>
+          ctx.xata.db.purchase.update(item.id, {
+            status: "done",
+          }),
+        ),
+      );
     }),
 });

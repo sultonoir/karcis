@@ -1,0 +1,18 @@
+{
+  "id": "mig_co2tph7qsqp1eea3miig",
+  "parentID": "mig_co26g24njmas7tf49uhg",
+  "checksum": "1:c66f9fc89c0178311172888c2ddb3564062dc057de693b08a20e744ba575711a",
+  "operations": [
+    {
+      "addColumn": {
+        "column": {
+          "name": "status",
+          "type": "string",
+          "notNull": true,
+          "defaultValue": "processing"
+        },
+        "table": "purchase"
+      }
+    }
+  ]
+}

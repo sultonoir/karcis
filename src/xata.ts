@@ -129,6 +129,12 @@ const tables = [
       { name: "user", type: "link", link: { table: "nextauth_users" } },
       { name: "amount", type: "int", notNull: true, defaultValue: "0" },
       { name: "events", type: "link", link: { table: "events" } },
+      {
+        name: "status",
+        type: "string",
+        notNull: true,
+        defaultValue: "processing",
+      },
     ],
     revLinks: [
       { column: "purchase", table: "ticketdetail" },

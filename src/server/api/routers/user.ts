@@ -154,4 +154,26 @@ export const userRouter = createTRPCRouter({
         pastEvent,
       };
     }),
+  getMyTicket: protectedProcedure.query(async ({ ctx }) => {
+    const id = ctx.session.user.id;
+    const purchase = await ctx.xata.db.purchase
+      .select(["*", "user.*", "events.*"])
+      .filter({
+        $all: [{ "user.id": id }],
+      })
+      .sort("xata.createdAt", "desc")
+      .getMany();
+
+    const result = purchase.map((item) => ({
+      id: item.id,
+      userName: item.user?.name,
+      eventName: item.events?.title,
+      email: item.user?.email,
+      ticket: item.amount,
+      amount: item.totalPrice,
+      status: item.status,
+    }));
+
+    return result;
+  }),
 });

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Banknote, Loader2Icon } from "lucide-react";
+import { Loader2Icon } from "lucide-react";
 import { useParams, usePathname } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -39,21 +39,6 @@ const EventDetailsButton = () => {
                 {data?.event?.title}
               </span>
             )}
-          </Link>
-          <Link
-            href={`/member/my-event/${params.id}/ordering-data`}
-            className={cn(
-              "flex items-center gap-2 rounded-md px-3 py-1 transition-transform duration-300 hover:translate-x-2",
-              {
-                "bg-primary text-white":
-                  `/member/my-event/${params.id}/ordering-data` === pathname,
-              },
-            )}
-          >
-            <span className="inline-flex size-10 items-center justify-center rounded-md  p-1">
-              <Banknote size={24} />
-            </span>
-            Ordering data
           </Link>
           <Separator />
         </React.Fragment>

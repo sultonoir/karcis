@@ -8,17 +8,20 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { ColumnHeader } from "./ColumnHeader";
+import { CheckCircledIcon, StopwatchIcon } from "@radix-ui/react-icons";
+import { api } from "@/trpc/react";
+import { toast } from "sonner";
 
 export type Payment = {
   id: string;
   amount: number;
   ticket: number;
+  status: string;
   email: string | null | undefined;
   userName: string | null | undefined;
   eventName: string | null | undefined;
@@ -68,9 +71,49 @@ export const columns: ColumnDef<Payment>[] = [
     header: ({ column }) => <ColumnHeader column={column} title="Ticket" />,
   },
   {
+    accessorKey: "status",
+    header: ({ column }) => <ColumnHeader column={column} title="status" />,
+    cell: ({ row }) => {
+      const payment = row.original;
+      const element =
+        payment.status === "done" ? (
+          <div className="flex items-center gap-2">
+            <CheckCircledIcon />
+            done
+          </div>
+        ) : (
+          <div className="flex items-center gap-2">
+            <StopwatchIcon />
+            processing
+          </div>
+        );
+      return element;
+    },
+  },
+  {
     id: "actions",
     cell: ({ row }) => {
       const payment = row.original;
+      const ctx = api.useUtils();
+      const setDone = api.revenue.setDone.useMutation({
+        onSuccess: async () => {
+          await ctx.revenue.getOrder.invalidate();
+        },
+      });
+      const promise = async () => {
+        await setDone.mutateAsync({
+          id: payment.id,
+        });
+      };
+      const handleClick = () => {
+        toast.promise(promise, {
+          loading: "Loading...",
+          success: () => {
+            return "customer has been check-in";
+          },
+          error: "Error",
+        });
+      };
 
       return (
         <DropdownMenu>
@@ -83,13 +126,11 @@ export const columns: ColumnDef<Payment>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
             <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
+              onClick={() => navigator.clipboard.writeText(payment.email ?? "")}
             >
-              Copy payment ID
+              Copy customer email
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem onClick={handleClick}>Check-in</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );

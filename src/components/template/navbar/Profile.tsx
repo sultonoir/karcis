@@ -54,7 +54,7 @@ const Profile = ({ data }: Props) => {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem asChild>
             <Link
               href={`/user/${data?.user.id}`}
               className="flex h-full w-full items-center gap-2"
@@ -70,6 +70,7 @@ const Profile = ({ data }: Props) => {
               key={item.title}
               title={item.title}
               className="relative h-fit cursor-pointer"
+              asChild
             >
               <Link
                 href={item.path}
