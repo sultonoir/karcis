@@ -18,7 +18,7 @@ import { Switch } from "@/components/ui/switch";
 import { type Session } from "next-auth";
 import { dummy } from "@/lib/data";
 import Link from "next/link";
-
+import { FiUser } from "react-icons/fi";
 interface Props {
   data: Session | null;
 }
@@ -54,6 +54,17 @@ const Profile = ({ data }: Props) => {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
+          <DropdownMenuItem>
+            <Link
+              href={`/user/${data?.user.id}`}
+              className="flex h-full w-full items-center gap-2"
+            >
+              <span className="inline-flex size-10 items-center justify-center rounded-md bg-primary/20 p-1">
+                <FiUser size={24} className="text-primary" />
+              </span>
+              My profile
+            </Link>
+          </DropdownMenuItem>
           {dummy.profile.map((item) => (
             <DropdownMenuItem
               key={item.title}

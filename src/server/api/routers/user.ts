@@ -121,4 +121,37 @@ export const userRouter = createTRPCRouter({
       banner: null,
     });
   }),
+  getPublicProfile: publicProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+      const user = await ctx.xata.db.nextauth_users.read(input.id);
+      const eventActive = await ctx.xata.db.events
+        .select(["*", "author.*"])
+        .filter({
+          $all: [
+            {
+              startDate: { $ge: new Date() },
+              author: input.id,
+            },
+          ],
+        })
+        .getMany();
+      const pastEvent = await ctx.xata.db.events
+        .select(["*", "author.*"])
+        .filter({
+          "author.id": input.id,
+          startDate: { $le: new Date() },
+        })
+        .getMany();
+
+      return {
+        user,
+        eventActive,
+        pastEvent,
+      };
+    }),
 });

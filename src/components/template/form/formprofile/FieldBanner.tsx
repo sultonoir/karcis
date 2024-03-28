@@ -132,7 +132,7 @@ const FieldBanner = ({ banner }: Props) => {
         </Button>
       </div>
       {banner ? (
-        <div className="relative flex h-[150px] w-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-sm lg:h-[420px]">
+        <div className="relative flex h-[100px] w-full cursor-pointer flex-col items-center justify-center overflow-hidden rounded-sm lg:h-[250px]">
           <Image
             src={banner}
             fill
@@ -168,7 +168,7 @@ const FieldBanner = ({ banner }: Props) => {
                 maxZoom={3}
                 zoomWithScroll={true}
                 showGrid={true}
-                aspect={21 / 9}
+                aspect={5}
                 onCropChange={setCrop}
                 onCropComplete={onCropComplete}
                 onZoomChange={setZoom}

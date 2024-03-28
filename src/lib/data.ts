@@ -1,5 +1,4 @@
-import { CalendarPlus, CompassIcon } from "lucide-react";
-import { FiUser } from "react-icons/fi";
+import { CalendarPlus, CompassIcon, Settings } from "lucide-react";
 import { MdDashboard, MdOutlineEventNote } from "react-icons/md";
 import { TbTicket } from "react-icons/tb";
 
@@ -175,11 +174,6 @@ export const dummy = {
       path: `/member`,
     },
     {
-      title: "Profile",
-      icons: FiUser,
-      path: `/member/profile`,
-    },
-    {
       title: "My event",
       icons: MdOutlineEventNote,
       path: `/member/my-event`,
@@ -188,6 +182,11 @@ export const dummy = {
       title: "My ticket",
       icons: TbTicket,
       path: `/member/my-ticket`,
+    },
+    {
+      title: "Settings",
+      icons: Settings,
+      path: `/member/profile`,
     },
   ],
   sidebar: [
