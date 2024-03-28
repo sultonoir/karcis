@@ -42,27 +42,31 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   isLoading?: boolean;
+  startContent?: React.ReactNode;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
+  (
+    { className, variant, size, asChild = false, startContent, ...props },
+    ref,
+  ) => {
     const Comp = asChild ? Slot : "button";
     return (
       <Comp
-        className={cn(buttonVariants({ variant, size, className }), {
+        className={cn(buttonVariants({ variant, size, className }), "gap-2", {
           "gap-2": props.isLoading,
         })}
         ref={ref}
         {...props}
       >
-        {props.isLoading ? (
-          <>
+        <>
+          {props.isLoading ? (
             <Loader2 className="size-4 animate-spin" />
-            {props.children}
-          </>
-        ) : (
-          props.children
-        )}
+          ) : (
+            startContent
+          )}
+          {props.children}
+        </>
       </Comp>
     );
   },
