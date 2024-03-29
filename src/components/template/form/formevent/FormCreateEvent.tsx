@@ -371,7 +371,7 @@ export default function FormCreateEvent({ user }: Props) {
             </div>
           </TabsContent>
         </Tabs>
-        <div className="sticky bottom-0 left-0 h-20 w-full border-t bg-background">
+        <div className="sticky bottom-[64px] left-0 h-20 w-full border-t bg-background lg:bottom-0">
           <div className="flex size-full items-center justify-between">
             <p>Just one more step and your event is created.</p>
             <div className="flex gap-2">

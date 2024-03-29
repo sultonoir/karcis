@@ -9,7 +9,7 @@ import EventBreadcrumb from "@/components/template/event/EventBreadcrumb";
 import EventHero from "@/components/template/event/EventHero";
 import EventMobilePayment from "@/components/template/event/EventMobilePayment";
 
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
 }: {

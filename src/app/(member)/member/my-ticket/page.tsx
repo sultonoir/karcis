@@ -3,6 +3,7 @@ import { DataTable } from "@/components/template/tableticket/DataTable";
 import { api } from "@/trpc/server";
 import React from "react";
 
+export const dynamic = "force-dynamic";
 const page = async () => {
   const data = await api.user.getMyTicket.query();
   return (
