@@ -68,7 +68,7 @@ const NotifyItem = () => {
                           href={
                             item.type === "payment"
                               ? "/member/my-ticket"
-                              : "/member/my-event"
+                              : `/member/my-event/${item.event?.id}`
                           }
                           onClick={() =>
                             mutate({

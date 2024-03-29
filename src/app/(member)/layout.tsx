@@ -1,10 +1,13 @@
 import Header from "@/components/template/navbar/Header";
+import MobileMenu from "@/components/template/navbar/MobileMenu";
 import Profile from "@/components/template/navbar/Profile";
 import Sidebar from "@/components/template/navbar/Sidebar";
+import Notify from "@/components/template/navbar/notify/Notify";
 import { Toaster } from "@/components/ui/sonner";
 import { getServerAuthSession } from "@/server/auth";
-import { Calendar } from "lucide-react";
+import { Calendar, CalendarPlus } from "lucide-react";
 import { type Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
@@ -26,15 +29,34 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
       </div>
       <main className="h-full md:pl-56">
         <Header>
-          <div className="flex items-center justify-end gap-5 px-10 py-2">
-            <Link
-              href="/create-event"
-              className="flex h-9 items-center gap-2 rounded-md px-4 py-2 hover:bg-primary/20 hover:text-primary"
-            >
-              <Calendar />
-              Create event
-            </Link>
-            <Profile data={session} />
+          <div className="flex items-center justify-between px-10 py-2 lg:justify-end">
+            <div className="flex items-center gap-2 lg:hidden">
+              <MobileMenu />
+              <Link href="/">
+                <Image
+                  src="/logo.png"
+                  alt="logo"
+                  width={34}
+                  height={34}
+                  loading="eager"
+                  priority
+                  className="rounded-sm"
+                />
+              </Link>
+            </div>
+            <div className="flex items-center">
+              <Link
+                href="/create-event"
+                title="Create event"
+                className="flex h-9 items-center gap-2 rounded-md px-4 py-2 hover:bg-primary/20 hover:text-primary"
+              >
+                <CalendarPlus className="block lg:hidden" />
+                <Calendar className="hidden lg:block" />
+                <span className="hidden lg:block">Create event</span>
+              </Link>
+              <Notify />
+              <Profile data={session} />
+            </div>
           </div>
         </Header>
         <div className="py-10">{children}</div>
