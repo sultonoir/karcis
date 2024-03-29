@@ -212,38 +212,41 @@ export const postRouter = createTRPCRouter({
         return active;
       }
     }),
-  getDetailMyevent: protectedProcedure
-    .input(
-      z.object({
-        eventId: z.string(),
+  popularEvent: publicProcedure.query(async ({ ctx }) => {
+    const allEvent = await ctx.xata.db.events
+      .filter({ $all: [{ startDate: { $ge: new Date() } }] })
+      .getMany();
+    const ticket = await Promise.all(
+      allEvent.map(async (item) => {
+        const itemTickets = await ctx.xata.db.purchase
+          .filter({
+            $all: [
+              {
+                "events.id": item.id,
+              },
+            ],
+          })
+          .getMany();
+        const filter = itemTickets.filter((f) => f.events?.id === item.id);
+
+        const amount = filter.reduce((acc, cur) => acc + cur.amount, 0);
+        const price = filter.reduce((acc, cur) => acc + cur.totalPrice, 0);
+        return {
+          ...item,
+          price,
+          ticket: amount,
+        };
       }),
-    )
-    .query(async ({ ctx, input }) => {
-      const event = await ctx.xata.db.events
-        .select(["*", "author.*"])
-        .filter({ id: input.eventId })
-        .getFirst();
+    );
 
-      const purchase = await ctx.xata.db.purchase
-        .select(["*"])
-        .filter({
-          $all: [{ "events.id": input.eventId }],
-        })
-        .getMany();
-      const tickets = await ctx.xata.db.tikets
-        .filter("event.id", input.eventId)
-        .getMany();
-
-      const totalTicket = tickets.reduce((acc, cur) => acc + cur.count, 0);
-      const totalPrice = purchase.reduce((acc, cur) => acc + cur.totalPrice, 0);
-
-      const ticketPurchase = purchase.reduce((acc, cur) => acc + cur.amount, 0);
-
-      return {
-        event,
-        totalTicket,
-        totalPrice,
-        ticketPurchase,
-      };
-    }),
+    const sort = ticket
+      .sort((a, b) => {
+        const itemA = a.ticket;
+        const itemB = b.ticket;
+        const result = itemB - itemA;
+        return result;
+      })
+      .slice(0, 3);
+    return sort;
+  }),
 });

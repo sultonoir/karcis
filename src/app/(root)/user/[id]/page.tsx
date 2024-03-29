@@ -1,7 +1,7 @@
-import { api } from "@/trpc/server";
 import { type Metadata } from "next";
 import React from "react";
 import UserClient from "./UserClient";
+import { getXataClient } from "@/xata";
 
 interface Props {
   params: { id: string };
@@ -12,12 +12,11 @@ export async function generateMetadata({
 }: {
   params: { id: string };
 }): Promise<Metadata> {
-  const data = await api.user.getPublicProfile.query({
-    id: params.id,
-  });
+  const xata = getXataClient();
+  const data = await xata.db.nextauth_users.read(params.id);
 
   return {
-    title: data.user?.name ?? "Karcisku",
+    title: data?.name ?? "Karcisku",
     generator: "event, reservation,",
     description: "Reserve, Create, Celebrate: Your Event, Your Rules!",
     metadataBase: new URL("https://kyoshop.vercel.app/"),
@@ -29,18 +28,18 @@ export async function generateMetadata({
       },
     },
     openGraph: {
-      title: data.user?.name ?? "Karcisku",
+      title: data?.name ?? "Karcisku",
       description: "Reserve, Create, Celebrate: Your Event, Your Rules!",
       url: "https://kyoshop.vercel.app/",
       siteName: "KyouShop",
       images: [
         {
-          url: data.user?.image ?? "",
+          url: data?.image ?? "",
           width: 800,
           height: 600,
         },
         {
-          url: data.user?.image ?? "",
+          url: data?.image ?? "",
           width: 1800,
           height: 1600,
           alt: "My custom alt",
@@ -55,12 +54,12 @@ export async function generateMetadata({
       description: "KyouShop easy shopping for everyone",
       images: [
         {
-          url: data.user?.image ?? "",
+          url: data?.image ?? "",
           width: 800,
           height: 600,
         },
         {
-          url: data.user?.image ?? "",
+          url: data?.image ?? "",
           width: 1800,
           height: 1600,
           alt: "My custom alt",

@@ -70,7 +70,7 @@ const DiscoverSelect = () => {
       <SelectTrigger className="w-[150px]" aria-label="select-options-date">
         <SelectValue placeholder="Nearby time" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="z-50">
         <SelectItem value="light">Nearby time</SelectItem>
         {filterEvents.map((item) => (
           <SelectItem key={item.label} value={item.label}>

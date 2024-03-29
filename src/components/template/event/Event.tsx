@@ -18,7 +18,7 @@ const Event = ({ events }: Props) => {
   });
 
   return (
-    <Card className="overflow-hidden">
+    <Card className="z-0 overflow-hidden">
       <div className="aspect-video overflow-hidden">
         <Link
           href={`/event/${events.id}`}

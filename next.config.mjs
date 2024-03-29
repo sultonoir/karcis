@@ -29,6 +29,10 @@ const config = {
         protocol: "https",
         hostname: "ap-southeast-2.storage.xata.sh",
       },
+      {
+        protocol: "https",
+        hostname: "loket-production-sg.s3.ap-southeast-1.amazonaws.com",
+      },
     ],
   },
 };
