@@ -1,6 +1,7 @@
 import FormCreateEvent from "@/components/template/form/formevent/FormCreateEvent";
 import { getServerAuthSession } from "@/server/auth";
 import { type Metadata } from "next";
+import { redirect } from "next/navigation";
 import React from "react";
 
 export const metadata: Metadata = {
@@ -10,6 +11,9 @@ export const metadata: Metadata = {
 
 const page = async () => {
   const data = await getServerAuthSession();
+  if (!data) {
+    redirect("/login");
+  }
 
   return (
     <div className="container mt-5 max-w-screen-lg">
