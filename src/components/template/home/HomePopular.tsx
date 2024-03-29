@@ -5,6 +5,7 @@ import React from "react";
 import Container from "./Container";
 import EmptyPage from "@/components/shared/EmptyPage";
 import Image from "next/image";
+import Link from "next/link";
 
 const HomePopular = () => {
   const { data, isLoading } = api.post.popularEvent.useQuery();
@@ -29,7 +30,11 @@ const HomePopular = () => {
     <Container className="container" title="Popular event">
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
         {data.map((item, index) => (
-          <div key={item.id} className="flex items-center gap-2">
+          <Link
+            href={`/event/${item.id}`}
+            key={item.id}
+            className="flex items-center gap-2"
+          >
             <span className="text-9xl">{index + 1}</span>
             <div className="relative aspect-video w-full overflow-hidden rounded-lg">
               <Image
@@ -41,7 +46,7 @@ const HomePopular = () => {
                 blurDataURL={item.blur}
               />
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </Container>
