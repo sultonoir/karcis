@@ -186,7 +186,7 @@ export const dummy = {
     {
       title: "Settings",
       icons: Settings,
-      path: `/member/profile`,
+      path: `/settings`,
     },
   ],
   sidebar: [

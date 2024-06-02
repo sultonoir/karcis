@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const ProfileClient = () => {
+const SettingClient = () => {
   const { data, isLoading } = api.user.getUser.useQuery();
   const router = useRouter();
   if (isLoading) {
@@ -42,4 +42,4 @@ const ProfileClient = () => {
   );
 };
 
-export default ProfileClient;
+export default SettingClient;

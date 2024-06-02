@@ -9,7 +9,7 @@ import Lamp from "@/components/ui/Lamp";
 import { Switch } from "@/components/ui/switch";
 import { useTheme } from "next-themes";
 import { Separator } from "@/components/ui/separator";
-import { Ticket, User2Icon } from "lucide-react";
+import { Ticket } from "lucide-react";
 
 import EventDetailsButton from "./EventDetailsButton";
 const Sidebar = () => {
@@ -51,22 +51,6 @@ const Sidebar = () => {
         ))}
         <Separator />
         {params.id && <EventDetailsButton />}
-        <p className="pt-2 font-medium text-muted-foreground">Profile</p>
-        <Link
-          href="/member/profile"
-          className={cn(
-            "flex items-center gap-2 rounded-md px-3 py-1 transition-transform duration-300 hover:translate-x-2",
-            {
-              "bg-primary text-white": "/member/profile" === pathname,
-            },
-          )}
-        >
-          <span className="inline-flex size-10 items-center justify-center rounded-md  p-1">
-            <User2Icon size={24} />
-          </span>
-          My profile
-        </Link>
-        <Separator />
         <p className="pt-2 font-medium text-muted-foreground">History</p>
         <Link
           href="/member/my-ticket"
